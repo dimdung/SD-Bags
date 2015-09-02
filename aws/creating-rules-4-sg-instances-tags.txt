@@ -1,0 +1,56 @@
+
+## Creating Rules on Security Groups 
+aws ec2 authorize-security-group-ingress --group-id sg-577fed30 --protocol tcp --port "22, 80, 443" --cidr 159.142.0.0/16 --region us-east-1 --profile io-labdev
+aws ec2 revoke-security-group-ingress --group-id  sg-497fed2e --protocol all --port all --cidr 10.180.192.0/18 --region us-east-1 --profile io-labdev
+
+
+
+159.142.0.0/16
+172.16.0.0/12
+192.168.0.0/16
+
+# Creating Tags for Instances 
+
+Master Templates:
+----------------- 
+Name 			= VM-ALM-1.0-E-D-ALMTest
+App  		    = ALM
+CostControl		= ALMTest
+Creator			= Samal Dimdung 
+Environment		= Lab
+POC		        = Robert Donovan
+ProjectTeam		= ALM Test
+SecurityLevel	= Standard
+Tenant			= AcqIT
+Portfolio 	    = TSD
+
+
+aws ec2 create-tags --resources i-2e92cb85 --tags Key=Name,Value=VM-ALM-1.0-E-D-ALMTest Key=App,Value=ALM Key=CostControl,Value=ALMTest Key=Creator,Value="Samal Dimdung" Key=Environment,Value=Lab Key=POC,Value="Robert Donovan" Key=ProjectTeam,Value="ALM Test" Key=SecurityLevel,Value=Standard Key=Tenant,Value="AcqIT" Key=Portfolio,Value=TSD --region us-east-1 --profile helix-labdev
+
+
+aws ec2 create-tags --resources i-656a6bc9 --tags Key=App,Value=Dev Key=CostControl,Value=IO-Dev Key=Creator,Value="Samal Dimdung" --region us-east-1 --profile io-labdev
+
+
+aws ec2 create-tags --resources i-656a6bc9 --tags Key=App,Value=Dev Key=CostControl,Value=IO-Dev Key=Creator,Value="Samal Dimdung" Key=Environment,Value=Dev Key=POC,Value="Electra Holmes" Key=ProjectTeam,Value=IO Key=SecurityLevel,Value=Standard Key=Tenant,Value=IO --region us-east-1 --profile io-labdev
+
+# 
+aws ec2 create-tags --resources i-b4000e18 --tags Key=App,Value=Dev Key=CostControl,Value=IO-Dev Key=Creator,Value="Samal Dimdung" Key=Environment,Value=Dev Key=POC,Value="Electra Holmes" Key=ProjectTeam,Value=IO Key=SecurityLevel,Value=Standard Key=Tenant,Value=IO --region us-east-1 --profile io-labdev
+
+aws ec2 create-tags --resources i-b4000e18 --tags Key=App,Value=NGAP_TAPS_Dev_Jboss --region us-east-1 --profile io-labdev
+ 
+ 
+aws ec2 revoke-security-group-ingress --group-id  sg-edd3b38a --protocol all --port all --cidr 10.180.192.0/18 --region us-east-1 --profile io-labdev
+
+
+aws ec2 authorize-security-group-ingress --group-id sg-edd3b38a --protocol tcp --port 80 --cidr 159.142.0.0/16 --region us-east-1 --profile helix-labdev
+
+aws ec2 create-tags --resources i-0bf962a0 --tags Key=ProjectTeam,Value=eSOA --region us-east-1 --profile helix-labdev
+
+# Creating Security Group and Tags on SG 
+aws ec2 create-security-group --group-name SG-AcqIt-JBoss-EAP-5.2.0-E-L-MW-1a-O --description "SG-AcqIt-JBoss-EAP-5.2.0-E-L-MW-1a-O" --vpc-id vpc-1a828e7f --region us-east-1 --profile helix-labdev
+
+aws ec2 create-tags --resources sg-ef245488 --tags Key=App,Value=JBoss Key=CostControl,Value=IO-SandBox Key=Creator,Value="Samal Dimdung" Key=Environment,Value=Lab Key=POC,Value="Electra Holmes" Key=ProjectTeam,Value=TSD Key=SecurityLevel,Value=Standard Key=Tenant,Value=IO --region us-east-1 --profile helix-labdev
+
+## Creating Rules on Security Groups 
+aws ec2 authorize-security-group-ingress --group-id sg-ef245488 --protocol tcp --port 52001 --cidr 159.142.0.0/16 --region us-east-1 --profile helix-labdev
+
