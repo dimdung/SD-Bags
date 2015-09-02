@@ -1,4 +1,7 @@
-# Steps to Clone  Repos
+<html>
+<boyd>
+<P>
+# Steps to Clone  Repos </p>
 Step # 1 - Create folder name called 'htech-project' and CD into 'htech-project'
 [sdimdung@htech007 ~]$ mkdir htech-project
 [sdimdung@htech007 ~]$ cd htech-project/
@@ -24,3 +27,6 @@ total 12
 drwx------. 2 sdimdung sdimdung 4096 Sep  2 00:15 ansible-playbook
 drwx------. 3 sdimdung sdimdung 4096 Sep  2 00:15 aws-training
 -rw-------. 1 sdimdung sdimdung   90 Sep  2 00:15 README.md
+
+</body>
+</html>
