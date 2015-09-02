@@ -1,2 +1,3 @@
-# htech2015-master
-Helix Tech 2015
+# Steps to Clone  Repos
+Step # 1 - Open Windows Command Prompt or use Linux/Mac Terminal
+
