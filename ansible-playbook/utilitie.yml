@@ -1,5 +1,5 @@
 ---
-#Add DevOps and IO Users to all DB machines
+# Linux Utilities
  tasks:
   - name: Add X11
     yum:
