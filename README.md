@@ -1,11 +1,10 @@
 <html>
 <boyd>
-<P>
-# Steps to Clone  Repos </p>
-Step # 1 - Create folder name called 'htech-project' and CD into 'htech-project'
-[sdimdung@htech007 ~]$ mkdir htech-project
-[sdimdung@htech007 ~]$ cd htech-project/
-[sdimdung@htech007 htech-project]$ ls
+# Steps to Clone  Repos </ br>
+Step # 1 - Create folder name called 'htech-project' and CD into 'htech-project' </ br>
+[sdimdung@htech007 ~]$ mkdir htech-project </ br>
+[sdimdung@htech007 ~]$ cd htech-project/ </ br>
+[sdimdung@htech007 htech-project]$ ls </ br>
 Step # 2 - Run ' git init' 
 [sdimdung@htech007 htech-project]$ git init
 Initialized htech007 Git repository in /home/sdimdung/htech-project/.git/
