@@ -24,3 +24,7 @@
 	
   - name: Install xorg-x11-utils
     command: yum install -y xorg-x11-utils
+    
+  - name: Install xclock 
+    command: yum install -y xlcock 
+    
