@@ -1,6 +1,5 @@
 # Steps to Clone  Repos
 Step # 1 - Create folder name called 'htech-project' and CD into 'htech-project'
-<<<<<<< HEAD
 [sdimdung@htech007 ~]$ mkdir htech-project
 [sdimdung@htech007 ~]$ cd htech-project/
 [sdimdung@htech007 htech-project]$ ls
@@ -79,7 +78,6 @@ drwx------. 3 sdimdung sdimdung 4096 Sep  2 00:15 aws-training
 
 -rw-------. 1 sdimdung sdimdung   90 Sep  2 00:15 README.md
 
->>>>>>> ddd74320c04958433507bca583af3d595a2c43e3
 [sdimdung@htech007 htech2015-master]$
 
 
