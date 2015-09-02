@@ -28,4 +28,4 @@ drwx------. 3 sdimdung sdimdung 4096 Sep  2 00:15 aws-training
 -rw-------. 1 sdimdung sdimdung   90 Sep  2 00:15 README.md
 [sdimdung@htech007 htech2015-master]$
 
-
+f
