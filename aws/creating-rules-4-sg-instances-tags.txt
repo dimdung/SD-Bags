@@ -13,16 +13,16 @@ aws ec2 revoke-security-group-ingress --group-id  sg-497fed2e --protocol all --p
 
 Master Templates:
 ----------------- 
-Name 			= VM-ALM-1.0-E-D-ALMTest
-App  		    = ALM
-CostControl		= ALMTest
-Creator			= Samal Dimdung 
-Environment		= Lab
-POC		        = Robert Donovan
-ProjectTeam		= ALM Test
+Name 			      = VM-ALM-1.0-E-D-ALMTest
+App  		       = ALM
+CostControl		 = ALMTest
+Creator			    = Samal Dimdung 
+Environment		 = Lab
+POC		         = Robert Donovan
+ProjectTeam		 = ALM Test
 SecurityLevel	= Standard
-Tenant			= AcqIT
-Portfolio 	    = TSD
+Tenant			     = AcqIT
+Portfolio 	   = TSD
 
 
 aws ec2 create-tags --resources i-2e92cb85 --tags Key=Name,Value=VM-ALM-1.0-E-D-ALMTest Key=App,Value=ALM Key=CostControl,Value=ALMTest Key=Creator,Value="Samal Dimdung" Key=Environment,Value=Lab Key=POC,Value="Robert Donovan" Key=ProjectTeam,Value="ALM Test" Key=SecurityLevel,Value=Standard Key=Tenant,Value="AcqIT" Key=Portfolio,Value=TSD --region us-east-1 --profile helix-labdev
