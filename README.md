@@ -2,11 +2,11 @@
 <boyd>
 # Steps to Clone  Repos <br>
 Step # 1 - Create folder name called 'htech-project' and CD into 'htech-project' <br>
-[sdimdung@htech007 ~]$ mkdir htech-project </ br>
-[sdimdung@htech007 ~]$ cd htech-project/ </ br>
-[sdimdung@htech007 htech-project]$ ls </ br>
-Step # 2 - Run ' git init' 
-[sdimdung@htech007 htech-project]$ git init
+[sdimdung@htech007 ~]$ mkdir htech-project <br>
+[sdimdung@htech007 ~]$ cd htech-project/ <br>
+[sdimdung@htech007 htech-project]$ ls <br>
+Step # 2 - Run ' git init' <br>
+[sdimdung@htech007 htech-project]$ git init <br>
 Initialized htech007 Git repository in /home/sdimdung/htech-project/.git/
 Step # 3 - Run the 'git clone' command alone with the  following url:
 [sdimdung@htech007 htech-project]$ git clone https://github.com/dimdung/htech2015-master.git
