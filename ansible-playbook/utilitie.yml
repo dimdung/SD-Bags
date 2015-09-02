@@ -1,5 +1,5 @@
 ---
-#Add DevOps and IO Users to all DB machines
+# Linux Utilities
  tasks:
   - name: Add X11
     yum:
@@ -24,3 +24,7 @@
 	
   - name: Install xorg-x11-utils
     command: yum install -y xorg-x11-utils
+    
+  - name: Install xclock 
+    command: yum install -y xlcock 
+    
