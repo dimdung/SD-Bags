@@ -2,22 +2,13 @@
 Step # 1 - Create folder name called 'htech-project' and CD into 'htech-project'
 
 [sdimdung@htech007 ~]$ mkdir htech-project
-
 [sdimdung@htech007 ~]$ cd htech-project/
-
 [sdimdung@htech007 htech-project]$ ls
-
 Step # 2 - Run ' git init' 
-
 [sdimdung@htech007 htech-project]$ git init
-
-
 Initialized htech007 Git repository in /home/sdimdung/htech-project/.git/
-
 Step # 3 - Run the 'git clone' command alone with the  following url:
-
 [sdimdung@htech007 htech-project]$ git clone https://github.com/dimdung/htech2015-master.git
-
 Initialized empty Git repository in /home/sdimdung/htech-project/htech2015-master/.git/
 remote: Counting objects: 31, done.
 remote: Compressing objects: 100% (25/25), done.
