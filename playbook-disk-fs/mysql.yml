@@ -1,0 +1,37 @@
+---
+- hosts: all
+  user: sdimdung
+  sudo: yes
+
+  tasks:
+  # Create a ext4 filesystem on /dev/xvdb, /dev/xvde, /dev/xvdf, /dev/xvdg, /dev/xvdh
+  - filesystem: fstype=ext4 dev=/dev/xvdb
+  - filesystem: fstype=ext4 dev=/dev/xvdc
+  - filesystem: fstype=ext4 dev=/dev/xvdd
+  - filesystem: fstype=ext4 dev=/dev/xvde
+  - filesystem: fstype=ext4 dev=/dev/xvdf
+
+  # Creating Mount point for /u01, /u02, /u03, /u98 and /u98
+  - file: path=/opt/sw/mysql state=directory mode=0755
+  - file: path=/mysql-data state=directory mode=0755
+  - file: path=/mysql-backup state=directory mode=0755
+  - file: path=/opt/sw/mysql56 state=directory mode=0755
+  - file: path=/opt/sw/mysql55 state=directory mode=0755
+
+  # Update the /etc/fstab  for /u03 and  /dev/xvdf
+  #- mount: name=/u03 src=/dev/xvdf  fstype=ext4 state=present
+  - mount: name=/opt/sw/mysql src=/dev/xvdb  fstype=ext4 state=mounted
+  - mount: name=/mysql-data src=/dev/xvdc  fstype=ext4 state=mounted
+  - mount: name=/mysql-backup src=/dev/xvdd  fstype=ext4 state=mounted
+  - mount: name=/opt/sw/mysql56 src=/dev/xvde  fstype=ext4 state=mounted
+  - mount: name=/opt/sw/mysql55 src=/dev/xvdf  fstype=ext4 state=mounted
+
+  # Add mysql user
+  - user: name=mysql shell=/bin/bash state=present
+
+  # Change owner and group of mount point
+  - file: path=/opt/sw/mysql owner=mysql group=mysql
+  - file: path=/mysql-data owner=mysql group=mysql
+  - file: path=/mysql-backup owner=mysql group=mysql
+  - file: path=/opt/sw/mysql56 owner=mysql group=mysql
+  - file: path=/opt/sw/mysql55 owner=mysql group=mysql

@@ -1,0 +1,45 @@
+---
+- hosts: 10.176.32.71
+  user: ec2-user
+  sudo: yes
+
+  tasks:
+  # Create a ext4 filesystem on /dev/xvdb, /dev/xvde, /dev/xvdf, /dev/xvdg, /dev/xvdh
+  - filesystem: fstype=ext4 dev=/dev/xvdb
+  - filesystem: fstype=ext4 dev=/dev/xvdc
+  - filesystem: fstype=ext4 dev=/dev/xvdd
+  - filesystem: fstype=ext4 dev=/dev/xvde
+  - filesystem: fstype=ext4 dev=/dev/xvdf
+  - filesystem: fstype=ext4 dev=/dev/xvdg
+  - filesystem: fstype=ext4 dev=/dev/xvdh
+
+  # Creating Mount point for /u01, /u02, /u03, /u98 and /u98
+  - file: path=/opt/sw state=directory mode=0755
+  - file: path=/software state=directory mode=0755
+  - file: path=/sybase-backup state=directory mode=0755
+  - file: path=/ase_data state=directory mode=0755
+  - file: path=/ase_log state=directory mode=0755
+  - file: path=/ase_tempdb state=directory mode=0755
+
+  # Update the /etc/fstab  for /u03 and  /dev/xvdf
+  #- mount: name=/u03 src=/dev/xvdf  fstype=ext4 state=present
+  - mount: name=/opt/sw src=/dev/xvdb  fstype=ext4 state=mounted
+  - mount: name=/software src=/dev/xvdc  fstype=ext4 state=mounted
+  - mount: name=/sybase-backup src=/dev/xvdd  fstype=ext4 state=mounted
+  - mount: name=/ase_data src=/dev/xvde  fstype=ext4 state=mounted
+  - mount: name=/ase_log src=/dev/xvdf  fstype=ext4 state=mounted
+  - mount: name=/ase_tempdb src=/dev/xvdg  fstype=ext4 state=mounted
+
+  # Add oracle user
+  - user: name=sybase shell=/bin/bash state=present
+
+  # Add sydba user
+  - group: name=sydsa  state=present
+
+  # Change owner and group of mount point
+  - file: path=/opt/sw owner=sybase group=sydsa
+  - file: path=/software owner=sybase group=sydsa
+  - file: path=/sybase-backup owner=sybase group=sydsa
+  - file: path=/ase_data owner=sybase group=sydsa
+  - file: path=/ase_log owner=sybase group=sydsa
+  - file: path=/ase_tempdb owner=sybase group=sydsa

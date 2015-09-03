@@ -1,0 +1,48 @@
+---
+- hosts: all
+  user: ec2-user
+  sudo: yes
+
+  tasks:
+  - name: Add X11
+    yum:
+      name="@X Window System"
+      state=present
+
+  - name: Add XTerm
+    yum:
+      name="xterm"
+      state=present
+
+  #- name: Install repo
+  #  command: rpm -Uvh http://rpms.famillecollet.com/enterprise/remi-release-6.rpm
+  #  ignore_errors: yes
+
+  - name: Add Mozilla
+    yum:
+      name="firefox"
+      state=present
+
+  - name: Install org-xorg-x11-fonts
+    command: yum install -y xorg-x11-fonts-*
+        
+  - name: Install xorg-x11-utils
+    command: yum install -y xorg-x11-utils
+    
+  - name: Install xclock 
+    command: yum install -y xorg-x11-apps
+
+  - name: Install  libstdc++
+    command:  yum install -y libstdc++
+
+  - name:  Install  libstdc++.i686
+    command: yum install -y libstdc++.i686
+
+  - name: LowValueHighValue
+    command: /bin/echo 11000 65000 > /proc/sys/net/ipv4/ip_local_port_range
+  
+  - name: Umask Not OK
+    command: umask 022
+
+  - name: Install xorg-x11-auth
+    command: yum install -y xorg-x11-auth

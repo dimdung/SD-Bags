@@ -1,0 +1,23 @@
+---
+- hosts: 10.176.32.96
+  user: ec2-user
+  sudo: yes
+
+  tasks:
+  # Add oracle in secendary group of dba 
+#  - name: Making Oracle and dba secondary group 
+#    command: usermod -g oinstall oracle
+  
+  # Create /etc/oratab /etc/oraInst.loc
+#  - name: Create /etc/oratab /etc/oraInst.loc owned by oracle and group oinstall, readable and writable by oracle/oinstall
+#    command: touch /etc/oratab /etc/oraInst.loc
+  
+#  - name: Change Owner of  /etc/oratab /etc/oraInst.loc
+#    command: chown oracle:oinstall /etc/oratab /etc/oraInst.loc
+ 
+#  - name: Change Permission of  /etc/oratab /etc/oraInst.loc
+#    command: chmod 660 /etc/oratab /etc/oraInst.loc
+
+  - name: Adding oracle user to allow crontab 
+    shell: echo oracle >> /etc/cron.allow
+
