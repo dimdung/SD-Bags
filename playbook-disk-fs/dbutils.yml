@@ -35,8 +35,6 @@
   - name: Install GCC
     command: yum install -y gcc-c++ gcc
  
-
-
   - name: Install  libstdc++
     command:  yum install -y libstdc++
 
