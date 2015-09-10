@@ -31,6 +31,9 @@
     
   - name: Install xclock 
     command: yum install -y xorg-x11-apps
+    
+  - name: Install GCC
+    command: yum install gcc
 
   - name: Install  libstdc++
     command:  yum install -y libstdc++
