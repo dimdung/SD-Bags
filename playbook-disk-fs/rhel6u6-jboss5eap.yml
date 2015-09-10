@@ -6,7 +6,7 @@
    tasks:
    # Create a volume group on top of /dev/sda1 with physical extent size = 32MB.
    #- lvg:  vg=jboss_vg /dev/xvdb
-   - name: Creag VG on /dev/xvdb
+   - name: Create VG on /dev/xvdb
      command: vgcreate jboss_vg /dev/xvdb
    
    # Create a logical volume for /opt/sw/jboss, /opt/appconfig/jboss  and /opt/logs/jboss 
