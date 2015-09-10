@@ -1,0 +1,43 @@
+---
+ - hosts: all
+   user: ec2-user
+   sudo: yes 
+   
+   tasks:
+   # Create a volume group on top of /dev/sda1 with physical extent size = 32MB.
+   #- lvg:  vg=jboss_vg /dev/xvdb
+   - name: Creag VG on /dev/xvdb
+     command: vgcreate jboss_vg /dev/xvdb
+   
+   # Create a logical volume for /opt/sw/jboss, /opt/appconfig/jboss  and /opt/logs/jboss 
+   - lvol: vg=jboss_vg lv=jboss_sw size=20g
+   - lvol: vg=jboss_vg lv=jboss_app size=10g
+   - lvol: vg=jboss_vg lv=jboss_log size=10g
+  
+   
+   # Make Filesytem for below lvs 
+   - filesystem: fstype=ext4 dev=/dev/jboss_vg/jboss_sw
+   - filesystem: fstype=ext4 dev=/dev/jboss_vg/jboss_app
+   - filesystem: fstype=ext4 dev=/dev/jboss_vg/jboss_log
+   
+   # Creating Mount point for /opt/sw/jboss, /logs/jboss 10GB  and /appconfig/jboss
+   - file: path=/opt/sw/jboss state=directory mode=0775
+   - file: path=/logs/jboss state=directory mode=0775
+   - file: path=/appconfig/jboss state=directory mode=0775  
+   
+   # Update the /etc/fstab  for /u03 and  /dev/xvdf
+   - mount: name=/opt/sw/jboss src=/dev/jboss_vg/jboss_sw  fstype=ext4 state=mounted
+   - mount: name=/logs/jboss src=/dev/jboss_vg/jboss_app  fstype=ext4 state=mounted
+   - mount: name=/appconfig/jboss src=/dev/jboss_vg/jboss_log fstype=ext4 state=mounted
+ 
+   # Create jboss  user
+   - user: name=jboss shell=/bin/bash state=present  
+   
+   # Create 'jbossdeploy' group
+   - group: name=jbossdeploy  state=present
+   
+   # Change owner and group of mount point
+   - file: path=/opt/sw/jboss owner=jboss group=jboss
+   - file: path=/logs/jboss owner=jboss group=jboss
+   - file: path=/appconfig/jboss owner=jboss group=jboss
+ 
