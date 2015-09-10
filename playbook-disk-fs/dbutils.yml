@@ -33,7 +33,9 @@
     command: yum install -y xorg-x11-apps
     
   - name: Install GCC
-    command: yum install -y gcc
+    command: yum install -y gcc-c++ gcc
+ 
+
 
   - name: Install  libstdc++
     command:  yum install -y libstdc++
