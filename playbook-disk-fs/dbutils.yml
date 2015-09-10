@@ -39,7 +39,7 @@
     command:  yum install -y libstdc++
 
   - name:  Install  libstdc++.i686
-    command: yum install -y libstdc++.i686
+    command: yum install -y libstdc++.i686 glibc.i686 glibc-devel.i686
 
   - name: LowValueHighValue
     shell: /bin/echo 11000 65000 > /proc/sys/net/ipv4/ip_local_port_range
