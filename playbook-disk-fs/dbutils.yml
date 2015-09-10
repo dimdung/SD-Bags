@@ -42,7 +42,7 @@
     command: yum install -y libstdc++.i686
 
   - name: LowValueHighValue
-    command: /bin/echo 11000 65000 > /proc/sys/net/ipv4/ip_local_port_range
+    shell: /bin/echo 11000 65000 > /proc/sys/net/ipv4/ip_local_port_range
   
   - name: Umask Not OK
     command: umask 022
