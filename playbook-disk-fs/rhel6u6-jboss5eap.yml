@@ -6,7 +6,7 @@
    tasks:
    # Create a volume group on top of /dev/sda1 with physical extent size = 32MB.
    #- lvg:  vg=jboss_vg /dev/xvdb
-   - name: Creag VG on /dev/xvdb
+   - name: Creat VG on /dev/xvdb
      command: vgcreate jboss_vg /dev/xvdb
    
    # Create a logical volume for /opt/sw/jboss, /opt/appconfig/jboss  and /opt/logs/jboss 
@@ -40,4 +40,11 @@
    - file: path=/opt/sw/jboss owner=jboss group=jboss
    - file: path=/logs/jboss owner=jboss group=jboss
    - file: path=/appconfig/jboss owner=jboss group=jboss
+   
+   # Allow the Jboss user to do cron Job
+   - name: Adding jboss user to allow cront job
+     shell: echo "jboss" >> /etc/cron.allow 
+   
+  # Next Here 
+  - name: 
  

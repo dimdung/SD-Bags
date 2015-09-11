@@ -1,0 +1,55 @@
+- action: ec2_facts
+
+- apt: pkg=lvm2 state=present
+- apt: pkg=mdadm state=present
+
+- pip: name=boto state=latest
+
+- ec2_vol: instance="{{ hostvars[inventory_hostname]['ansible_ec2_instance-id'] }}"
+           volume_size=20
+           device_name="{{ item }}"
+           region="{{ ansible_ec2_placement_region }}"
+           zone="{{ ansible_ec2_placement_availability_zone }}"
+           aws_access_key="{{aws_access_key_id}}"
+           aws_secret_key="{{aws_secret_access_key}}"
+  with_items:
+    - /dev/sdf
+    - /dev/sdg
+    - /dev/sdh
+    - /dev/sdi
+    - /dev/sdj
+    - /dev/sdk
+    - /dev/sdl
+    - /dev/sdm
+
+- name: check for /dev/md0
+  shell: "mdadm -D /dev/md0"
+  ignore_errors: yes
+  register: mdadm_check
+
+- name: initialise /dev/md0
+  shell: "mdadm -v --create /dev/md0 --level=raid10 --raid-devices=8 /dev/xvdf /dev/xvdg /dev/xvdh /dev/xvdi /dev/xvdj /dev/xvdk /dev/xvdl /dev/xvdm"
+  when: mdadm_check.rc != 0
+
+- name: wait for /dev/md0 to come online
+  shell: "mdadm --wait /dev/md0"
+  when: mdadm_check.rc != 0
+
+- name: volume group
+  lvg: vg=vg0 pvs=/dev/md0
+
+- lvol: vg=vg0 lv=data size=90%VG
+- lvol: vg=vg0 lv=log size=5%VG
+- lvol: vg=vg0 lv=journal size=5%VG
+
+- filesystem: fstype=ext4 dev=/dev/vg0/data
+- filesystem: fstype=ext4 dev=/dev/vg0/log
+- filesystem: fstype=ext4 dev=/dev/vg0/journal
+
+- file: path=/data state=directory owner=mongodb group=mongodb mode=0755
+- file: path=/log state=directory owner=mongodb group=mongodb mode=0755
+- file: path=/journal state=directory owner=mongodb group=mongodb mode=0755
+
+- mount: name=/data src=/dev/vg0/data fstype=ext4 opts=defaults,auto,noatime,nodiratime,noexec,relatime state=mounted
+- mount: name=/log src=/dev/vg0/log fstype=ext4 opts=defaults,auto,noatime,nodiratime,noexec,relatime state=mounted
+- mount: name=/journal src=/dev/vg0/journal fstype=ext4 opts=defaults,auto,noatime,nodiratime,noexec,relatime state=mounted
