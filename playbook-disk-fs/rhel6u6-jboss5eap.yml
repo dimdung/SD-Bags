@@ -30,11 +30,10 @@
    - mount: name=/logs/jboss src=/dev/jboss_vg/jboss_app  fstype=ext4 state=mounted
    - mount: name=/appconfig/jboss src=/dev/jboss_vg/jboss_log fstype=ext4 state=mounted
  
-   # Create jboss  user
-   - user: name=jboss shell=/bin/bash state=present  
-   
    # Create 'jbossdeploy' group
-   - group: name=jbossdeploy  state=present
+   - group: name=jbossdeploy  gid=7000 state=present  
+   # Add the user 'jboss' with a bash shell, appending the group 'jbossdeploy' and devops to the user's group 
+   - user: name=jboss shell=/bin/bash groups=jbossdeploy,devops append=yes state=present  
    
    # Change owner and group of mount point
    - file: path=/opt/sw/jboss owner=jboss group=jboss
@@ -44,6 +43,10 @@
    # Allow the Jboss user to do cron Job
    - name: Adding jboss user to allow cront job
      shell: echo "jboss" >> /etc/cron.allow 
+	 
+   # Allow the Jboss user to do cron Job
+   - name: Adding jboss user to sudo
+     shell: echo "dimdung ALL=(ALL:ALL) ALL " >> /etc/sudoers 
    
   # Next Here 
 
