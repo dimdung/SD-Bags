@@ -32,6 +32,7 @@
  
    # Create 'jbossdeploy' group
    - group: name=jbossdeploy  gid=7000 state=present  
+   
    # Add the user 'jboss' with a bash shell, appending the group 'jbossdeploy' and devops to the user's group 
    - user: name=jboss shell=/bin/bash groups=jbossdeploy,devops append=yes state=present  
    
