@@ -1,0 +1,83 @@
+---
+  # Create a ext4 filesystem on below partitions/volumes
+  - filesystem: fstype=ext4 dev=/dev/xvdb
+  - filesystem: fstype=ext4 dev=/dev/xvdc
+  - filesystem: fstype=ext4 dev=/dev/xvdd
+  - filesystem: fstype=ext4 dev=/dev/xvde
+  - filesystem: fstype=ext4 dev=/dev/xvdf
+#  - filesystem: fstype=ext4 dev=/dev/xvdg
+#  - filesystem: fstype=ext4 dev=/dev/xvdh
+#  - filesystem: fstype=ext4 dev=/dev/xvdi
+#  - filesystem: fstype=ext4 dev=/dev/xvdj
+#  - filesystem: fstype=ext4 dev=/dev/xvdk
+#  - filesystem: fstype=ext4 dev=/dev/xvdl
+#  - filesystem: fstype=ext4 dev=/dev/xvdm
+#  - filesystem: fstype=ext4 dev=/dev/xvdn
+#  - filesystem: fstype=ext4 dev=/dev/xvdo
+
+  # Creating Mount point for above FS 
+  - file: path=/u01 state=directory mode=0755
+  - file: path=/u02 state=directory mode=0755
+  - file: path=/u03 state=directory mode=0755
+  - file: path=/u98 state=directory mode=0755
+  - file: path=/u99 state=directory mode=0755
+#  - file: path=/u07 state=directory mode=0755
+#  - file: path=/u09 state=directory mode=0755
+#  - file: path=/u10 state=directory mode=0755
+#  - file: path=/u14 state=directory mode=0755
+#  - file: path=/u03 state=directory mode=0755
+#  - file: path=/u08 state=directory mode=0755
+#  - file: path=/u98 state=directory mode=0755
+#  - file: path=/u99 state=directory mode=0755
+#  - file: path=/tmp	state=directory mode=1777
+
+  # Update the /etc/fstab  for above filesyste
+  - mount: name=/u01 src=/dev/xvdb  fstype=ext4 state=mounted
+  - mount: name=/u02 src=/dev/xvdc  fstype=ext4 state=mounted
+  - mount: name=/u03 src=/dev/xvdd  fstype=ext4 state=mounted
+  - mount: name=/u98 src=/dev/xvde  fstype=ext4 state=mounted
+  - mount: name=/u99 src=/dev/xvdf  fstype=ext4 state=mounted
+#  - mount: name=/u09 src=/dev/xvdh  fstype=ext4 state=mounted
+#  - mount: name=/u10 src=/dev/xvdi  fstype=ext4 state=mounted
+#  - mount: name=/u14 src=/dev/xvdj  fstype=ext4 state=mounted
+#  - mount: name=/u03 src=/dev/xvdk  fstype=ext4 state=mounted
+#  - mount: name=/u08 src=/dev/xvdl  fstype=ext4 state=mounted
+#  - mount: name=/u98 src=/dev/xvdm  fstype=ext4 state=mounted
+#  - mount: name=/u99 src=/dev/xvdn  fstype=ext4 state=mounted
+#  - mount: name=/tmp src=/dev/xvdo  fstype=ext4 state=mounted
+  
+  # Create SWAP Partition 
+  - name: Creating SWAP Partition
+    command: /sbin/mkswap /dev/xvdg
+
+  - name: Enable SWAP 
+    command: /sbin/swapon /dev/xvdg
+
+  - name: To enable it at boot time, edit /etc/fstab to include
+    shell: echo "/dev/vxdg      swap	swap	defaults  0 0 " >> /etc/fstab
+
+  # Create 'dba,oinstall' group
+  - group: name=dba  state=present 
+  - group: name=oinstall state=present    
+  
+  # Add the user 'oracle' with a bash shell, appending the group 'dba,oinstall' to the user's group 
+  - user: name=oracle shell=/bin/bash groups=dba append=yes state=present  
+  
+  - name: Make oinstall as primary group for 'oracle' users 
+    command: /usr/sbin/usermod -g oinstall oracle
+  
+    # Change owner and group of mount point
+  - file: path=/u01 owner=oracle group=dba
+  - file: path=/u02 owner=oracle group=dba
+  - file: path=/u03 owner=oracle group=dba
+  - file: path=/u98 owner=oracle group=dba
+  - file: path=/u99 owner=oracle group=dba
+#  - file: path=/u07 owner=oracle group=dba
+#  - file: path=/u09 owner=oracle group=dba
+#  - file: path=/u10 owner=oracle group=dba
+#  - file: path=/u14 owner=oracle group=dba
+#  - file: path=/u03 owner=oracle group=dba
+#  - file: path=/u08 owner=oracle group=dba
+#  - file: path=/u98 owner=oracle group=dba
+#  - file: path=/u99 owner=oracle group=dba
+#  - file: path=/tmp owner=root group=sys

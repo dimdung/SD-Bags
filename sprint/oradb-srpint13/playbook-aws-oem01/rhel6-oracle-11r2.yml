@@ -1,0 +1,9 @@
+#config-book to RHEL5.11-Oracle-11r2
+---
+- hosts: 10.176.32.102
+  user: sdimdung
+  sudo: yes
+  connection: local
+  accelerate: false
+  roles: 
+    - rhel6u6-oracle11r2

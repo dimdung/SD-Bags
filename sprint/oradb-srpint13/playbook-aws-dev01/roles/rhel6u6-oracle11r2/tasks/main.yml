@@ -1,0 +1,9 @@
+---
+## All the file include:
+  - include: oradb-packages-sprint13.yml
+    tags: packages
+
+  - include: section_02.yml
+    tags: section2
+
+
