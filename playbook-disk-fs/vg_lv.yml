@@ -1,0 +1,23 @@
+---
+- hosts: 10.176.84.240
+  user: sdimdung
+  sudo: yes
+
+  tasks:
+  # Create a ext4 filesystem on /dev/xvdb, /dev/xvde
+  - lvg: vg=appl_vg pvs=/dev/xvdm state=present
+
+  # Creating Mount point for /u01, /u02, /u03, /u98 and /u98
+  - lvol: vg=appl_vg lv=test1 size=1g state=present
+  - lvol: vg=appl_vg lv=test2 size=2g state=present
+  # making FS
+  - filesystem: fstype=ext4 dev=/dev/appl_vg/test1
+  - filesystem: fstype=ext4 dev=/dev/appl_vg/test2
+
+  # Update the /etc/fstab  for /u03 and  /dev/xvdf
+  - file: path=/opt/test1 state=directory mode=0775
+  - file: path=/opt/test2 state=directory mode=0775
+
+  #- mount: name=/u03 src=/dev/xvdf  fstype=ext4 state=present
+  - mount: name=/opt/test1 src=/dev/appl_vg/test1  fstype=ext4 state=mounted
+  - mount: name=/opt/test2 src=/dev/appl_vg/test2  fstype=ext4 state=mounted
