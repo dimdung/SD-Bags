@@ -1,7 +1,8 @@
 
 ## Creating Rules on Security Groups 
-aws ec2 authorize-security-group-ingress --group-id sg-577fed30 --protocol tcp --port "22, 80, 443" --cidr 159.142.0.0/16 --region us-east-1 --profile io-labdev
-aws ec2 revoke-security-group-ingress --group-id  sg-497fed2e --protocol all --port all --cidr 10.180.192.0/18 --region us-east-1 --profile io-labdev
+aws ec2 authorize-security-group-ingress --group-id sg-8b2c44ec --protocol tcp --port 6600 --cidr 172.16.0.0/12 --region us-east-1 --profile helix-labdev
+aws ec2 authorize-security-group-ingress --group-id sg-8b2c44ec --protocol tcp --port 6674 --cidr 172.16.0.0/12 --region us-east-1 --profile helix-labdev
+aws ec2 authorize-security-group-ingress --group-id sg-8b2c44ec --protocol tcp --port 6684 --cidr 172.16.0.0/12 --region us-east-1 --profile helix-labdev
 
 
 
