@@ -1,0 +1,1 @@
+[root@scm-ansible03 tmp]# aws ec2 run-instances --image-id ami-b3b71bd8 --count 1 --instance-type m4.4xlarge  --key-name kp-helix-dev-ansible --security-group-ids sg-b98b64de --subnet-id subnet-cd035994 --block-device-mappings file:///tmp/ebs.json --region us-east-1 --profile helix-labdev > sybase.txt
