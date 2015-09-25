@@ -1,1 +1,26 @@
 [root@scm-ansible03 tmp]# aws ec2 run-instances --image-id ami-b3b71bd8 --count 1 --instance-type m4.4xlarge  --key-name kp-helix-dev-ansible --security-group-ids sg-b98b64de --subnet-id subnet-cd035994 --block-device-mappings file:///tmp/ebs.json --region us-east-1 --profile helix-labdev > sybase.txt
+
+
+#### 
+# Create-new-user.sh
+
+#!/bin/bash
+# Create a new user and create a new profile 
+
+aws iam create-user --user-name summit-user
+credentials=$(aws iam create-access-key -username summit-user\
+	--query 'AccessKey.[AccessKeyId,SecretAccessKey]'\
+access_key_id=$(echo $credentials | cut -d' ' -f 1)
+secret_access_key=$(echo $credentails | cut -d' ' -f2)
+
+aws configure set profile.summit.aws_access_key_id "$access_key_id"
+aws configure set profile.summit.secret_access_key "$secret_access_key"
+
+-------------------------------------------------------------------------
+aws dynamodb create-table --generate-cli-skeleton > /tmp/table.jason 
+
+aws ec2 run-instances -cli-input-json file://arguments.json
+
+aws ec2 run-instances -generate-cli-skeleton > /tmp/ec2.json
+
+=====
