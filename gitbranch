@@ -1,0 +1,69 @@
+https://github.helix.gsa.gov/HelixDevOps/Playbooks.git
+
+C:\helix-asap\Playbooks>git checkout ASAP
+Branch ASAP set up to track remote branch ASAP from origin.
+Switched to a new branch 'ASAP'
+
+C:\helix-asap\Playbooks>dir
+ Volume in drive C is OS
+ Volume Serial Number is 9C99-615C
+
+ Directory of C:\helix-asap\Playbooks
+
+10/01/2015  02:11 PM    <DIR>          .
+10/01/2015  02:11 PM    <DIR>          ..
+10/01/2015  02:09 PM                 9 .gitignore
+10/01/2015  02:11 PM    <DIR>          assist_migration
+10/01/2015  02:11 PM    <DIR>          assist_users
+10/01/2015  02:11 PM    <DIR>          devops_users
+10/01/2015  02:11 PM    <DIR>          ecd
+10/01/2015  02:11 PM    <DIR>          io
+10/01/2015  02:09 PM    <DIR>          middleware
+10/01/2015  02:11 PM    <DIR>          puppet_agent
+10/01/2015  02:11 PM    <DIR>          puppet_master
+10/01/2015  02:09 PM                13 README.md
+10/01/2015  02:09 PM    <DIR>          tower_user
+10/01/2015  02:11 PM    <DIR>          vsc_migration
+               2 File(s)             22 bytes
+              12 Dir(s)  173,019,799,552 bytes free
+
+C:\helix-asap\Playbooks>
+
+
+C:\helix-asap\Playbooks>git checkout master
+Switched to branch 'master'
+Your branch is up-to-date with 'origin/master'.
+
+C:\helix-asap\Playbooks>dir
+ Volume in drive C is OS
+ Volume Serial Number is 9C99-615C
+
+ Directory of C:\helix-asap\Playbooks
+
+10/01/2015  02:13 PM    <DIR>          .
+10/01/2015  02:13 PM    <DIR>          ..
+10/01/2015  02:09 PM                 9 .gitignore
+10/01/2015  02:13 PM    <DIR>          assist_migration
+10/01/2015  02:13 PM    <DIR>          assist_users
+10/01/2015  02:13 PM    <DIR>          cloudvelox_ami
+10/01/2015  02:13 PM    <DIR>          devops_users
+10/01/2015  02:12 PM                 0 dir
+10/01/2015  02:13 PM    <DIR>          ecd
+10/01/2015  02:13 PM    <DIR>          esoa_users
+10/01/2015  02:12 PM                 0 git
+10/01/2015  02:13 PM    <DIR>          helix_demo
+10/01/2015  02:13 PM    <DIR>          io
+10/01/2015  02:09 PM    <DIR>          middleware
+10/01/2015  02:13 PM    <DIR>          pe-puppet_agent
+10/01/2015  02:13 PM    <DIR>          puppet_agent
+10/01/2015  02:13 PM    <DIR>          puppet_master
+10/01/2015  02:09 PM                13 README.md
+10/01/2015  02:13 PM    <DIR>          sysadmin_box
+10/01/2015  02:13 PM    <DIR>          tdrapp_users
+10/01/2015  02:13 PM    <DIR>          tdrdb_users
+10/01/2015  02:09 PM    <DIR>          tower_user
+10/01/2015  02:13 PM    <DIR>          vsc_migration
+               4 File(s)             22 bytes
+              19 Dir(s)  173,023,866,880 bytes free
+
+C:\helix-asap\Playbooks>
