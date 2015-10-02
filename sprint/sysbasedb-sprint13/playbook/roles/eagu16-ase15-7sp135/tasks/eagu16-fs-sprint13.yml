@@ -1,0 +1,269 @@
+---
+  # Create a ext4 filesystem on below partitions/volumes
+  - filesystem: fstype=ext4 dev=/dev/xvdb
+  - filesystem: fstype=ext4 dev=/dev/xvdc
+  - filesystem: fstype=ext4 dev=/dev/xvdd
+  - filesystem: fstype=ext4 dev=/dev/xvde
+  - filesystem: fstype=ext4 dev=/dev/xvdf
+  - filesystem: fstype=ext4 dev=/dev/xvdg
+  - filesystem: fstype=ext4 dev=/dev/xvdh
+  - filesystem: fstype=ext4 dev=/dev/xvdi
+  - filesystem: fstype=ext4 dev=/dev/xvdj
+  - filesystem: fstype=ext4 dev=/dev/xvdk
+  - filesystem: fstype=ext4 dev=/dev/xvdl
+  - filesystem: fstype=ext4 dev=/dev/xvdm
+
+  # Creating Mount point for above FS 
+  - file: path=/E16tempdb1 state=directory mode=0755
+  - file: path=/E16tempdb2   state=directory mode=0755
+  - file: path=/E16tempdb3   state=directory mode=0755
+  - file: path=/E16mdatempdb1 state=directory mode=0755
+  - file: path=/E16data01 state=directory mode=0755
+  - file: path=/E16data02 state=directory mode=0755
+  - file: path=/E16data03 state=directory mode=0755
+  - file: path=/E16data04 state=directory mode=0755
+  - file: path=/E16mdadata01 state=directory mode=0755
+  - file: path=/E16log01 state=directory mode=0755
+  - file: path=/E16log02 state=directory mode=0755
+  - file: path=/E16mdalog01 state=directory mode=0755
+  - file: path=/opt/sw  state=directory mode=0755
+  - file: path=/eddb1data01 state=directory mode=0755
+  - file: path=/eddb1data02 state=directory mode=0755
+  - file: path=/eddb1data03 state=directory mode=0755
+  - file: path=/eddb1data04 state=directory mode=0755
+  - file: path=/eddb1log01 state=directory mode=0755
+  - file: path=/eddb1maredata01 state=directory mode=0755
+  - file: path=/eddb1maredata02 state=directory mode=0755
+  - file: path=/eddb1maredata03 state=directory mode=0755
+  - file: path=/eddb1maredata04 state=directory mode=0755
+  - file: path=/eddb1marelog01 state=directory mode=0755
+  - file: path=/eddb1easdata01 state=directory mode=0755
+  - file: path=/eddb1easdata02 state=directory mode=0755
+  - file: path=/eddb1easdata03 state=directory mode=0755
+  - file: path=/eddb1easdata04 state=directory mode=0755
+  - file: path=/eddb1easlog01 state=directory mode=0755
+  - file: path=/apps/sp2dw state=directory mode=0755
+  - file: path=/opt/Archives state=directory mode=0755
+  - file: path=/apps state=directory mode=0755
+  - file: path=/sybase-backup state=directory mode=0755
+  - file: path=/cvsroot state=directory mode=0755
+  - file: path=/opt/CA state=directory mode=0755
+  - file: path=/data/sybase state=directory mode=0755
+  - file: path=/home/wmsload state=directory mode=0755
+  - file: path=/opt/java state=directory mode=0755
+  - file: path=/opt/security state=directory mode=0755
+  - file: path=/usr/sws state=directory mode=0755
+  - file: path=/E16sysutils state=directory mode=0755
+  - file: path=/E16mdasysutils state=directory mode=0755
+  - file: path=/E16audit state=directory mode=0755
+  - file: path=/E16mdaaudit state=directory mode=0755
+  - file: path=/eddb1sysutils state=directory mode=0755
+  - file: path=/eddb1audit state=directory mode=0755
+  - file: path=/eddb1eassysutils state=directory mode=0755
+  - file: path=/eddb1easaudit state=directory mode=0755
+  - file: path=/eddb1maresysutils state=directory mode=0755
+  - file: path=/eddb1mareaudit state=directory mode=0755
+  - file: path=/tmp state=directory mode=0755
+
+  # Update the /etc/fstab  for above filesystem
+  - mount: name=/E16tempdb1 src=/dev/xvdb  fstype=ext4 state=mounted
+  - mount: name=/E16tempdb2 src=/dev/xvdc  fstype=ext4 state=mounted
+  - mount: name=/E16tempdb3 src=/dev/xvdd  fstype=ext4 state=mounted
+  - mount: name=/E16mdatempdb1 src=/dev/xvde  fstype=ext4 state=mounted
+  - mount: name=/E16data01 src=/dev/xvdf  fstype=ext4 state=mounted
+  - mount: name=/E16data02 src=/dev/xvdg  fstype=ext4 state=mounted
+  - mount: name=/E16data03 src=/dev/xvdh  fstype=ext4 state=mounted
+  - mount: name=/E16data04 src=/dev/xvdi  fstype=ext4 state=mounted
+  - mount: name=/E16mdadata01 src=/dev/xvdj  fstype=ext4 state=mounted
+  - mount: name=/E16log01 src=/dev/xvdk  fstype=ext4 state=mounted
+  - mount: name=/E16log02 src=/dev/xvdl  fstype=ext4 state=mounted
+  - mount: name=/E16mdalog01 src=/dev/xvdm  fstype=ext4 state=mounted
+
+  # Create Volume Group (VG) for rest of the File
+  - lvg: vg=appl_vg pvs=/dev/xvdn,/dev/xvdo,/dev/xvdp,/dev/xvdq state=present
+
+  # Creating LVM for below listed .. 
+  - lvol: vg=appl_vg lv=opt-sw size=100g state=present
+  - lvol: vg=appl_vg lv=eddb1data01 size=200g state=present
+  - lvol: vg=appl_vg lv=eddb1data02	size=200g state=present
+  - lvol: vg=appl_vg lv=eddb1data03	size=200g state=present
+  - lvol: vg=appl_vg lv=eddb1data04	size=200g state=present
+  - lvol: vg=appl_vg lv=eddb1log01 size=50g state=present
+  - lvol: vg=appl_vg lv=eddb1maredata01	size=200g state=present
+  - lvol: vg=appl_vg lv=eddb1maredata02 size=200g state=present
+  - lvol: vg=appl_vg lv=eddb1maredata03 size=200g state=present
+  - lvol: vg=appl_vg lv=eddb1maredata04	size=200g state=present
+  - lvol: vg=appl_vg lv=eddb1marelog01 size=50g state=present
+  - lvol: vg=appl_vg lv=eddb1easdata01 size=200g state=present
+  - lvol: vg=appl_vg lv=eddb1easdata02 size=200g state=present
+  - lvol: vg=appl_vg lv=eddb1easdata03 size=200g state=present
+  - lvol: vg=appl_vg lv=eddb1easdata04 size=200g state=present
+  - lvol: vg=appl_vg lv=eddb1easlog01 size=50g state=present
+  - lvol: vg=appl_vg lv=apps-sp2dw size=32g	state=present
+  - lvol: vg=appl_vg lv=opt-Archives size=35g state=present
+  - lvol: vg=appl_vg lv=apps size=20g state=present
+  - lvol: vg=appl_vg lv=sybase-backup size=300g	state=present
+  - lvol: vg=appl_vg lv=cvsroot	size=10g state=present
+  - lvol: vg=appl_vg lv=opt-CA size=3g	state=present
+  - lvol: vg=appl_vg lv=data-sybase	size=10g state=present
+  - lvol: vg=appl_vg lv=home-wmsload size=3g state=present
+  - lvol: vg=appl_vg lv=opt-java size=3g state=present
+  - lvol: vg=appl_vg lv=opt-security size=2g state=present
+  - lvol: vg=appl_vg lv=usr-sws	size=3g	state=present
+  - lvol: vg=appl_vg lv=E16sysutils	size=50g state=present
+  - lvol: vg=appl_vg lv=E16mdasysutils size=50g	state=present
+  - lvol: vg=appl_vg lv=E16audit size=15g state=present
+  - lvol: vg=appl_vg lv=E16mdaaudit	size=15g state=present
+  - lvol: vg=appl_vg lv=eddb1sysutils size=50g state=present
+  - lvol: vg=appl_vg lv=eddb1audit size=15g	state=present
+  - lvol: vg=appl_vg lv=eddb1eassysutils size=50g state=present
+  - lvol: vg=appl_vg lv=eddb1easaudit size=15g state=present
+  - lvol: vg=appl_vg lv=eddb1maresysutils size=50g state=present
+  - lvol: vg=appl_vg lv=eddb1mareaudit size=15g state=present
+  - lvol: vg=appl_vg lv=tmp	size=50g state=present
+  - lvol: vg=appl_vg lv=swap size=100g state=present
+  # Making FS on below listedd lv
+  - filesystem: fstype=ext4 dev=/dev/appl_vg/opt-sw
+  - filesystem: fstype=ext4 dev=/dev/appl_vg/eddb1data01
+  - filesystem: fstype=ext4 dev=/dev/appl_vg/eddb1data02
+  - filesystem: fstype=ext4 dev=/dev/appl_vg/eddb1data03
+  - filesystem: fstype=ext4 dev=/dev/appl_vg/eddb1data04
+  - filesystem: fstype=ext4 dev=/dev/appl_vg/eddb1log01
+  - filesystem: fstype=ext4 dev=/dev/appl_vg/eddb1maredata01
+  - filesystem: fstype=ext4 dev=/dev/appl_vg/eddb1maredata02
+  - filesystem: fstype=ext4 dev=/dev/appl_vg/eddb1maredata03
+  - filesystem: fstype=ext4 dev=/dev/appl_vg/eddb1maredata04
+  - filesystem: fstype=ext4 dev=/dev/appl_vg/eddb1marelog01
+  - filesystem: fstype=ext4 dev=/dev/appl_vg/eddb1easdata01
+  - filesystem: fstype=ext4 dev=/dev/appl_vg/eddb1easdata02
+  - filesystem: fstype=ext4 dev=/dev/appl_vg/eddb1easdata03
+  - filesystem: fstype=ext4 dev=/dev/appl_vg/eddb1easdata04
+  - filesystem: fstype=ext4 dev=/dev/appl_vg/eddb1easlog01
+  - filesystem: fstype=ext4 dev=/dev/appl_vg/apps
+  - filesystem: fstype=ext4 dev=/dev/appl_vg/apps-sp2dw
+  - filesystem: fstype=ext4 dev=/dev/appl_vg/opt-Archives
+  - filesystem: fstype=ext4 dev=/dev/appl_vg/sybase-backup
+  - filesystem: fstype=ext4 dev=/dev/appl_vg/cvsroot
+  - filesystem: fstype=ext4 dev=/dev/appl_vg/opt-CA
+  - filesystem: fstype=ext4 dev=/dev/appl_vg/data-sybase
+  - filesystem: fstype=ext4 dev=/dev/appl_vg/home-wmsload
+  - filesystem: fstype=ext4 dev=/dev/appl_vg/opt-java
+  - filesystem: fstype=ext4 dev=/dev/appl_vg/opt-security
+  - filesystem: fstype=ext4 dev=/dev/appl_vg/usr-sws
+  - filesystem: fstype=ext4 dev=/dev/appl_vg/E16sysutils
+  - filesystem: fstype=ext4 dev=/dev/appl_vg/E16mdasysutils
+  - filesystem: fstype=ext4 dev=/dev/appl_vg/E16audit
+  - filesystem: fstype=ext4 dev=/dev/appl_vg/E16mdaaudit
+  - filesystem: fstype=ext4 dev=/dev/appl_vg/eddb1sysutils
+  - filesystem: fstype=ext4 dev=/dev/appl_vg/eddb1audit
+  - filesystem: fstype=ext4 dev=/dev/appl_vg/eddb1eassysutils
+  - filesystem: fstype=ext4 dev=/dev/appl_vg/eddb1easaudit
+  - filesystem: fstype=ext4 dev=/dev/appl_vg/eddb1maresysutils
+  - filesystem: fstype=ext4 dev=/dev/appl_vg/eddb1mareaudit
+  - filesystem: fstype=ext4 dev=/dev/appl_vg/tmp
+
+  # Mount the FS on /etc/fstab 
+  #- mount: name=/opt/test1 src=/dev/appl_vg/test1  fstype=ext4 state=mounted
+  - mount: name=/opt/sw src=/dev/appl_vg/opt-sw  fstype=ext4 state=mounted
+  - mount: name=/eddb1data01      src=/dev/appl_vg/eddb1data01 fstype=ext4 state=mounted
+  - mount: name=/eddb1data02      src=/dev/appl_vg/eddb1data02 fstype=ext4 state=mounted
+  - mount: name=/eddb1data03      src=/dev/appl_vg/eddb1data03 fstype=ext4 state=mounted
+  - mount: name=/eddb1data04      src=/dev/appl_vg/eddb1data04 fstype=ext4 state=mounted
+  - mount: name=/eddb1log01       src=/dev/appl_vg/eddb1log01 fstype=ext4 state=mounted
+  - mount: name=/eddb1maredata01  src=/dev/appl_vg/eddb1maredata01 fstype=ext4 state=mounted
+  - mount: name=/eddb1maredata02  src=/dev/appl_vg/eddb1maredata02 fstype=ext4 state=mounted
+  - mount: name=/eddb1maredata03  src=/dev/appl_vg/eddb1maredata03 fstype=ext4 state=mounted
+  - mount: name=/eddb1maredata04  src=/dev/appl_vg/eddb1maredata04 fstype=ext4 state=mounted
+  - mount: name=/eddb1marelog01   src=/dev/appl_vg/eddb1marelog01 fstype=ext4 state=mounted
+  - mount: name=/eddb1easdata01   src=/dev/appl_vg/eddb1easdata01 fstype=ext4 state=mounted
+  - mount: name=/eddb1easdata02   src=/dev/appl_vg/eddb1easdata02 fstype=ext4 state=mounted
+  - mount: name=/eddb1easdata03   src=/dev/appl_vg/eddb1easdata03 fstype=ext4 state=mounted
+  - mount: name=/eddb1easdata04   src=/dev/appl_vg/eddb1easdata04 fstype=ext4 state=mounted
+  - mount: name=/eddb1easlog01    src=/dev/appl_vg/eddb1easlog01 fstype=ext4 state=mounted
+  - mount: name=/apps     src=/dev/appl_vg/apps fstype=ext4 state=mounted
+  - mount: name=/apps/sp2dw       src=/dev/appl_vg/apps-sp2dw fstype=ext4 state=mounted
+  - mount: name=/opt/Archives     src=/dev/appl_vg/opt-Archives fstype=ext4 state=mounted
+  - mount: name=/sybase-backup    src=/dev/appl_vg/sybase-backup fstype=ext4 state=mounted
+  - mount: name=/cvsroot  src=/dev/appl_vg/cvsroot fstype=ext4 state=mounted
+  - mount: name=/opt/CA   src=/dev/appl_vg/opt-CA fstype=ext4 state=mounted
+  - mount: name=/data/sybase      src=/dev/appl_vg/data-sybase fstype=ext4 state=mounted
+  - mount: name=/home/wmsload     src=/dev/appl_vg/home-wmsload fstype=ext4 state=mounted
+  - mount: name=/opt/java src=/dev/appl_vg/opt-java fstype=ext4 state=mounted
+  - mount: name=/opt/security     src=/dev/appl_vg/opt-security fstype=ext4 state=mounted
+  - mount: name=/usr/sws  src=/dev/appl_vg/usr-sws fstype=ext4 state=mounted
+  - mount: name=/E16sysutils      src=/dev/appl_vg/E16sysutils fstype=ext4 state=mounted
+  - mount: name=/E16mdasysutils   src=/dev/appl_vg/E16mdasysutils fstype=ext4 state=mounted
+  - mount: name=/E16audit src=/dev/appl_vg/E16audit fstype=ext4 state=mounted
+  - mount: name=/E16mdaaudit      src=/dev/appl_vg/E16mdaaudit fstype=ext4 state=mounted
+  - mount: name=/eddb1sysutils    src=/dev/appl_vg/eddb1sysutils fstype=ext4 state=mounted
+  - mount: name=/eddb1audit       src=/dev/appl_vg/eddb1audit fstype=ext4 state=mounted
+  - mount: name=/eddb1eassysutils src=/dev/appl_vg/eddb1eassysutils fstype=ext4 state=mounted
+  - mount: name=/eddb1easaudit    src=/dev/appl_vg/eddb1easaudit fstype=ext4 state=mounted
+  - mount: name=/eddb1maresysutils        src=/dev/appl_vg/eddb1maresysutils fstype=ext4 state=mounted
+  - mount: name=/eddb1mareaudit   src=/dev/appl_vg/eddb1mareaudit fstype=ext4 state=mounted
+  - mount: name=/tmp      src=/dev/appl_vg/tmp fstype=ext4 state=mounted
+  # Create SWAP Partition 
+  #- name: Creating SWAP Partition
+  #  command: /sbin/mkswap /dev/appl_vg/swap
+  #- name: Enable SWAP 
+  #  command: /sbin/swapon /dev/appl_vg/swap
+  #- name: To enable it at boot time, edit /etc/fstab to include
+  #  shell: echo "/dev/appl_vg/swap	swap	swap	defaults	0 0 " >> /etc/fstab
+
+  # Create 'dba,oinstall' group
+  - group: name=sybsa  state=present 
+
+  # Add the user 'oracle' with a bash shell, appending the group 'dba,oinstall' to the user's group 
+  - user: name=sybase shell=/bin/bash groups=sybsa append=yes state=present  
+
+  # Change owner and group of mount point
+  - file: path=/E16tempdb1 owner=sybase group=sybsa
+  - file: path=/E16tempdb2 owner=sybase group=sybsa
+  - file: path=/E16tempdb3 owner=sybase group=sybsa
+  - file: path=/E16mdatempdb1 owner=sybase group=sybsa
+  - file: path=/E16data01 owner=sybase group=sybsa
+  - file: path=/E16data02 owner=sybase group=sybsa
+  - file: path=/E16data03 owner=sybase group=sybsa
+  - file: path=/E16data04 owner=sybase group=sybsa
+  - file: path=/E16mdadata01 owner=sybase group=sybsa
+  - file: path=/E16log01 owner=sybase group=sybsa
+  - file: path=/E16log02 owner=sybase group=sybsa
+  - file: path=/E16mdalog01 owner=sybase group=sybsa
+  - file: path=/opt/sw owner=sybase group=sybsa
+  - file: path=/eddb1data01 owner=sybase group=sybsa
+  - file: path=/eddb1data02 owner=sybase group=sybsa
+  - file: path=/eddb1data03 owner=sybase group=sybsa
+  - file: path=/eddb1data04 owner=sybase group=sybsa
+  - file: path=/eddb1log01 owner=sybase group=sybsa
+  - file: path=/eddb1maredata01 owner=sybase group=sybsa
+  - file: path=/eddb1maredata02 owner=sybase group=sybsa
+  - file: path=/eddb1maredata03 owner=sybase group=sybsa
+  - file: path=/eddb1maredata04 owner=sybase group=sybsa
+  - file: path=/eddb1marelog01 owner=sybase group=sybsa
+  - file: path=/eddb1easdata01 owner=sybase group=sybsa
+  - file: path=/eddb1easdata02 owner=sybase group=sybsa
+  - file: path=/eddb1easdata03 owner=sybase group=sybsa
+  - file: path=/eddb1easdata04 owner=sybase group=sybsa
+  - file: path=/eddb1easlog01 owner=sybase group=sybsa
+  - file: path=/apps owner=sybase group=sybsa
+  - file: path=/apps/sp2dw owner=sybase group=sybsa
+  - file: path=/opt/Archives owner=sybase group=sybsa
+  - file: path=/sybase-backup owner=sybase group=sybsa
+  - file: path=/cvsroot owner=sybase group=sybsa
+  - file: path=/opt/CA owner=sybase group=sybsa
+  - file: path=/data/sybase owner=sybase group=sybsa
+  - file: path=/home/wmsload owner=sybase group=sybsa
+  - file: path=/opt/java owner=sybase group=sybsa
+  - file: path=/opt/security owner=sybase group=sybsa
+  - file: path=/usr/sws owner=sybase group=sybsa
+  - file: path=/E16sysutils owner=sybase group=sybsa
+  - file: path=/E16mdasysutils owner=sybase group=sybsa
+  - file: path=/E16audit owner=sybase group=sybsa
+  - file: path=/E16mdaaudit owner=sybase group=sybsa
+  - file: path=/eddb1sysutils owner=sybase group=sybsa
+  - file: path=/eddb1audit owner=sybase group=sybsa
+  - file: path=/eddb1eassysutils owner=sybase group=sybsa
+  - file: path=/eddb1easaudit owner=sybase group=sybsa
+  - file: path=/eddb1maresysutils owner=sybase group=sybsa
+  - file: path=/eddb1mareaudit owner=sybase group=sybsa
+  - file: path=/tmp	owner=sybase group=sybsa

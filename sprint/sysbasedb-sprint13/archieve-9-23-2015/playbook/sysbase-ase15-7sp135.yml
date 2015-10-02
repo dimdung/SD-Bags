@@ -1,0 +1,12 @@
+# Config Playbook for sysbase-ase15-7sp135
+---
+- hosts: 10.176.84.240
+  user: sdimdung
+  sudo: yes
+#  connection: local
+  accelerate: false
+  user: root
+  roles: 
+    - eagu16-ase15-7sp135
+#	- eagu40-ase15-7sp135
+#	- eagu40lab-ase15-7sp135

@@ -1,0 +1,308 @@
+---
+  # Create a ext4 filesystem on below partitions/volumes
+  - lvg: vg=appl_vg pvs=/dev/xvdb,/dev/xvdc,/dev/xvdd,/dev/xvde,/dev/xvdf state=present
+
+  # Creating LVM for below listed .. 
+  - lvol: vg=appl_vg lv=E40tempdb1 size=20g state=present
+  - lvol: vg=appl_vg lv=E40tempdb2   size=20g state=present
+  - lvol: vg=appl_vg lv=E40tempdb3   size=20g state=present
+  - lvol: vg=appl_vg lv=E40bvtempdb1  size=20g state=present
+  - lvol: vg=appl_vg lv=E40bvtempdb2   size=20g state=present
+  - lvol: vg=appl_vg lv=E40bvtempdb3   size=20g state=present
+  - lvol: vg=appl_vg lv=E61tempdb1  size=20g state=present
+  - lvol: vg=appl_vg lv=E61tempdb2   size=20g state=present
+  - lvol: vg=appl_vg lv=E61tempdb3   size=20g state=present
+  - lvol: vg=appl_vg lv=E61data01 size=200g state=present
+  - lvol: vg=appl_vg lv=E61data02 size=200g state=present
+  - lvol: vg=appl_vg lv=E61data03 size=200g state=present
+  - lvol: vg=appl_vg lv=E61data04 size=200g state=present
+  - lvol: vg=appl_vg lv=E61data05 size=200g state=present
+  - lvol: vg=appl_vg lv=E61log01 size=50g state=present
+  - lvol: vg=appl_vg lv=E61log02 size=50g state=present
+  - lvol: vg=appl_vg lv=E40data01 size=200g state=present
+  - lvol: vg=appl_vg lv=E40data02 size=200g state=present
+  - lvol: vg=appl_vg lv=E40data03 size=200g state=present
+  - lvol: vg=appl_vg lv=E40data04 size=200g state=present
+  - lvol: vg=appl_vg lv=E40data05 size=200g state=present
+  - lvol: vg=appl_vg lv=E40log01 size=50g state=present
+  - lvol: vg=appl_vg lv=E40log02 size=50g state=present
+  - lvol: vg=appl_vg lv=E40log03 size=50g state=present
+  - lvol: vg=appl_vg lv=E40bvdata01 size=200g state=present
+  - lvol: vg=appl_vg lv=E40bvdata02 size=200g state=present
+  - lvol: vg=appl_vg lv=E40bvdata03 size=200g state=present
+  - lvol: vg=appl_vg lv=E40bvdata04 size=200g state=present
+  - lvol: vg=appl_vg lv=E40bvlog01 size=50g state=present
+  - lvol: vg=appl_vg lv=E40bvlog02 size=50g state=present  
+  - lvol: vg=appl_vg lv=E40sysutils size=50g state=present
+  - lvol: vg=appl_vg lv=E40bvsysutils size=50g state=present
+  - lvol: vg=appl_vg lv=E40audit size=15g state=present
+  - lvol: vg=appl_vg lv=E40bvaudit size=15g state=present
+  - lvol: vg=appl_vg lv=E60sysutils size=50g state=present
+  - lvol: vg=appl_vg lv=E60audit size=15g state=present
+  - lvol: vg=appl_vg lv=sybase-backup size=450g state=present
+  - lvol: vg=appl_vg lv=opt-sw size=200g state=present
+  - lvol: vg=appl_vg lv=edi size=21g state=present
+  - lvol: vg=appl_vg lv=apps1 size=65g state=present
+  - lvol: vg=appl_vg lv=oracle size=4g state=present
+  - lvol: vg=appl_vg lv=opt-apache size=1g state=present
+  - lvol: vg=appl_vg lv=apps1-GIS size=75g state=present
+  - lvol: vg=appl_vg lv=opt-CA size=5g state=present
+  - lvol: vg=appl_vg lv=data-ftp size=21g state=present
+  - lvol: vg=appl_vg lv=opt-java size=3g state=present
+  - lvol: vg=appl_vg lv=opt-security size=3g state=present
+  - lvol: vg=appl_vg lv=workspace size=50g state=present
+  - lvol: vg=appl_vg lv=opt-CA size=3g state=present
+  - lvol: vg=appl_vg lv=data-sybase size=10g state=present
+  - lvol: vg=appl_vg lv=data-advadmin size=10g state=present
+  - lvol: vg=appl_vg lv=data-extcat size=15g state=present
+  - lvol: vg=appl_vg lv=data-images size=60g state=present
+  - lvol: vg=appl_vg lv=data-extcat-new size=15g state=present
+  - lvol: vg=appl_vg lv=opt-security size=2g state=present
+  - lvol: vg=appl_vg lv=tmp size=50g state=present
+  - lvol: vg=appl_vg lv=swap size=100g state=present
+
+  # Making FS on below listedd lv
+  - filesystem: fstype=ext4 dev=/dev/appl_vg/E40tempdb1
+  - filesystem: fstype=ext4 dev=/dev/appl_vg/E40tempdb2
+  - filesystem: fstype=ext4 dev=/dev/appl_vg/E40tempdb3
+  - filesystem: fstype=ext4 dev=/dev/appl_vg/E40bvtempdb1
+  - filesystem: fstype=ext4 dev=/dev/appl_vg/E40bvtempdb2
+  - filesystem: fstype=ext4 dev=/dev/appl_vg/E40bvtempdb3
+  - filesystem: fstype=ext4 dev=/dev/appl_vg/E61tempdb1
+  - filesystem: fstype=ext4 dev=/dev/appl_vg/E61tempdb2
+  - filesystem: fstype=ext4 dev=/dev/appl_vg/E61tempdb3
+  - filesystem: fstype=ext4 dev=/dev/appl_vg/E61data01
+  - filesystem: fstype=ext4 dev=/dev/appl_vg/E61data02
+  - filesystem: fstype=ext4 dev=/dev/appl_vg/E61data03
+  - filesystem: fstype=ext4 dev=/dev/appl_vg/E61data04
+  - filesystem: fstype=ext4 dev=/dev/appl_vg/E61data05
+  - filesystem: fstype=ext4 dev=/dev/appl_vg/E61log01
+  - filesystem: fstype=ext4 dev=/dev/appl_vg/E61log02
+  - filesystem: fstype=ext4 dev=/dev/appl_vg/E40data01
+  - filesystem: fstype=ext4 dev=/dev/appl_vg/E40data02
+  - filesystem: fstype=ext4 dev=/dev/appl_vg/E40data03
+  - filesystem: fstype=ext4 dev=/dev/appl_vg/E40data04
+  - filesystem: fstype=ext4 dev=/dev/appl_vg/E40data05
+  - filesystem: fstype=ext4 dev=/dev/appl_vg/E40log01
+  - filesystem: fstype=ext4 dev=/dev/appl_vg/E40log02
+  - filesystem: fstype=ext4 dev=/dev/appl_vg/E40log03
+  - filesystem: fstype=ext4 dev=/dev/appl_vg/E40bvdata01
+  - filesystem: fstype=ext4 dev=/dev/appl_vg/E40bvdata02
+  - filesystem: fstype=ext4 dev=/dev/appl_vg/E40bvdata03
+  - filesystem: fstype=ext4 dev=/dev/appl_vg/E40bvdata04
+  - filesystem: fstype=ext4 dev=/dev/appl_vg/E40bvlog01
+  - filesystem: fstype=ext4 dev=/dev/appl_vg/E40bvlog02
+  - filesystem: fstype=ext4 dev=/dev/appl_vg/E40sysutils
+  - filesystem: fstype=ext4 dev=/dev/appl_vg/E40bvsysutils
+  - filesystem: fstype=ext4 dev=/dev/appl_vg/E40audit
+  - filesystem: fstype=ext4 dev=/dev/appl_vg/E40bvaudit
+  - filesystem: fstype=ext4 dev=/dev/appl_vg/E60sysutils
+  - filesystem: fstype=ext4 dev=/dev/appl_vg/E60audit
+  - filesystem: fstype=ext4 dev=/dev/appl_vg/sybase-backup  
+  - filesystem: fstype=ext4 dev=/dev/appl_vg/opt-sw           
+  - filesystem: fstype=ext4 dev=/dev/appl_vg/edi                    
+  - filesystem: fstype=ext4 dev=/dev/appl_vg/apps1          
+  - filesystem: fstype=ext4 dev=/dev/appl_vg/oracle               
+  - filesystem: fstype=ext4 dev=/dev/appl_vg/opt-apache      
+  - filesystem: fstype=ext4 dev=/dev/appl_vg/apps1-GIS  
+  - filesystem: fstype=ext4 dev=/dev/appl_vg/opt-CA     
+  - filesystem: fstype=ext4 dev=/dev/appl_vg/data-ftp   
+  - filesystem: fstype=ext4 dev=/dev/appl_vg/opt-java  
+  - filesystem: fstype=ext4 dev=/dev/appl_vg/opt-security  
+  - filesystem: fstype=ext4 dev=/dev/appl_vg/workspace  
+  - filesystem: fstype=ext4 dev=/dev/appl_vg/opt-CA  
+  - filesystem: fstype=ext4 dev=/dev/appl_vg/data-sybase  
+  - filesystem: fstype=ext4 dev=/dev/appl_vg/data-advadmin   
+  - filesystem: fstype=ext4 dev=/dev/appl_vg/data-extcat        
+  - filesystem: fstype=ext4 dev=/dev/appl_vg/data-images       
+  - filesystem: fstype=ext4 dev=/dev/appl_vg/data-extcat-new    
+  - filesystem: fstype=ext4 dev=/dev/appl_vg/opt-security            
+  - filesystem: fstype=ext4 dev=/dev/appl_vg/tmp
+
+  # Creating Mount point for above FS 
+  - file: path=/E40tempdb1 state=directory mode=0755
+  - file: path=/E40tempdb2 state=directory mode=0755
+  - file: path=/E40tempdb3  state=directory mode=0755
+  - file: path=/E40bvtempdb1  state=directory mode=0755
+  - file: path=/E40bvtempdb2   state=directory mode=0755
+  - file: path=/E40bvtempdb3   state=directory mode=0755
+  - file: path=/E61tempdb1  state=directory mode=0755
+  - file: path=/E61tempdb2   state=directory mode=0755
+  - file: path=/E61tempdb3   state=directory mode=0755
+  - file: path=/E61data01 state=directory mode=0755
+  - file: path=/E61data02 state=directory mode=0755
+  - file: path=/E61data03 state=directory mode=0755
+  - file: path=/E61data04 state=directory mode=0755
+  - file: path=/E61data05 state=directory mode=0755
+  - file: path=/E61log01 state=directory mode=0755
+  - file: path=/E61log02 state=directory mode=0755
+  - file: path=/E40data01 state=directory mode=0755
+  - file: path=/E40data02 state=directory mode=0755
+  - file: path=/E40data03 state=directory mode=0755
+  - file: path=/E40data04 state=directory mode=0755
+  - file: path=/E40data05 state=directory mode=0755
+  - file: path=/E40log01 state=directory mode=0755
+  - file: path=/E40log02 state=directory mode=0755
+  - file: path=/E40log03 state=directory mode=0755
+  - file: path=/E40bvdata01 state=directory mode=0755
+  - file: path=/E40bvdata02 state=directory mode=0755
+  - file: path=/E40bvdata03 state=directory mode=0755
+  - file: path=/E40bvdata04 state=directory mode=0755
+  - file: path=/E40bvlog01 state=directory mode=0755
+  - file: path=/E40bvlog02 state=directory mode=0755
+  - file: path=/E40sysutils state=directory mode=0755
+  - file: path=/E40bvsysutils state=directory mode=0755
+  - file: path=/E40audit state=directory mode=0755
+  - file: path=/E40bvaudit state=directory mode=0755
+  - file: path=/E60sysutils state=directory mode=0755
+  - file: path=/E60audit state=directory mode=0755
+  - file: path=/sybase-backup   state=directory mode=0755
+  - file: path=/opt/sw state=directory mode=0755
+  - file: path=/edi state=directory mode=0755
+  - file: path=/apps1 state=directory mode=0755
+  - file: path=/oracle state=directory mode=0755
+  - file: path=/opt/apache state=directory mode=0755
+  - file: path=/apps1/GIS state=directory mode=0755
+  - file: path=/opt/CA state=directory mode=0755
+  - file: path=/data/ftp state=directory mode=0755
+  - file: path=/opt/java state=directory mode=0755
+  - file: path=/opt/security   state=directory mode=0755
+  - file: path=/workspace   state=directory mode=0755
+  - file: path=/opt/CA   state=directory mode=0755
+  - file: path=/data/sybase state=directory mode=0755
+  - file: path=/data/advadmin state=directory mode=0755
+  - file: path=/data/extcat         state=directory mode=0755
+  - file: path=/data/images        state=directory mode=0755
+  - file: path=/data/extcat-new     state=directory mode=0755
+  - file: path=/opt/security             state=directory mode=0755
+
+  # Update the /etc/fstab  for above filesystem
+  - mount: name=/E40tempdb1 src=/dev/appl_vg/E40tempdb1 state=mounted
+  - mount: name=/E40tempdb2   src=/dev/appl_vg/E40tempdb2   state=mounted
+  - mount: name=/E40tempdb3   src=/dev/appl_vg/E40tempdb3   state=mounted
+  - mount: name=/E40bvtempdb1  src=/dev/appl_vg/E40bvtempdb1  state=mounted
+  - mount: name=/E40bvtempdb2   src=/dev/appl_vg/E40bvtempdb2   state=mounted
+  - mount: name=/E40bvtempdb3   src=/dev/appl_vg/E40bvtempdb3   state=mounted
+  - mount: name=/E61tempdb1  src=/dev/appl_vg/E61tempdb1  state=mounted
+  - mount: name=/E61tempdb2   src=/dev/appl_vg/E61tempdb2   state=mounted
+  - mount: name=/E61tempdb3   src=/dev/appl_vg/E61tempdb3   state=mounted
+  - mount: name=/E61data01 src=/dev/appl_vg/E61data01 state=mounted
+  - mount: name=/E61data02 src=/dev/appl_vg/E61data02 state=mounted
+  - mount: name=/E61data03 src=/dev/appl_vg/E61data03 state=mounted
+  - mount: name=/E61data04 src=/dev/appl_vg/E61data04 state=mounted
+  - mount: name=/E61data05 src=/dev/appl_vg/E61data05 state=mounted
+  - mount: name=/E61log01 src=/dev/appl_vg/E61log01 state=mounted
+  - mount: name=/E61log02 src=/dev/appl_vg/E61log02 state=mounted
+  - mount: name=/E40data01 src=/dev/appl_vg/E40data01 state=mounted
+  - mount: name=/E40data02 src=/dev/appl_vg/E40data02 state=mounted
+  - mount: name=/E40data03 src=/dev/appl_vg/E40data03 state=mounted
+  - mount: name=/E40data04 src=/dev/appl_vg/E40data04 state=mounted
+  - mount: name=/E40data05 src=/dev/appl_vg/E40data05 state=mounted
+  - mount: name=/E40log01 src=/dev/appl_vg/E40log01 state=mounted
+  - mount: name=/E40log02 src=/dev/appl_vg/E40log02 state=mounted
+  - mount: name=/E40log03 src=/dev/appl_vg/E40log03 state=mounted
+  - mount: name=/E40bvdata01 src=/dev/appl_vg/E40bvdata01 state=mounted
+  - mount: name=/E40bvdata02 src=/dev/appl_vg/E40bvdata02 state=mounted
+  - mount: name=/E40bvdata03 src=/dev/appl_vg/E40bvdata03 state=mounted
+  - mount: name=/E40bvdata04 src=/dev/appl_vg/E40bvdata04 state=mounted
+  - mount: name=/E40bvlog01 src=/dev/appl_vg/E40bvlog01 state=mounted
+  - mount: name=/E40bvlog02 src=/dev/appl_vg/E40bvlog02 state=mounted
+  - mount: name=/E40sysutils    src=/dev/appl_vg/E40sysutils fstype=ext4 state=mounted
+  - mount: name=/E40bvsysutils  src=/dev/appl_vg/E40bvsysutils fstype=ext4 state=mounted
+  - mount: name=/E40audit       src=/dev/appl_vg/E40audit fstype=ext4 state=mounted
+  - mount: name=/E40bvaudit     src=/dev/appl_vg/E40bvaudit fstype=ext4 state=mounted
+  - mount: name=/E60sysutils    src=/dev/appl_vg/E60sysutils fstype=ext4 state=mounted
+  - mount: name=/E60audit       src=/dev/appl_vg/E60audit fstype=ext4 state=mounted
+  - mount: name=/sybase-backup  src=/dev/appl_vg/sybase-backup   fstype=ext4 state=mounted
+  - mount: name=/opt/sw src=/dev/appl_vg/opt-sw            fstype=ext4 state=mounted
+  - mount: name=/edi    src=/dev/appl_vg/edi                     fstype=ext4 state=mounted
+  - mount: name=/apps1  src=/dev/appl_vg/apps1           fstype=ext4 state=mounted
+  - mount: name=/oracle src=/dev/appl_vg/oracle                fstype=ext4 state=mounted
+  - mount: name=/opt/apache     src=/dev/appl_vg/opt-apache       fstype=ext4 state=mounted
+  - mount: name=/apps1/GIS      src=/dev/appl_vg/apps1-GIS   fstype=ext4 state=mounted
+  - mount: name=/opt/CA src=/dev/appl_vg/opt-CA      fstype=ext4 state=mounted
+  - mount: name=/data/ftp       src=/dev/appl_vg/data-ftp    fstype=ext4 state=mounted
+  - mount: name=/opt/java       src=/dev/appl_vg/opt-java   fstype=ext4 state=mounted
+  - mount: name=/opt/security   src=/dev/appl_vg/opt-security   fstype=ext4 state=mounted
+  - mount: name=/workspace      src=/dev/appl_vg/workspace   fstype=ext4 state=mounted
+  - mount: name=/opt/CA src=/dev/appl_vg/opt-CA   fstype=ext4 state=mounted
+  - mount: name=/data/sybase    src=/dev/appl_vg/data-sybase   fstype=ext4 state=mounted
+  - mount: name=/data/advadmin  src=/dev/appl_vg/data-advadmin    fstype=ext4 state=mounted
+  - mount: name=/data/extcat    src=/dev/appl_vg/data-extcat         fstype=ext4 state=mounted
+  - mount: name=/data/images    src=/dev/appl_vg/data-images        fstype=ext4 state=mounted
+  - mount: name=/data/extcat-new        src=/dev/appl_vg/data-extcat-new     fstype=ext4 state=mounted
+  - mount: name=/opt/security   src=/dev/appl_vg/opt-security             fstype=ext4 state=mounted
+  - mount: name=/tmp    src=/dev/appl_vg/tmp fstype=ext4 state=mounted
+
+  # Create SWAP Partition 
+  - name: Creating SWAP Partition
+    command: /sbin/mkswap /dev/appl_vg/swap
+  - name: Enable SWAP 
+    command: /sbin/swapon /dev/appl_vg/swap
+  - name: To enable it at boot time, edit /etc/fstab to include
+    shell: echo "/dev/appl_vg/swap	none	swap	defaults	0 0 " >> /etc/fstab
+
+  # Create 'dba,oinstall' group
+  - group: name=sybsa  state=present 
+
+  # Add the user 'oracle' with a bash shell, appending the group 'dba,oinstall' to the user's group 
+  - user: name=sybase shell=/bin/bash groups=sybsa append=yes state=present  
+
+  # Change owner and group of mount point
+   - file: path=/E40tempdb1 owner=sybase group=sybsa
+  - file: path=/E40tempdb2   owner=sybase group=sybsa
+  - file: path=/E40tempdb3   owner=sybase group=sybsa
+  - file: path=/E40bvtempdb1  owner=sybase group=sybsa
+  - file: path=/E40bvtempdb2   owner=sybase group=sybsa
+  - file: path=/E40bvtempdb3   owner=sybase group=sybsa
+  - file: path=/E61tempdb1  owner=sybase group=sybsa
+  - file: path=/E61tempdb2   owner=sybase group=sybsa
+  - file: path=/E61tempdb3   owner=sybase group=sybsa
+  - file: path=/E61data01 owner=sybase group=sybsa
+  - file: path=/E61data02 owner=sybase group=sybsa
+  - file: path=/E61data03 owner=sybase group=sybsa
+  - file: path=/E61data04 owner=sybase group=sybsa
+  - file: path=/E61data05 owner=sybase group=sybsa
+  - file: path=/E61log01 owner=sybase group=sybsa
+  - file: path=/E61log02 owner=sybase group=sybsa
+  - file: path=/E40data01 owner=sybase group=sybsa
+  - file: path=/E40data02 owner=sybase group=sybsa
+  - file: path=/E40data03 owner=sybase group=sybsa
+  - file: path=/E40data04 owner=sybase group=sybsa
+  - file: path=/E40data05 owner=sybase group=sybsa
+  - file: path=/E40log01 owner=sybase group=sybsa
+  - file: path=/E40log02 owner=sybase group=sybsa
+  - file: path=/E40log03 owner=sybase group=sybsa
+  - file: path=/E40bvdata01 owner=sybase group=sybsa
+  - file: path=/E40bvdata02 owner=sybase group=sybsa
+  - file: path=/E40bvdata03 owner=sybase group=sybsa
+  - file: path=/E40bvdata04 owner=sybase group=sybsa
+  - file: path=/E40bvlog01 owner=sybase group=sybsa
+  - file: path=/E40bvlog02 owner=sybase group=sybsa
+  - file: path=/E40sysutils owner=sybase group=sybsa
+  - file: path=/E40bvsysutils owner=sybase group=sybsa
+  - file: path=/E40audit owner=sybase group=sybsa
+  - file: path=/E40bvaudit owner=sybase group=sybsa
+  - file: path=/E60sysutils owner=sybase group=sybsa
+  - file: path=/E60audit owner=sybase group=sybsa
+  - file: path=/sybase-backup   owner=sybase group=sybsa
+  - file: path=/opt/sw  owner=sybase group=sybsa
+  - file: path=/edi owner=sybase group=sybsa
+  - file: path=/apps1 owner=sybase group=sybsa
+  - file: path=/oracle owner=sybase group=sybsa
+  - file: path=/opt/apache       owner=sybase group=sybsa
+  - file: path=/apps1/GIS   owner=sybase group=sybsa
+  - file: path=/opt/CA      owner=sybase group=sybsa
+  - file: path=/data/ftp    owner=sybase group=sybsa
+  - file: path=/opt/java   owner=sybase group=sybsa
+  - file: path=/opt/security   owner=sybase group=sybsa
+  - file: path=/workspace   owner=sybase group=sybsa
+  - file: path=/opt/CA   owner=sybase group=sybsa
+  - file: path=/data/sybase   owner=sybase group=sybsa
+  - file: path=/data/advadmin    owner=sybase group=sybsa
+  - file: path=/data/extcat         owner=sybase group=sybsa
+  - file: path=/data/images        owner=sybase group=sybsa
+  - file: path=/data/extcat-new     owner=sybase group=sybsa
+  - file: path=/opt/security             owner=sybase group=sybsa
+  - file: path=/tmp owner=sybase group=sybsa
+

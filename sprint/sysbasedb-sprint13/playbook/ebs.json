@@ -1,0 +1,258 @@
+[
+	{
+	"DeviceName": "/dev/sdb",
+	"Ebs" : {
+		"VolumeSize" : 20,
+		"DeleteOnTermination" : true,
+		"VolumeType" : "standard"
+		}
+	},
+	{
+	"DeviceName": "/dev/sdc",
+	"Ebs" : {
+		"VolumeSize" : 20,
+		"DeleteOnTermination" : true,
+		"VolumeType" : "standard"
+		}
+	},
+	{
+	"DeviceName": "/dev/sdd",
+	"Ebs" : {
+		"VolumeSize" : 20,
+		"DeleteOnTermination" : true,
+		"VolumeType" : "standard"
+		}
+	},
+	{
+	"DeviceName": "/dev/sde",
+	"Ebs" : {
+		"VolumeSize" : 20,
+		"DeleteOnTermination" : true,
+		"VolumeType" : "standard"
+		}
+	},
+	{
+	"DeviceName": "/dev/sdf",
+	"Ebs" : {
+		"VolumeSize" : 20,
+		"DeleteOnTermination" : true,
+		"VolumeType" : "standard"
+		}
+	},
+	{
+	"DeviceName": "/dev/sdg",
+	"Ebs" : {
+		"VolumeSize" : 20,
+		"DeleteOnTermination" : true,
+		"VolumeType" : "standard"
+		}
+	},
+	{
+	"DeviceName": "/dev/sdh",
+	"Ebs" : {
+		"VolumeSize" : 20,
+		"DeleteOnTermination" : true,
+		"VolumeType" : "standard"
+		}
+	},
+	{
+	"DeviceName": "/dev/sdi",
+	"Ebs" : {
+		"VolumeSize" : 20,
+		"DeleteOnTermination" : true,
+		"VolumeType" : "standard"
+		}
+	},
+	{
+	"DeviceName": "/dev/sdj",
+	"Ebs" : {
+		"VolumeSize" : 20,
+		"DeleteOnTermination" : true,
+		"VolumeType" : "standard"
+		}
+	},
+	{
+	"DeviceName": "/dev/sdk",
+	"Ebs" : {
+		"VolumeSize" : 200,
+		"DeleteOnTermination" : true,
+		"VolumeType" : "standard"
+		}
+	},
+	{
+	"DeviceName": "/dev/sdl",
+	"Ebs" : {
+		"VolumeSize" : 200,
+		"DeleteOnTermination" : true,
+		"VolumeType" : "standard"
+		}
+	},
+	{
+	"DeviceName": "/dev/sdm",
+	"Ebs" : {
+		"VolumeSize" : 200,
+		"DeleteOnTermination" : true,
+		"VolumeType" : "standard"
+		}
+	},
+	{
+	"DeviceName": "/dev/sdn",
+	"Ebs" : {
+		"VolumeSize" : 200,
+		"DeleteOnTermination" : true,
+		"VolumeType" : "standard"
+		}
+	},
+	{
+	"DeviceName": "/dev/sdo",
+	"Ebs" : {
+		"VolumeSize" : 200,
+		"DeleteOnTermination" : true,
+		"VolumeType" : "standard"
+		}
+	},
+	{
+	"DeviceName": "/dev/sdp",
+	"Ebs" : {
+		"VolumeSize" : 50,
+		"DeleteOnTermination" : true,
+		"VolumeType" : "standard"
+		}
+	},
+	{
+	"DeviceName": "/dev/sdq",
+	"Ebs" : {
+		"VolumeSize" : 50,
+		"DeleteOnTermination" : true,
+		"VolumeType" : "standard"
+		}
+	},
+	{
+	"DeviceName": "/dev/sdr",
+	"Ebs" : {
+		"VolumeSize" : 200,
+		"DeleteOnTermination" : true,
+		"VolumeType" : "standard"
+		}
+	},
+	{
+	"DeviceName": "/dev/sds",
+	"Ebs" : {
+		"VolumeSize" : 200,
+		"DeleteOnTermination" : true,
+		"VolumeType" : "standard"
+		}
+	},
+	{
+	"DeviceName": "/dev/sdt",
+	"Ebs" : {
+		"VolumeSize" : 200,
+		"DeleteOnTermination" : true,
+		"VolumeType" : "standard"
+		}
+	},
+	{
+	"DeviceName": "/dev/sdu",
+	"Ebs" : {
+		"VolumeSize" : 200,
+		"DeleteOnTermination" : true,
+		"VolumeType" : "standard"
+		}
+	},
+	{
+	"DeviceName": "/dev/sdv",
+	"Ebs" : {
+		"VolumeSize" : 200,
+		"DeleteOnTermination" : true,
+		"VolumeType" : "standard"
+		}
+	},
+	{
+	"DeviceName": "/dev/sdw",
+	"Ebs" : {
+		"VolumeSize" : 50,
+		"DeleteOnTermination" : true,
+		"VolumeType" : "standard"
+		}
+	},
+	{
+	"DeviceName": "/dev/sdx",
+	"Ebs" : {
+		"VolumeSize" : 50,
+		"DeleteOnTermination" : true,
+		"VolumeType" : "standard"
+		}
+	},
+	{
+	"DeviceName": "/dev/sdy",
+	"Ebs" : {
+		"VolumeSize" : 50,
+		"DeleteOnTermination" : true,
+		"VolumeType" : "standard"
+		}
+	},
+	{
+	"DeviceName": "/dev/sdz",
+	"Ebs" : {
+		"VolumeSize" : 200,
+		"DeleteOnTermination" : true,
+		"VolumeType" : "standard"
+		}
+	},
+	{
+	"DeviceName": "/dev/xvda",
+	"Ebs" : {
+		"VolumeSize" : 200,
+		"DeleteOnTermination" : true,
+		"VolumeType" : "standard"
+		}
+	},
+	{
+	"DeviceName": "/dev/xvdb",
+	"Ebs" : {
+		"VolumeSize" : 200,
+		"DeleteOnTermination" : true,
+		"VolumeType" : "standard"
+		}
+	},
+	{
+	"DeviceName": "/dev/xvdc",
+	"Ebs" : {
+		"VolumeSize" : 200,
+		"DeleteOnTermination" : true,
+		"VolumeType" : "standard"
+		}
+	},
+	{
+	"DeviceName": "/dev/xvdd",
+	"Ebs" : {
+		"VolumeSize" : 50,
+		"DeleteOnTermination" : true,
+		"VolumeType" : "standard"
+		}
+	},
+	{
+	"DeviceName": "/dev/xvde",
+	"Ebs" : {
+		"VolumeSize" : 50,
+		"DeleteOnTermination" : true,
+		"VolumeType" : "standard"
+		}
+	},
+	{
+	"DeviceName": "/dev/xvdf",
+	"Ebs" : {
+		"VolumeSize" : 1000,
+		"DeleteOnTermination" : true,
+		"VolumeType" : "standard"
+		}
+	},
+	{
+	"DeviceName": "/dev/xvdg",
+	"Ebs" : {
+		"VolumeSize" : 400,
+		"DeleteOnTermination" : true,
+		"VolumeType" : "standard"
+		}
+	}
+]

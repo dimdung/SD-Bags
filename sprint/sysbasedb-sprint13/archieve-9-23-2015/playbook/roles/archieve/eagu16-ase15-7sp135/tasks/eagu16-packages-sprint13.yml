@@ -1,0 +1,83 @@
+---
+  - name: Add X11
+    yum:
+      name="@X Window System"
+      state=present
+
+  - name: Add XTerm
+    yum:
+      name="xterm"
+      state=present
+
+  - name: Add Mozilla
+    yum:
+      name="firefox"
+      state=present
+
+  - name: Install org-xorg-x11-fonts
+    command: yum install -y xorg-x11-fonts-*   
+  - name: Install xorg-x11-utils
+    command: yum install -y xorg-x11-utils
+  - name: Install xclock 
+    command: yum install -y xorg-x11-apps
+  - name: Install GCC
+    command: yum install -y gcc-c++ gcc
+  - name: Install  libstdc++
+    command:  yum install -y libstdc++
+  - name:  Install  all .i686 
+    command: yum install -y libstdc++.i686 glibc.i686 glibc-devel.i686 libstdc++-devel.i686
+  - name: Install xorg-x11-auth
+    command: yum install -y xorg-x11-auth
+  - name: Install openmotif-2*
+    command: yum install -y openmotif-2*
+  - name: Install libXp-1*
+    command: yum install -y libXp-1*
+  - name: Install libXt-1*
+    command: yum install -y libXt-1*
+  - name: Install 
+    command: yum install -y libXtst-1*
+  - name: Install 
+    command: yum install -y libXi-1*
+  - name: Install 
+    command: yum install -y libXmu-1*
+  - name: Install 
+    command: yum install -y libXext-1*
+  - name: Install  
+    command: yum install -y libSM-1*
+  - name: Install 
+    command: yum install -y libICE-1*
+  - name: Install  
+    command: yum install -y libX11-1*
+  - name: Install 
+    command: yum install -y libXtst-devel*
+  - name: Install 
+    command: yum install -y libXi-devel*
+  - name: Install 
+    command: yum install -y openmotif-devel*
+  - name: Install 
+    command: yum install -y libXmu-devel*
+  - name: Install 
+    command: yum install -y libXt-devel*
+  - name: Install 
+    command: yum install -y libXext-devel*
+  - name: Install 
+    command: yum install -y libXp-devel*
+  - name: Install 
+    command: yum install -y libX11-devel*
+  - name: Install 
+    command: yum install -y libSM-devel*
+  - name: Install 
+    command: yum install -y libICE-devel*
+ 
+  - name: Adding 'sybase' user to /etc/cron.allow
+    lineinfile: >
+      state=present
+      create=yes
+      dest=/etc/cron.allow
+      line="sybase"
+    tags:
+      - sybase  cron
+#  - name: Setup host name in network files 
+#    command: sed -i -e s/HOSTNAME=.*/HOSTNAME={{hostname}}/ /etc/sysconfig/network
+# - name: Execute hostname command 
+#    command: /bin/hostname {{hostname}}

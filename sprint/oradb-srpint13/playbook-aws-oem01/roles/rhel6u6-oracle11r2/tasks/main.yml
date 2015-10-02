@@ -1,9 +1,0 @@
----
-## All the file include:
-  - include: oradb-packages-sprint13.yml
-    tags: oradb-packages
-
-  - include: oradb-fs-sprint13.yml
-    tags: oradb-fs
-
-

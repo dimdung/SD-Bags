@@ -1,0 +1,6 @@
+---
+## All the file include:
+  - include: eagu40-fs-sprint13.yml
+    tags: Filesystem
+  - include: eagu40-pk-sprint13.yml
+    tags: Packages 
