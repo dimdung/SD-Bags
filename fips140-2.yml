@@ -1,3 +1,4 @@
+[root@helixtech2015 ~]# cat fips140-2.yml
 ---
 - hosts: localhost
   user: root
@@ -6,6 +7,9 @@
   tasks:
     - name: Set to prelink PRELINKING=no
       lineinfile: dest=/etc/sysconfig/prelink regexp=^PRELINKING= line=PRELINKING=no
+
+    - name: Existing Prelinking, if any
+      command: prelink -u -a
 
     - name: install the dracut-fips package
       yum: name=dracut-fips state=absent
@@ -31,3 +35,4 @@
         state=present
         regexp='(^\s+kernel(\s+(?!boot=/dev/sda1)[\w=/\-\.]+)*)\s*$'
         line='\1 boot=/dev/sda1'
+[root@helixtech2015 ~]#
