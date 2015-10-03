@@ -1,3 +1,11 @@
+# 9.2. Federal Information Processing Standard (FIPS)
+https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/6/html/Security_Guide/sect-Security_Guide-Federal_Standards_And_Regulations-Federal_Information_Processing_Standard.html
+
 # JBoss FIPS Enable
 https://access.redhat.com/documentation/en-US/JBoss_Enterprise_Application_Platform/6.2/html/Administration_and_Configuration_Guide/Enable_FIPS_140-2_Cryptography_for_SSL_on_Red_Hat_Enterprise_Linux_6.html
 
+# Red Hat Completes FIPS 140-2 Certifications
+http://www.redhat.com/en/about/press-releases/red-hat-completes-fips-1402-certifications
+
+# Make RHEL 6 FIPS 140-2 Compliant
+http://www.inetservices.com/knowledgebase/make-rhel-6-fips-140-2-compliant/
