@@ -1,0 +1,110 @@
+#Cloning GIT-Repo from github account
+// Make one directory to to clone the repo 
+[root@helixtech2015 ~]# mkdir playbook
+[root@helixtech2015 ~]# cd playbook/
+[root@helixtech2015 playbook]# ls
+[root@helixtech2015 playbook]#
+
+// Run the Below command to clone the git-reop from github account 
+[root@helixtech2015 playbook]# git clone https://github.com/dimdung/dimdung2011-master.git
+Initialized empty Git repository in /root/playbook/dimdung2011-master/.git/
+remote: Counting objects: 294, done.
+remote: Compressing objects: 100% (51/51), done.
+remote: Total 294 (delta 17), reused 0 (delta 0), pack-reused 236
+Receiving objects: 100% (294/294), 4.75 MiB | 3.25 MiB/s, done.
+Resolving deltas: 100% (110/110), done.
+[root@helixtech2015 playbook]# 
+
+// List the repo 
+[root@helixtech2015 playbook]# ls
+dimdung2011-master
+[root@helixtech2015 playbook]# 
+
+// cd into dimdung2011-master and run the ‘ls’ command 
+[root@helixtech2015 playbook]# cd dimdung2011-master/
+[root@helixtech2015 dimdung2011-master]# ls
+ansible-playbook  aws  aws-training  code_deploy_example  fips140-2.yml  gitbranch.yml  ifconfig  network  playbook-disk-fs  README.md  sprint
+[root@helixtech2015 playbook]# 
+
+// Create a one file to work as an example
+[root@helixtech2015 dimdung2011-master]# cp fips140-2.yml fips140-2.yml_org
+[root@helixtech2015 playbook]# 
+
+// Run the below command to check the git status 
+[root@helixtech2015 dimdung2011-master]# git status
+# On branch master
+# Untracked files:
+#   (use "git add <file>..." to include in what will be committed)
+#
+#       fips140-2.yml_org
+nothing added to commit but untracked files present (use "git add" to track)
+[root@helixtech2015 playbook]# 
+
+// Run the below command to add the new files 
+[root@helixtech2015 dimdung2011-master]# git add fips140-2.yml_org
+
+// Run the below command to commit the changes 
+[root@helixtech2015 dimdung2011-master]# git commit -m "Fips_org"
+[master 4e18487] Fips_org
+ Committer: root <root@helixtech2015.helixtech-llc.com>
+Your name and email address were configured automatically based
+on your username and hostname. Please check that they are accurate.
+You can suppress this message by setting them explicitly:
+
+    git config --global user.name "Your Name"
+    git config --global user.email you@example.com
+
+If the identity used for this commit is wrong, you can fix it with:
+
+    git commit --amend --author='Your Name <you@example.com>'
+
+ 1 files changed, 38 insertions(+), 0 deletions(-)
+ create mode 100644 fips140-2.yml_org
+[root@helixtech2015 dimdung2011-master]#
+
+// Run the above command to before you commit the changes, this is onetime setup for this repo.
+[root@helixtech2015 dimdung2011-master]# git config --global user.name "Samal Dimdung"
+[root@helixtech2015 dimdung2011-master]# git config --global user.email dimdung@live.com
+[root@helixtech2015 dimdung2011-master]# git commit -m "FIPS Org"
+# On branch master
+# Your branch is ahead of 'origin/master' by 1 commit.
+#
+nothing to commit (working directory clean)
+[root@helixtech2015 dimdung2011-master]# git push
+error: The requested URL returned error: 403 Forbidden while accessing https://github.com/dimdung/dimdung2011-master.git/info/refs
+
+fatal: HTTP request failed
+[root@helixtech2015 dimdung2011-master]#
+
+// Change git config file as shown below to fixes the issues 
+[root@helixtech2015 dimdung2011-master]# vi .git/config
+[root@helixtech2015 dimdung2011-master]# grep https .git/config
+        #url = https://github.com/dimdung/dimdung2011-master.git to 
+        url = https://dimdung@github.com/dimdung/dimdung2011-master.git 
+[root@helixtech2015 dimdung2011-master]#
+
+// Now Run again git push command, once prompt, provides the password 
+[root@helixtech2015 dimdung2011-master]# git push
+Password:
+Counting objects: 3, done.
+Compressing objects: 100% (2/2), done.
+Writing objects: 100% (2/2), 247 bytes, done.
+Total 2 (delta 1), reused 0 (delta 0)
+To https://dimdung@github.com/dimdung/dimdung2011-master.git
+   12b1cd5..4e18487  master -> master
+[root@helixtech2015 dimdung2011-master]#
+
+// You are done, run the below command to check the status 
+[root@helixtech2015 dimdung2011-master]# git status
+# On branch master
+nothing to commit (working directory clean)
+[root@helixtech2015 dimdung2011-master]#
+
+// Run the below command to pull the latest from the github repo if any changes made by team
+[root@helixtech2015 dimdung2011-master]# git pull
+Password:
+Already up-to-date.
+[root@helixtech2015 dimdung2011-master]#
+
+
+
