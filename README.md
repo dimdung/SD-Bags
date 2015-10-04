@@ -9,7 +9,7 @@
 [sdimdung@htech007 htech-project]$ git init <br>
 Initialized htech007 Git repository in /home/sdimdung/htech-project/.git/<br>
 <h3>Step # 3 - Run the 'git clone' command alone with the  following url: </h3><br>
-[sdimdung@htech007 htech-project]$ git clone https://github.com/dimdung/htech2015-master.git<br>
+[sdimdung@htech007 htech-project]$ git clone https://github.com/dimdung/dimdung2011-DevOps.git <br>
 Initialized empty Git repository in /home/sdimdung/htech-project/htech2015-master/.git/<br>
 remote: Counting objects: 31, done.<br>
 remote: Compressing objects: 100% (25/25), done.<br>
