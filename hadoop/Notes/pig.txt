@@ -1,0 +1,62 @@
+export PIG_HOME=/home/hadoop/pig/
+
+
+A = load 'passwd' using PigStorage(':'); 
+B = foreach A generate $0 as id; 
+store B into 'id.out';
+
+
+
+pig -x local id.pig
+
+pig -x mapreduce id.pig
+
+
+passwd = LOAD '/etc/passwd' USING PigStorage(':') AS (user:chararray, \
+passwd:chararray, uid:int, gid:int, userinfo:chararray, home:chararray, \
+shell:chararray);
+grunt> DUMP passwd;
+
+
+grunt> counts = FOREACH grp_shell GENERATE group, COUNT(passwd);
+grunt> DUMP counts;
+
+
+
+A = load 'test';
+
+B = foreach A generate flatten(TOKENIZE((chararray)$0)) as word;
+
+C = group B by word;
+
+D = foreach C generate COUNT(B), group;
+
+store D into 'wordcount';
+
+==================
+
+A = load 'http_access_2011-07-07.log' using PigStorage('-') as (f0,f1,f2,f3,f4);
+B = foreach A generate f0;
+C = distinct B;
+dump C;
+
+A = load 'http_access_2011-07-07.log' using PigStorage('"') as (f0,f1,f2,f3,f4,f5);
+B = foreach A generate f5;
+C = distinct B;
+dump C;
+
+A = load 'http_access_2011-07-07.log' using PigStorage('"') as (f0,f1,f2,f3,f4);
+B = foreach A generate f1;
+C = distinct B;
+dump C;
+
+==============
+yum install ant*
+
+For Hadoop-2.0
+
+ant clean jar-withouthadoop -Dhadoopversion=23
+
+or
+
+ant clean jar-all -Dhadoopversion=23
