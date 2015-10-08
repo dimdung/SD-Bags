@@ -17,9 +17,6 @@
     - name: Recreate the initramfs file
       command: dracut -f
 
-    #- name: Enable X11 /etc/ssh/sshd_config
-    #  lineinfile: dest=/etc/ssh/sshd_config regexp=^X11Forwarding  line="X11Forwarding yes"
-
     - name: Add fips=1 at the end of the Kernl Line
       lineinfile: dest=/etc/grub.conf
         backup=True
