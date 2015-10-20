@@ -1,0 +1,23 @@
+---
+- hosts: localhost
+  user: root
+  sudo: no
+
+  tasks:
+    - name: Set to prelink PRELINKING=no
+      lineinfile: dest=/etc/sysconfig/prelink regexp=^PRELINKING= line=PRELINKING=no
+
+    - name: Existing Prelinking, if any
+      command: prelink -u -a
+
+    - name: Recreate the initramfs file
+      command: mkinitrd --with-fips -f /boot/initrd-$(uname -r).img $(uname -r)
+
+    - name: Add fips=1 at the end of the Kernl Line
+      lineinfile: dest=/etc/grub.conf
+        backup=True
+        backrefs=True
+        state=present
+        regexp='(^\s+kernel(\s+(?!fips=1)[\w=/\-\.]+)*)\s*$'
+        line='\1 fips=1'
+# https://stomp.colorado.edu/blog/blog/2010/06/28/on-rhel-5-and-fips-mode/
