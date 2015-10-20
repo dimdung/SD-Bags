@@ -1,0 +1,9 @@
+---
+- hosts: ubuntu
+  sudo: yes
+  connection: local
+  remote_user: root
+  roles:
+    - { role: cis, when: ansible_distribution=="Ubuntu" and ansible_distribution_version=="14.04" }
+
+# vim: set sw=2 ts=2:
