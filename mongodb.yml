@@ -1,0 +1,53 @@
+[ec2-user@ip-10-76-32-7 ~]$ history
+    1  10/21/15 11:20 sudo su -
+    2  07/28/15 20:35 ls
+    3  07/28/15 20:35 sudo yum update -y
+    4  07/28/15 20:37 sudo mkdir /data /log /journal
+    5  07/28/15 20:38 ------------------------------------------------------------------------------------------
+    6  07/28/15 20:38 Total
+    7  07/28/15 20:38 sudo mkfs.ext4 /dev/xvdf
+    8  07/28/15 20:39 [ec2-user@ip-10-76-32-13 ~]$
+    9  07/28/15 20:39 sudo mkfs.ext4 /dev/xvdg
+   10  07/28/15 20:39 sudo mkfs.ext4 /dev/xvdh
+   11  07/28/15 20:43 echo '/dev/xvdf /data ext4 defaults,auto,noatime,noexec 0 0
+   12  10/21/15 11:20 /dev/xvdg /journal ext4 defaults,auto,noatime,noexec 0 0
+   13  10/21/15 11:20 /dev/xvdh /log ext4 defaults,auto,noatime,noexec 0 0' | sudo tee -a /etc/fstab
+   14  07/28/15 20:43 cat /etc/fstab
+   15  07/28/15 20:44 sudo mount /data
+   16  07/28/15 20:44 sudo mount /journal
+   17  07/28/15 20:44 sudo mount /log
+   18  07/28/15 20:45 sudo ln -s /journal /data/journal
+   19  07/28/15 20:45 sudo vi /etc/yum.repos.d/mongodb-org-3.0.repo
+   20  07/28/15 20:46 ls /etc/yum.repos.d/
+   21  07/28/15 20:47 sudo yum install -y mongodb-org
+   22  07/28/15 20:48 cat /etc/yum.repos.d/mongodb-org-3.0.repo
+   23  07/28/15 20:48 sudo cat /etc/yum.repos.d/mongodb-org-3.0.repo
+   24  07/28/15 20:51 sudo semanage port -a -t mongod_port_t -p tcp 27017
+   25  07/28/15 20:53 sudo chown mongod:mongod /data /journal /log
+   26  07/28/15 20:53 vi /etc/mongod.conf
+   27  07/28/15 20:53 sudo vi /etc/mongod.conf
+   28  07/28/15 20:55 sudo service mongod start
+   29  07/28/15 20:57 cat /log/mongod.log
+   30  07/28/15 20:57 sudo cat /log/mongd.log
+   31  07/28/15 20:57 sudo cat /log/mongod.log
+   32  07/28/15 20:58 sudo vi /etc/security/limits.conf
+   33  07/28/15 21:01 sudo vi /etc/security/limits.d/90-nproc.conf
+   34  07/28/15 21:02 echo 'ACTION=="add", KERNEL=="xvdf", ATTR{bdi/read_ahead_kb}="16"' | sudo tee -a /etc/udev/rules.d/85-ebs.rules
+   35  07/28/15 21:03 sudo blockdev --setra 32 /dev/xvdf
+   36  07/28/15 21:03 sudo service mongod restart
+   37  07/28/15 21:03 sudo cat /log/mongod.log
+   38  10/21/15 10:58 sudo su -
+   39  10/21/15 11:08 sduo su -
+   40  10/21/15 11:08 clear
+   41  10/21/15 11:08 df
+   42  10/21/15 11:08 clear
+   43  10/21/15 11:08 cat /etc/sysconfig/prelink
+   44  10/21/15 11:08 clear
+   45  10/21/15 11:08 sudo prelink -u -a
+   46  10/21/15 11:10 sudo yum install dracut-fips -y
+   47  10/21/15 11:12 sudo dracut -f
+   48  10/21/15 11:14 sudo vi /etc/grub.conf
+   49  10/21/15 11:14 sudo reboot
+   50  10/21/15 11:20 sudo su -
+   51  10/21/15 11:21 history
+[ec2-user@ip-10-76-32-7 ~]$
