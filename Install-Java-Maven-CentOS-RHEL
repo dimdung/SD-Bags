@@ -1,0 +1,117 @@
+# Download the JDK from Oracle Sites and Run the below command to install JDK 8u60
+[root@jenkins10 ~]# rpm -Uvh jdk-8u60-linux-x64.rpm
+Preparing...                ########################################### [100%]
+   1:jdk1.8.0_60            ########################################### [100%]
+Unpacking JAR files...
+        tools.jar...
+        plugin.jar...
+        javaws.jar...
+        deploy.jar...
+        rt.jar...
+        jsse.jar...
+        charsets.jar...
+        localedata.jar...
+        jfxrt.jar...
+[root@jenkins10 ~]#
+
+# Check the JAVA Version 
+[root@jenkins10 ~]# java -version
+java version "1.8.0_60"
+Java(TM) SE Runtime Environment (build 1.8.0_60-b27)
+Java HotSpot(TM) 64-Bit Server VM (build 25.60-b23, mixed mode)
+[root@jenkins10 ~]#
+
+# Go the the /usr/java and verity the below entries 
+[root@jenkins10 ~]# cd /usr/java
+[root@jenkins10 java]# ll
+total 4
+lrwxrwxrwx. 1 root root   16 Oct  6 20:00 default -> /usr/java/latest
+drwxr-xr-x. 9 root root 4096 Oct  6 20:00 jdk1.8.0_60
+lrwxrwxrwx. 1 root root   21 Oct  6 20:00 latest -> /usr/java/jdk1.8.0_60
+[root@jenkins10 java]# cd latest/
+[root@jenkins10 latest]# ll
+total 25924
+drwxr-xr-x. 2 root root     4096 Oct  6 20:00 bin
+-rw-r--r--. 1 root root     3244 Aug  4 15:29 COPYRIGHT
+drwxr-xr-x. 4 root root     4096 Oct  6 20:00 db
+drwxr-xr-x. 3 root root     4096 Oct  6 20:00 include
+-rwxr-xr-x. 1 root root  5104040 Aug  3 13:58 javafx-src.zip
+drwxr-xr-x. 5 root root     4096 Oct  6 20:00 jre
+drwxr-xr-x. 5 root root     4096 Oct  6 20:00 lib
+-rw-r--r--. 1 root root       40 Aug  4 15:29 LICENSE
+drwxr-xr-x. 4 root root     4096 Oct  6 20:00 man
+-rw-r--r--. 1 root root      159 Aug  4 15:29 README.html
+-rw-r--r--. 1 root root      525 Aug  4 15:29 release
+-rw-r--r--. 1 root root 21105839 Aug  4 15:29 src.zip
+-rwxr-xr-x. 1 root root   110114 Aug  3 13:58 THIRDPARTYLICENSEREADME-JAVAFX.txt
+-rw-r--r--. 1 root root   177094 Aug  4 15:29 THIRDPARTYLICENSEREADME.txt
+[root@jenkins10 latest]#
+
+# Now install and configure the Java on your system if you have multiple Java on your server
+[root@jenkins10 latest]# alternatives --install /usr/bin/java java /usr/java/latest/bin/java 200000    
+[root@jenkins10 latest]# alternatives --install /usr/bin/javc javc /usr/java/latest/bin/javc 200000
+[root@jenkins10 latest]# alternatives --install /usr/bin/jar jar /usr/java/latest/bin/jar 200000
+[root@jenkins10 latest]#
+[root@jenkins10 latest]# alternatives --config java
+
+There are 3 programs which provide 'java'.
+
+  Selection    Command
+-----------------------------------------------
+   1           /usr/lib/jvm/jre-1.8.0-openjdk.x86_64/bin/java
+   2           /usr/java/jdk1.8.0_60/jre/bin/java
+*+ 3           /usr/java/latest/bin/java
+
+Enter to keep the current selection[+], or type selection number:
+[root@jenkins10 latest]#
+
+# Verify the JAVA/JAVAC/JAR version running below commands
+[root@jenkins10 latest]# java -version
+java version "1.8.0_60"
+Java(TM) SE Runtime Environment (build 1.8.0_60-b27)
+Java HotSpot(TM) 64-Bit Server VM (build 25.60-b23, mixed mode)
+[root@jenkins10 latest]#
+[root@jenkins10 latest]# javac -version
+javac 1.8.0_60
+[root@jenkins10 latest]#
+
+## Set the Environment Varibles
+[root@jenkins10 java]# grep JAVA /etc/rc.local
+export JAVA_HOME="/usr/java/latest"
+[root@jenkins10 java]#
+
+# Or do as shown below JAVA and Maven
+$ vi .bash_profile
+export JAVA_HOME=/usr/java/latest
+export JAVA_HOME;
+
+## Download and Install the Maven on RHEL 6.x64
+https://maven.apache.org/download.cgi 
+
+# Create the direcotry callled 'apache-maven' and move the apache-maven-3.3.3 to destination direcotry
+[root@jenkins10 sw]# mkdir -p /usr/local/apache-maven
+[root@jenkins10 sw]# mv apache-maven-3.3.3 /usr/local/apache-maven/
+
+# Set the Environment Varible for Maven
+[root@jenkins10 sw]# vi .bash_profile 
+export M2_HOME=/usr/local/apache-maven/apache-maven-3.3.3
+export M2=$M2_HOME/bin
+export PATH=$M2:$PATH
+
+# verify the Maven
+[root@jenkins10 sw]# mvn -version
+Apache Maven 3.3.3 (7994120775791599e205a5524ec3e0dfe41d4a06; 2015-04-22T07:57:37-04:00)
+Maven home: /usr/local/apache-maven/apache-maven-3.3.3
+Java version: 1.8.0_65, vendor: Oracle Corporation
+Java home: /usr/java/jdk1.8.0_65/jre
+Default locale: en_US, platform encoding: UTF-8
+OS name: "linux", version: "2.6.32-504.23.4.el6.x86_64", arch: "amd64", family: "unix"
+[root@jenkins10 sw]#
+
+
+
+
+
+
+
+
