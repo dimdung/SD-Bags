@@ -1,3 +1,78 @@
+# Make the mongo directories:
+sudo mkdir /data /log /journal
+
+#Make filesystems for the EBS Vols
+sudo mkfs.ext4 /dev/xvdf
+sudo mkfs.ext4 /dev/xvdg
+sudo mkfs.ext4 /dev/xvdh
+
+#Add the directories to the fstab
+echo "
+# Application & Databaser Filesystem 
+/dev/xvdf /data ext4 defaults,auto,noatime,noexec 0 0
+/dev/xvdg /journal ext4 defaults,auto,noatime,noexec 0 0
+/dev/xvdh /log ext4 defaults,auto,noatime,noexec 0 0
+" >> /etc/fstab
+
+# Mount the volumes
+sudo mount /data
+sudo mount /journal
+sudo mount /log
+
+# Link Journal to Data
+sudo ln –s /journal /data/journal
+
+# Edit the file/proc limits
+# Edit /etc/security/limits.conf and add the following lines
+echo "
+* soft nofile 64000
+* hard nofile 64000
+* soft nproc 32000
+* hard nproc 32000
+" >> /etc/security/limits.conf
+
+# Edit the limits.d conf
+# Edit /etc/security/limits.d/90-nproc.conf
+echo "
+*          soft    nproc     32000
+*          hard    nproc     32000
+" >> /etc/security/limits.d/90-nproc.conf
+
+# Update the block dev readahead
+echo 'ACTION=="add", KERNEL=="xvdf", ATTR{bdi/read_ahead_kb}="16"' | tee -a \ /etc/udev/rules.d/85-ebs.rules
+
+# Add the MongoDB Yum Repo
+# Create the file /etc/yum.repos.d/mongodb-org-3.0.repo with the following content:
+echo "
+[mongodb-org-3.0]
+name=MongoDB Repository
+baseurl=https://repo.mongodb.org/yum/redhat/$releasever/mongodb-org/3.0/x86_64/
+gpgcheck=0
+enable=1
+" >> /etc/yum.repos.d/mongodb-org-3.0.repo
+
+# Install the MongoDB RPMs
+sudo yum install –y mongodb-org
+
+# Change SELinux settings to allow Port 27017 for MongDB (Possibly not required if SELinux is not running)
+
+sudo semanage port -a -t mongod_port_t -p tcp 27017
+
+# Give the mongod user ownership of the necessary directories
+sudo chown mongod:mongod /data /journal /log
+
+# Edit the /etc/mongod.conf file
+
+#a.	Change dbpath = /data
+#b.	Change logpath = /log/mongd.log
+#c.	Comment out bind_ip = 
+
+# Start the mongod service
+sudo service mongod start
+sudo chkconfig mongod on
+
+
+-------- Raw------------------------------------------------------------------------------------------------------------------
 [ec2-user@ip-10-76-32-7 ~]$ history
     1  10/21/15 11:20 sudo su -
     2  07/28/15 20:35 ls
