@@ -1,0 +1,8 @@
+yum groupinstall 'development tools'
+yum install -y zlib-dev openssl-devel sqlite-devel bzip2-devel wget
+wget https://www.python.org/ftp/python/2.7.6/Python-2.7.6.tgz
+tar -zxvf Python-2.7.6.tgz
+cd Python-2.7.6
+./configure --prefix=/usr/local
+make 
+make install
