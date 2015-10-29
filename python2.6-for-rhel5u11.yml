@@ -6,3 +6,12 @@ cd Python-2.7.6
 ./configure --prefix=/usr/local
 make 
 make install
+
+
+
+----------------
+ python2.7 setup.py install
+ tar xzvf paramiko-1.15.3.tar.gz 
+ cd paramiko-1.15.3
+ python2.7 setup.py install
+ echo $?
