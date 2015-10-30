@@ -8,13 +8,13 @@
       lineinfile: dest=/etc/sysconfig/prelink regexp=^PRELINKING= line=PRELINKING=no
 
     - name: Existing Prelinking, if any
-      command: prelink -u -a
+      shell: prelink -u -a
 
     - name: install the dracut-fips package
       yum: name=dracut-fips state=absent
 
     - name: Recreate the initramfs file
-      command: dracut -f
+      shell: dracut -f
 
     #- name: Enable X11 /etc/ssh/sshd_config
     #  lineinfile: dest=/etc/ssh/sshd_config regexp=^X11Forwarding  line="X11Forwarding yes"
@@ -26,3 +26,12 @@
         state=present
         regexp='(^\s+kernel(\s+(?!fips=1)[\w=/\-\.]+)*)\s*$'
         line='\1 fips=1'
+
+   # Below lines you will need if your /boot is in separate drive ' df -h /boot = /dev/sda1' 
+    - name: Add boot=/dev/sda1 at the end of the Kernl Line 
+      lineinfile: dest=/etc/grub.conf
+        backup=True
+        backrefs=True
+        state=present
+        regexp='(^\s+kernel(\s+(?!boot=/dev/sda1)[\w=/\-\.]+)*)\s*$'
+        line='\1 boot=/dev/sda1'
