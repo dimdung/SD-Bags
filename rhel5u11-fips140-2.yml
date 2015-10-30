@@ -1,3 +1,4 @@
+[root@ip-10-76-32-9 ~]# cat fips.yml 
 ---
 - hosts: localhost
   user: root
@@ -8,10 +9,10 @@
       lineinfile: dest=/etc/sysconfig/prelink regexp=^PRELINKING= line=PRELINKING=no
 
     - name: Existing Prelinking, if any
-      command: prelink -u -a
+      shell: prelink -u -a
 
     - name: Recreate the initramfs file
-      command: mkinitrd --with-fips -f /boot/initrd-$(uname -r).img $(uname -r)
+      shell: mkinitrd --with-fips -f /boot/initrd-$(uname -r).img $(uname -r)
 
     - name: Add fips=1 at the end of the Kernl Line
       lineinfile: dest=/etc/grub.conf
@@ -20,4 +21,12 @@
         state=present
         regexp='(^\s+kernel(\s+(?!fips=1)[\w=/\-\.]+)*)\s*$'
         line='\1 fips=1'
-# https://stomp.colorado.edu/blog/blog/2010/06/28/on-rhel-5-and-fips-mode/
+
+    - name: Add boot=/dev/hda1 the end of the Kernl Line
+      lineinfile: dest=/etc/grub.conf
+        backup=True
+        backrefs=True
+        state=present
+        regexp='(^\s+kernel(\s+(?!boot=/dev/hda1)[\w=/\-\.]+)*)\s*$'
+        line='\1 boot=/dev/hda1'
+[root@ip-10-76-32-9 ~]# 
