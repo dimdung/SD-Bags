@@ -1,0 +1,146 @@
+Instruction as following:
+
+Special preparation for silent installation:
+
+1.edit /etc/hosts and add the foloowing line(change the IP and host name for the actual machine)
+
+10.176.32.43 ip-10-176-32-43 ip-10-176-32-43.helix.gsa.gov
+
+2.Modify the response file for the following line for the actual hostname.
+
+ORACLE_HOSTNAME=ip-10-176-33-106
+
+3.Create the /etc/oraInst.loc as below and chage the permission  and ownership.
+
+inventory_loc=/u01/app/oraInventory
+inst_group=oinstall
+
+
+$chown oracle:oinstall oraInst.loc
+$chmod 664 oraInst.loc
+
+
+Other common preparation steps:
+
+1. Create oracle user and group
+
+/usr/sbin/groupadd oinstall
+/usr/sbin/groupadd dba
+/usr/sbin/useradd -g oinstall -G dba oracle
+passwd oracle
+
+copy oracle .bash_profile from rhel5u11-oracle-11_2_0_4_0-gold
+
+
+Please note I put the following since the /tmp directory has the issue which is not executable
+
+export TEMP=/u01/staging/tmp
+export TMPDIR=/tmp
+
+2. Download the software as oracle
+
+I have downed and put them in rhel5u11-oracle-11_2_0_4_0-gold: /u01/staging/
+p13390677_112040_platform_1of7.zip 
+p13390677_112040_platform_2of7.zip 
+
+SFTP/SCP them then unzip.
+
+2.Install required Linux packages 
+
+rpm -q --qf '%{NAME}-%{VERSION}-%{RELEASE} (%{ARCH})\n' binutils \
+compat-libstdc++-33 \
+elfutils-libelf \
+elfutils-libelf-devel \
+gcc \
+gcc-c++ \
+glibc \
+glibc-common \
+glibc-devel \
+glibc-headers \
+ksh \
+libaio \
+libaio-devel \
+libgcc \
+libstdc++ \
+libstdc++-devel \
+make \
+sysstat \
+unixODBC \
+unixODBC-devel
+
+
+
+
+
+
+binutils-2.17.50.0.6-26.el5 (x86_64)
+compat-libstdc++-33-3.2.3-61 (x86_64)
+compat-libstdc++-33-3.2.3-61 (i386)
+elfutils-libelf-0.137-3.el5 (x86_64)
+elfutils-libelf-0.137-3.el5 (i386)
+elfutils-libelf-devel-0.137-3.el5 (i386)
+elfutils-libelf-devel-0.137-3.el5 (x86_64)
+gcc-4.1.2-55.el5 (x86_64)
+gcc-c++-4.1.2-55.el5 (x86_64)
+glibc-2.5-123.el5_11.1 (x86_64)
+glibc-2.5-123.el5_11.1 (i686)
+glibc-common-2.5-123.el5_11.1 (x86_64)
+glibc-devel-2.5-123.el5_11.1 (x86_64)
+glibc-headers-2.5-123.el5_11.1 (x86_64)
+ksh-20100621-24.el5_11 (x86_64)
+libaio-0.3.106-5 (x86_64)
+libaio-0.3.106-5 (i386)
+libaio-devel-0.3.106-5 (i386)
+libaio-devel-0.3.106-5 (x86_64)
+libgcc-4.1.2-55.el5 (x86_64)
+libgcc-4.1.2-55.el5 (i386)
+libstdc++-4.1.2-55.el5 (x86_64)
+libstdc++-4.1.2-55.el5 (i386)
+
+3.Configure Kernel
+
+Add the following to /etc/sysctl.conf. If there are values which were already there and bigger then the following, 
+leave the original ones. (I commented out shmmax and shmmni since they were already there)
+
+fs.aio-max-nr = 1048576
+fs.file-max = 6815744
+kernel.shmall = 2097152
+kernel.shmmax = 536870912
+kernel.shmmni = 4096
+kernel.sem = 250 32000 100 128
+net.ipv4.ip_local_port_range = 9000 65500
+net.core.rmem_default = 262144
+net.core.rmem_max = 4194304
+net.core.wmem_default = 262144
+net.core.wmem_max = 1048576
+
+/sbin/sysctl -p
+
+4. Create directories
+
+mkdir -p /u01/app/oracle
+chown oracle:oinstall /u01/app
+chmod -R 775 /u01
+
+
+
+
+5.Edit /etc/security/limits.conf file and add the following:
+
+### oracle User Settings 4 Oracle 11g ####
+oracle       soft  nproc  2047
+oracle       hard  nproc  16384
+oracle       soft  nofile 4096
+oracle       hard  nofile 65536
+oracle       soft  stack  10240
+oracle       hard  stack  32768
+
+Final Steps
+
+Run Oracle installer in silent mode
+
+cd /u01/staging/database
+./runInstaller  -silent -ignoreSysPrereqs  -responseFile /u01/staging/database/response/db_install.rsp
+
+
+Run the root.sh script(s) When prompted
