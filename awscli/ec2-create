@@ -1,0 +1,2 @@
+#!/bin/bash
+aws ec2 run-instances --image-id ami-66e1900c  --count 1 --instance-type m4.4xlarge  --key-name kp-helix-dev-ansible --security-group-ids sg-b98b64de --subnet-id subnet-a2b4fa89 --block-device-mappings file:///Users/dimdung/workspace/awscli/ebs-eagu62.json --region us-east-1 --profile helix-labdev 

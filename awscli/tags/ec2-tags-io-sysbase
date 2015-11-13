@@ -1,0 +1,2 @@
+#!/bin/bash
+aws ec2 create-tags --resources i-8195793f --tags Key=App,Value=DBSandBox Key=CostControl,Value=IO-Sandbox Key=Creator,Value="Samal Dimdung" Key=Environment,Value=Dev Key=POC,Value="Electra Holmes" Key=ProjectTeam,Value="IO" Key=SecurityLevel,Value=Standard Key=Tenant,Value="IO" Key=Portfolio,Value=TSD --region us-east-1 --profile helix-labdev

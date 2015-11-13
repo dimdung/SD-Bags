@@ -1,0 +1,2 @@
+#!/bin/bash
+aws ec2 create-tags --resources i-6323c2dd  --tags Key=Name,Value=VM-ALM-1.0-E-D-ALMTest-02 Key=App,Value=ALM Key=CostControl,Value=ALMTest Key=Creator,Value="Samal Dimdung" Key=Environment,Value=Lab Key=POC,Value="Robert Donovan" Key=ProjectTeam,Value="ALM Test" Key=SecurityLevel,Value=Standard Key=Tenant,Value="AcqIT" Key=Portfolio,Value=TSD --region us-east-1 --profile helix-labdev

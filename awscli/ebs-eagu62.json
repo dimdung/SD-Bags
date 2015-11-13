@@ -1,0 +1,26 @@
+[
+	{
+	"DeviceName": "/dev/sdb",
+	"Ebs" : {
+		"VolumeSize" : 950,
+		"DeleteOnTermination" : true,
+		"VolumeType" : "standard"
+		}
+	},
+	{
+	"DeviceName": "/dev/sdc",
+	"Ebs" : {
+		"VolumeSize" : 950,
+		"DeleteOnTermination" : true,
+		"VolumeType" : "standard"
+		}
+	},
+	{
+	"DeviceName": "/dev/sdd",
+	"Ebs" : {
+		"VolumeSize" :710,
+		"DeleteOnTermination" : true,
+		"VolumeType" : "standard"
+		}
+	}
+]

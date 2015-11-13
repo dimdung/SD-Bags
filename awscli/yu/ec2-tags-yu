@@ -1,0 +1,2 @@
+#!/bin/bash
+aws ec2 create-tags --resources i-1cd37aac --tags Key=App,Value=HelixIDM Key=CostControl,Value=HelixLab Key=Creator,Value="Samal Dimdung" Key=Environment,Value=Lab Key=POC,Value="Robert Donovan" Key=ProjectTeam,Value="DevOps" Key=SecurityLevel,Value=Standard Key=Tenant,Value="Helix" Key=Portfolio,Value=TSD --region us-east-1 --profile helix-labdev

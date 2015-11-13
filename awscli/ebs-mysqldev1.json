@@ -1,0 +1,10 @@
+[
+	{
+	"DeviceName": "/dev/sdb",
+	"Ebs" : {
+		"VolumeSize" : 450,
+		"DeleteOnTermination" : true,
+		"VolumeType" : "standard"
+		}
+	}
+]
