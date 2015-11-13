@@ -1,0 +1,2 @@
+#!/bin/bash
+aws ec2 run-instances --image-id ami-efda8e8a --count 1 --instance-type m3.medium --key-name IDM-Helix-Lab-Key --security-group-ids sg-ea8d0a8c --subnet-id subnet-a8fbb3f1 --region us-east-1 --profile helix-labdev 
