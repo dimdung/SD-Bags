@@ -1,0 +1,37 @@
+sdimdung@KARSUN201-PC MINGW64 ~/Desktop
+$ aws ec2 start-instances --instance-ids i-c66abb64
+{
+    "StartingInstances": [
+        {
+            "InstanceId": "i-c66abb64",
+            "CurrentState": {
+                "Code": 0,
+                "Name": "pending"
+            },
+            "PreviousState": {
+                "Code": 80,
+                "Name": "stopped"
+            }
+        }
+    ]
+}
+
+$ aws ec2 stop-instances --instance-ids i-c66abb64
+{
+    "StoppingInstances": [
+        {
+            "InstanceId": "i-c66abb64",
+            "CurrentState": {
+                "Code": 64,
+                "Name": "stopping"
+            },
+            "PreviousState": {
+                "Code": 16,
+                "Name": "running"
+            }
+        }
+    ]
+}
+
+sdimdung@KARSUN201-PC MINGW64 ~/Desktop
+$
