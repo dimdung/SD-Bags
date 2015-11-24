@@ -1,0 +1,73 @@
+Success Criteria:
+Option : 1
+Automated Startup and Shutdown of Machines on Dev VPC 7AM-7PM Weekdays 
+
+Step1: Create IAM Roles with the below permission (Dev-Ec2-Auto-StartStop)
+<<START>>
+{
+    "Statement": [
+        {
+            "Action": [
+                "ec2:DescribeInstances",
+                "ec2:StartInstances",
+                "ec2:StopInstances"
+            ],
+            "Effect": "Allow",
+            "Resource": "*"
+        }
+    ]
+}
+<<END>
+
+Step # 2 - Create a EC2 t2.micro instances using AWS Linux (Dev-Ec2-Auto-StartStop) with below below mentioned User Data
+
+<<START>>
+
+#!/bin/bash -v
+yum install -y python26-pip gcc
+pip install croniter
+OPERATOR=/home/ec2-user/ec2_operator.py
+wget -O $OPERATOR https://s3.amazonaws.com/s3-dimdung-asap/ec2-auto-start-stop.py
+chown ec2-user:ec2-user $OPERATOR
+chmod 644 $OPERATOR
+echo "*/5 * * * * ec2-user python $OPERATOR" >> /etc/crontab
+
+<<END>>
+
+Step # 3 - Tags Your instances which you want to auto-start-stop weekday 7am-7pm as shown below. (Key = auto:start, Key=auto:stop and Value=0 7 * * 1-5 and Value= 0 19 * * 1-5) 
+<<START>>
+ auto:start     0 7 * * 1-5     
+ auto:stop      0 19 * * 1-5 
+ 
+<<END>>
+
+Option : 2
+Step # 1 - Use the Jenkins servers which already have AccessKeys stored and use AWSCLI script. 
+- List/Gathered all the servers instance-id manually which you want to auto-stop-start and create script as shown below 
+- Create file /usr/local/share/script/ec2-auto-start
+<<START>>
+aws ec2 start-instances --instance-ids i-1a2b3c4d
+aws ec2 start-instances --instance-ids i-1a2b3c4d
+aws ec2 start-instances --instance-ids i-1a2b3c4d
+
+<<END>>
+
+Step # 2 - 
+- Create file /usr/local/share/script/ec2-auto-stop
+<<START>>
+aws ec2 stop-instances --instance-ids i-1a2b3c4d
+aws ec2 stop-instances --instance-ids i-1a2b3c4d
+aws ec2 stop-instances --instance-ids i-1a2b3c4d
+
+<<END>>
+
+Step# 3 - Make File executable and Schedule Cron Job
+$ chmod +x /usr/local/share/script/ec2-auto-star-start
+$ chmod +x /usr/local/share/script/ec2-auto-star-stop
+
+Step # 4 - Schedule Crontjob 
+$ cornte -e 
+0 7 * * 1-5 /usr/local/share/script/ec2-auto-star-start
+0 19 * * 1-5 /usr/local/share/script/ec2-auto-star-sttop
+
+Step # 5 - Done 
