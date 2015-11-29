@@ -1,0 +1,17 @@
+[root@ip-172-31-25-29 html]# cat .htaccess
+#
+# BEGIN WordPress
+#<IfModule mod_rewrite.c>
+#RewriteEngine On
+#RewriteBase /
+#RewriteRule ^index\.php$ - [L]
+#RewriteCond %{REQUEST_FILENAME} !-f
+#RewriteCond %{REQUEST_FILENAME} !-d
+#RewriteRule . /index.php [L]
+#</IfModule>
+#
+# END WordPress
+Options +FollowSymlinks
+RewriteEngine On
+rewriterule ^wp-content/uploads/(.*)$ http://dclh569tc0i21.cloudfront.net/$1 [r=301,nc]
+[root@ip-172-31-25-29 html]#
