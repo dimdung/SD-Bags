@@ -1,0 +1,1 @@
+aws ec2 create-tags --resources i-f5521345 --tags Key=App,Value=IO Key=CostControl,Value=IO Key=Creator,Value="Samal Dimdung" Key=Environment,Value=Test Key=POC,Value="Electra Holmes" Key=Portfolio,Value=TSD Key=ProjectTeam,Value="IO" Key=Tenant,Value="IO" Key=Tier,Value=Db --region us-east-1 --profile helix-test
