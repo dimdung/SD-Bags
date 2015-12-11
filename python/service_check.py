@@ -6,7 +6,8 @@ import os
 
 svc = str(sys.argv[1])
 
-logging.basicConfig(filename='svc_scp.log',
+#logging.basicConfig(filename='svc_scp.log',
+logging.baiscConfig(filename = '/var/www/helix/apache/svc_scp.log',
 		    format = '%(asctime)s - %(levelname)s: %(message)s',
 		    level = logging.DEBUG)
 
