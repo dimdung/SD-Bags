@@ -1,0 +1,15 @@
+
+1. ANSIBLE_CONFIG =
+   $ export ANSIBLE_CONFIG=/home/test/tests/config/ansible.cfg
+   $ set | grep ANSIBLE
+   $ set | grep ANSIBLE --color
+
+2. Current Directory where command is running 
+   $ home/test/ansible.cfg
+
+
+3. Current user running ansible 
+   $ /home/user/.ansible.cfg 
+   
+4. /etc/ansible/ansible.cfg 
+   $ cat /etc/
