@@ -1,0 +1,13 @@
+# List the IAM Users 
+ aws iam list-users --profile mgmt --output table
+
+# Deactivate the MFA for IAM account 
+aws iam deactivate-mfa-device --user-name samal.dimdung --serial-number arn:aws:iam::xxxx::mfa/samal.dimdung --profile mgmt
+
+## Reset IAM Password 
+aws iam update-login-profile --user-name samal.dimdung --password <password> --profile mgmt
+
+
+# IAM Links 
+http://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_passwords_admin-change-user.html
+
