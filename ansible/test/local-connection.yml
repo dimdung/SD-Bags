@@ -1,4 +1,4 @@
-[root@asap-sshjump test]# cat test.yml
+[root@helixtech-llc test]# cat test.yml
 ---
 - hosts: localhost
   sudo: no
@@ -10,8 +10,8 @@
     shell: yum install -y xorg-x11-fonts-*
 [root@helixtech-llc test]#
 
-[root@asap-sshjump test]# cat hosts
+[root@helixtech-llc test]# cat hosts
 [targets]
 localhost ansible_connection=local
 
-[root@asap-sshjump test]#
+[root@helixtech-llc test]#
