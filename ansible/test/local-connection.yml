@@ -8,7 +8,7 @@
   tasks:
   - name: Install fonts
     shell: yum install -y xorg-x11-fonts-*
-[root@asap-sshjump test]#
+[root@helixtech-llc test]#
 
 [root@asap-sshjump test]# cat hosts
 [targets]
