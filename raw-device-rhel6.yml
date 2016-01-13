@@ -1,0 +1,70 @@
+Environment
+
+Red Hat Enterprise Linux 6
+RAW devices
+Issue
+
+Unable to create RAW devices in Red Hat Enterprise Linux 6. How do I create RAW devices ?
+Resolution
+
+There is no default service for raw devices in Red Hat Enterpseis Linux 6(RHEL6). So RAW devices needs to be bind by /etc/udev/rules.d/60-raw.rulesby following below procedure:
+
+Creating the raw devices using udev
+
+Nevertheless, to create raw devices, add entries to /etc/udev/rules.d/60-raw.rules in the following formats:
+
+For device names:
+Raw
+ACTION=="add|change", KERNEL=="<device name>", RUN+="/bin/raw /dev/raw/rawX %N"
+For major / minor numbers:
+Raw
+ACTION=="add|change", ENV{MAJOR}="A", ENV{MINOR}="B", RUN+="/bin/raw /dev/raw/rawX %M %m"
+Note: Replace with the name of the device needed to bind (such as /dev/sda1). "A" and "B" are the major / minor numbers of the device needed for binding, an "X" is the raw device number that the system wants to use.
+
+Creating persistent raw devices for single path LUNs (permissions in this case for oracle db)
+
+If using unpartitioned LUNs, to create a single raw device for the whole LUN use this rule format:
+Raw
+ACTION=="add|change", KERNEL=="sd*[!0-9]", PROGRAM=="/sbin/scsi_id -g -u -d %N", RESULT=="3600601601bd2180072193a9242c3dc11", RUN+="/bin/raw /dev/raw/raw1 %N", OWNER="grid", GROUP="asmadmin", MODE="0660"
+If using partitioned LUNs, where raw devices are created for each of the partitions on the LUN, use this rule format:
+Raw
+ACTION=="add|change", KERNEL=="sd*[0-9]", PROGRAM=="/sbin/scsi_id -g -u -d %N", RESULT=="3600601601bd2180072193a9242c3dc11", RUN+="/bin/raw /dev/raw/raw1 %N", OWNER="grid", GROUP="asmadmin", MODE="0660"
+If creating raw devices from multipath devices, use this rule format:
+Raw
+ACTION=="add|change", KERNEL=="dm-[0-9]*", PROGRAM="/sbin/scsi_id -g -u -d %N", RESULT=="3600a098033303433515d4661454e4658", RUN+="/bin/raw /dev/raw/raw1 %N", OWNER="grid", GROUP="asmadmin", MODE="0660"
+Set the RESULT value to the output of scsi_id -g -u -d /block/sdX (where sdX is the current path to the LUN). This will create the raw device /dev/raw/raw1 that will be persistently bound to the LUN with WWID 3600601601bd2180072193a9242c3dc11.
+
+Setting ownership and permissions on the raw devices. Point 2 will set permissions on the dm device.
+
+To set specific ownership and/or permissions for the raw devices, add entries to /etc/udev/rules.d/60-raw.rules in the following format:
+
+Raw
+ACTION=="add|change", KERNEL=="raw*", OWNER="grid", GROUP="asmadmin", MODE="0660"
+Testing and implementing the udev rules
+
+Before implementing them, use the udevadm test command to verify the udev rules work as expected. To verify that the raw device is created for a specific disk or partition, eg /dev/sdb1:
+
+Raw
+[root@host]# udevadm test /block/sdb/sdb1 | grep raw
+main: run: '/bin/raw /dev/raw/raw1 /dev/.tmp-8-17'
+To check ownership/permission settings for a particular raw device, e.g. /dev/raw/raw1:
+
+Raw
+[root@host]# udevadm test /class/raw/raw1 | grep mode
+udev_node_add: creating device node '/dev/raw/raw1', major = '162', minor = '1', mode = '0600', uid = '0', gid = '0'
+Finally, to actually create the raw device(s), trigger udev
+
+Raw
+[root@host]# udevadm trigger
+Check that the raw device(s) have been created
+
+Raw
+[root@host]# raw -qa
+/dev/raw/raw1:  bound to major 8, minor 17
+
+[root@host]# ls -l /dev/raw
+total 0
+crw-rw---- 1 grid   asmadmin 162,  1 Jan 29 02:47 raw1
+Root Cause
+
+Red Hat Enterprise Linux 6 does not have raw devices services.
