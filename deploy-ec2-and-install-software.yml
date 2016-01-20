@@ -1,29 +1,4 @@
----
-# This playbook is an example for deploying multiple instances into
-# EC2/Euca and "doing something" with them.
-#  
-# - uses the ec2 and ec2_vol module.
-#
-# Run this with ansible-playbook and supply the private key for your
-# EC2/Euca user (to access the instance in the second play), e.g:
-# 
-# ansible-playbook eucalyptus-ec2-deploy.yml -v --private-key=/path/to/ec2/pri/key
-#
 
-# The play operates on the local (Ansible control) machine.
-- name: Stage instance(s)
-  hosts: local
-  connection: local
-  remote_user: root
-  gather_facts: false
-
-  vars:
-      keypair: mykeypair
-      instance_type: m1.small
-      security_group: default
-      image: emi-048B3A37
-
-  # Launch 5 instances with the following parameters.  Register the output.
 dimdung:playbooks dimdung$ cat site1.yml 
 ---
 # This playbook is an example for deploying multiple instances into
@@ -100,6 +75,32 @@ dimdung:playbooks dimdung$ cat site1.yml
       service: name=httpd state=restarted enabled=yes
 dimdung:playbooks dimdung$ 
 --------------------------------------------------------------------------------------------------------------------------
+ ---
+# This playbook is an example for deploying multiple instances into
+# EC2/Euca and "doing something" with them.
+#  
+# - uses the ec2 and ec2_vol module.
+#
+# Run this with ansible-playbook and supply the private key for your
+# EC2/Euca user (to access the instance in the second play), e.g:
+# 
+# ansible-playbook eucalyptus-ec2-deploy.yml -v --private-key=/path/to/ec2/pri/key
+#
+
+# The play operates on the local (Ansible control) machine.
+- name: Stage instance(s)
+  hosts: local
+  connection: local
+  remote_user: root
+  gather_facts: false
+
+  vars:
+      keypair: mykeypair
+      instance_type: m1.small
+      security_group: default
+      image: emi-048B3A37
+
+  # Launch 5 instances with the following parameters.  Register the output.
   tasks:
     - name: Launch instance 
       ec2: keypair={{keypair}} group={{security_group}}
