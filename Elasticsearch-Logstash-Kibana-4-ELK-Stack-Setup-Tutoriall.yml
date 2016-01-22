@@ -1,4 +1,5 @@
 # https://www.youtube.com/watch?v=ge8uHdmtb1M
+# https://www.youtube.com/watch?v=Xr62csmwlg8&list=PL5zjQdAWZiUyxxHI72D_O5i77jlJrxKZr&index=4
 
 Published on Mar 15, 2015
 This tutorial is setting up Elasticsearch in cluster mode with Logstash monitoring a log file and Kibana reporting off of the data in Amazon!
