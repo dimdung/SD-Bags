@@ -1,0 +1,16 @@
+
+Re: How to cleanup snapshots orphans ?
+Posted by: rmsysadmin
+Posted on: Jan 15, 2015 4:08 AM
+in response to: rmsysadmin in response to: rmsysadmin
+ 	Click to reply to this thread	Reply
+snapshots , orphans
+I found the solution in http://www.robertsindall.co.uk/blog/how-to-clean-up-amazon-ebs-volumes-and-snapshots/ 
+
+for s in $(comm -23 <(echo $(ec2-describe-snapshots --region eu-west-1 | grep SNAPSHOT | awk '{print $2}' | sort | uniq) | tr ' ' '\n') <(echo $(ec2-describe-images --region eu-west-1 | grep BLOCKDEVICEMAPPING | awk '{print $3}' | sort | uniq) | tr ' ' '\n') | tr '\n' ' ')
+do
+echo Deleting snapshot $s
+ec2-delete-snapshot --region eu-west-1 $s 
+done
+
+Tks
