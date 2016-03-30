@@ -1,0 +1,38 @@
+[root@vm04-ansi20 ~]# cat Playbook/site.yml
+---
+- hosts: local
+  user: root
+  sudo: no
+
+  tasks:
+  - name: Install telnet,vim,wget,curl,zip,unzip,python-pip,python-devel,python-pip,java
+    yum: name={{ item }} state=present
+    with_items:
+      - telnet
+      - vim
+      - wget
+      - curl
+      - zip
+      - unzip
+      - python-pip
+      - python-devel
+      - python-pip
+      - java
+      - gcc
+      - zlib-devel
+      - bzip2-devel
+      - openssl-devel
+      - ncurses-devel
+      - sqlite-devel
+      - ntp
+      - git
+  - name: yum groupinstall "Development tools"
+    shell: yum groupinstall "Development tools" -y
+
+  - name: Make sure ntp is up and running
+    service: name=ntpd state=running enabled=yes
+[root@vm04-ansi20 ~]# cat Playbook/hosts
+[local]
+localhost ansible_connection=local
+
+[root@vm04-ansi20 ~]#
