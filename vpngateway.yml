@@ -1,0 +1,7 @@
+  VpnGatewayId: vgw-99a54bf0  
+  TenantNameTag: SRGIT
+  AppNameTag: Vsc
+  AppVersionTag: 0.1
+  EnvNameTag: M
+  SecurityGroupNames: []
+  SecurityGroupIds: []
