@@ -1,0 +1,23 @@
+Install Role - only Remote Desktop Session Host
+
+and
+
+https://support.managed.com/kb/a1816/how-to-enable-disable-multiple-rdp-sessions-in-windows-2012.aspx
+
+
+Remote-Desktop-License-Expiration-Workaround
+============================================
+1.	If you can't login to the machine with Remote Desktop Connection, do the following to login from command line.
+
+mstsc /admin
+
+2.	Run regedit as Administrator
+
+3.	Take ownership of –
+
+HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Terminal Server\RCM\GracePeriod
+
+4.	Delete everything, except Default entry under "GracePeriod"
+
+5.	Reboot
+
