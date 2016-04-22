@@ -1,0 +1,678 @@
+cd /opt/sw/sybase/ase15
+. ./SYBASE.sh
+
+syb_eagu46
+sa
+[root@eagu46 perl]# ll
+total 428
+-rw-------.  1 root     root     199856 Apr 22 14:22 DBD-Sybase-1.15.tar.gz
+-rw-------.  1 root     root       8006 Apr 22 14:22 Sybase-Simple-0.56.tar.gz
+drwxr-xr-x. 13 ec2-user ec2-user   4096 Apr 22 14:28 sybperl-2.19
+-rw-------.  1 root     root     222404 Apr 22 14:22 sybperl-2.19.tar.gz
+[root@eagu46 perl]# cd sybperl-2.19
+[root@eagu46 sybperl-2.19]# make
+make[1]: Entering directory `/root/perl/sybperl-2.19/BCP'
+make[1]: Leaving directory `/root/perl/sybperl-2.19/BCP'
+make[1]: Entering directory `/root/perl/sybperl-2.19/BLK'
+make[1]: Leaving directory `/root/perl/sybperl-2.19/BLK'
+make[1]: Entering directory `/root/perl/sybperl-2.19/CTlib'
+gcc -c  -I/opt/sw/sybase/ase15/OCS-15_0/include -D_REENTRANT -D_GNU_SOURCE -fno-strict-aliasing -pipe -fstack-protector -I/usr/local/include -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector --param=ssp-buffer-size=4 -m64 -mtune=generic   -DVERSION=\"2.19\" -DXS_VERSION=\"2.19\" -fPIC "-I/usr/lib64/perl5/CORE"  -DCTLIBVS=100 -DSYBPLVER='"2.19"' -DDO_TIE -DSYB_LP64 CTlib.c
+CTlib.xs: In function ‘attr_store’:
+CTlib.xs:281: warning: value computed is not used
+CTlib.xs: In function ‘newdbh’:
+CTlib.xs:408: warning: unused variable ‘count’
+CTlib.xs: In function ‘_convert’:
+CTlib.xs:688: warning: suggest parentheses around ‘&&’ within ‘||’
+CTlib.xs: In function ‘cleanUp’:
+CTlib.xs:1040: warning: suggest parentheses around ‘&&’ within ‘||’
+CTlib.xs: In function ‘describe’:
+CTlib.xs:1350: warning: label ‘DoFloat’ defined but not used
+CTlib.xs: In function ‘fetch_data’:
+CTlib.xs:1540: warning: format ‘%ld’ expects type ‘long int’, but argument 3 has type ‘CS_INT’
+CTlib.xs: In function ‘fetch2sv’:
+CTlib.xs:1664: warning: value computed is not used
+CTlib.xs: In function ‘get_cs_msg’:
+CTlib.xs:1716: warning: format ‘%ld’ expects type ‘long int’, but argument 3 has type ‘CS_MSGNUM’
+CTlib.xs:1716: warning: format ‘%ld’ expects type ‘long int’, but argument 4 has type ‘CS_MSGNUM’
+CTlib.xs:1718: warning: format ‘%ld’ expects type ‘long int’, but argument 3 has type ‘CS_MSGNUM’
+CTlib.xs:1718: warning: format ‘%ld’ expects type ‘long int’, but argument 4 has type ‘CS_MSGNUM’
+CTlib.xs:1674: warning: unused variable ‘retval’
+CTlib.xs: In function ‘cslibmsg_cb’:
+CTlib.xs:1807: warning: format ‘%ld’ expects type ‘long int’, but argument 3 has type ‘CS_MSGNUM’
+CTlib.xs:1807: warning: format ‘%ld’ expects type ‘long int’, but argument 4 has type ‘CS_MSGNUM’
+CTlib.xs:1809: warning: format ‘%ld’ expects type ‘long int’, but argument 3 has type ‘CS_MSGNUM’
+CTlib.xs:1809: warning: format ‘%ld’ expects type ‘long int’, but argument 4 has type ‘CS_MSGNUM’
+CTlib.xs: In function ‘clientmsg_cb’:
+CTlib.xs:1871: warning: format ‘%ld’ expects type ‘long int’, but argument 3 has type ‘CS_MSGNUM’
+CTlib.xs:1871: warning: format ‘%ld’ expects type ‘long int’, but argument 4 has type ‘CS_MSGNUM’
+CTlib.xs:1873: warning: format ‘%ld’ expects type ‘long int’, but argument 3 has type ‘CS_MSGNUM’
+CTlib.xs:1873: warning: format ‘%ld’ expects type ‘long int’, but argument 4 has type ‘CS_MSGNUM’
+CTlib.xs: In function ‘servermsg_cb’:
+CTlib.xs:1895: warning: unused variable ‘hv’
+CTlib.xs:1894: warning: unused variable ‘svp’
+CTlib.xs:1976: warning: format ‘%ld’ expects type ‘long int’, but argument 3 has type ‘CS_MSGNUM’
+CTlib.xs:1976: warning: format ‘%ld’ expects type ‘long int’, but argument 4 has type ‘CS_INT’
+CTlib.xs:1978: warning: format ‘%ld’ expects type ‘long int’, but argument 3 has type ‘CS_INT’
+CTlib.xs:1978: warning: format ‘%ld’ expects type ‘long int’, but argument 4 has type ‘CS_INT’
+CTlib.xs: In function ‘constant’:
+CTlib.xs:5961: warning: label ‘not_there’ defined but not used
+CTlib.xs: In function ‘XS_Sybase__CTlib_ct_connect’:
+CTlib.xs:6032: warning: unused variable ‘sv’
+CTlib.xs:5997: warning: unused variable ‘hv’
+CTlib.c:6059: warning: unused variable ‘ix’
+CTlib.xs: In function ‘XS_Sybase__CTlib_ct_cmd_alloc’:
+CTlib.xs:6200: warning: unused variable ‘len’
+CTlib.xs: In function ‘XS_Sybase__CTlib_ct_close’:
+CTlib.xs:6241: warning: unused variable ‘o_info’
+CTlib.xs: In function ‘XS_Sybase__CTlib_DESTROY’:
+CTlib.xs:6264: warning: unused variable ‘svp’
+CTlib.xs:6263: warning: unused variable ‘hv’
+CTlib.xs:6261: warning: unused variable ‘retcode’
+CTlib.xs: In function ‘XS_Sybase__CTlib_ct_con_props’:
+CTlib.xs:6392: warning: unused variable ‘outptr’
+CTlib.xs:6392: warning: unused variable ‘outlen’
+CTlib.xs: In function ‘XS_Sybase__CTlib_ct_cmd_realloc’:
+CTlib.xs:6446: warning: unused variable ‘hv’
+CTlib.c: In function ‘XS_Sybase__CTlib_ct_get_data’:
+CTlib.c:6911: warning: unused variable ‘targ’
+CTlib.c:6910: warning: unused variable ‘RETVAL’
+CTlib.xs: In function ‘XS_Sybase__CTlib_ct_send_data’:
+CTlib.xs:6608: warning: unused variable ‘info’
+CTlib.xs: In function ‘XS_Sybase__CTlib_ct_describe’:
+CTlib.xs:6712: warning: value computed is not used
+CTlib.xs:6713: warning: value computed is not used
+CTlib.xs:6714: warning: value computed is not used
+CTlib.xs:6715: warning: value computed is not used
+CTlib.xs:6716: warning: value computed is not used
+CTlib.xs:6717: warning: value computed is not used
+CTlib.xs:6718: warning: value computed is not used
+CTlib.xs:6719: warning: value computed is not used
+CTlib.xs: In function ‘XS_Sybase__CTlib_ct_fetch’:
+CTlib.xs:6769: warning: unused variable ‘len’
+CTlib.xs:6778: warning: label ‘TryAgain’ defined but not used
+CTlib.xs: In function ‘XS_Sybase__CTlib_ct_config’:
+CTlib.xs:6935: warning: unused variable ‘outptr’
+CTlib.xs:6935: warning: unused variable ‘outlen’
+CTlib.xs: In function ‘XS_Sybase__CTlib_ct_callback’:
+CTlib.xs:7079: warning: suggest explicit braces to avoid ambiguous ‘else’
+CTlib.xs: In function ‘XS_Sybase__CTlib_ct_param’:
+CTlib.xs:7200: warning: unused variable ‘key_id’
+CTlib.c: In function ‘XS_Sybase__CTlib_blk_rowxfer’:
+CTlib.xs:7783: warning: label ‘BIND’ defined but not used
+CTlib.c: In function ‘fetch2sv’:
+CTlib.xs:1668: warning: control reaches end of non-void function
+CTlib.c: At top level:
+CTlib.xs:1772: warning: ‘cslibmsg_cb’ defined but not used
+CTlib.xs:2181: warning: ‘not_here’ defined but not used
+CTlib.c: In function ‘XS_Sybase__CTlib_ct_config’:
+CTlib.xs:6937: warning: ‘retcode’ may be used uninitialized in this function
+CTlib.xs:6937: note: ‘retcode’ was declared here
+CTlib.c: In function ‘XS_Sybase__CTlib_ct_con_props’:
+CTlib.xs:6394: warning: ‘retcode’ may be used uninitialized in this function
+CTlib.xs:6394: note: ‘retcode’ was declared here
+CTlib.c: In function ‘XS_Sybase__CTlib_ct_poll’:
+CTlib.xs:7108: warning: ‘info’ may be used uninitialized in this function
+CTlib.xs:7108: note: ‘info’ was declared here
+CTlib.c:7726: warning: ‘compconn’ may be used uninitialized in this function
+CTlib.c: In function ‘XS_Sybase__CTlib_blk_rowxfer’:
+CTlib.xs:7696: warning: ‘ret’ may be used uninitialized in this function
+CTlib.xs:7696: note: ‘ret’ was declared here
+CTlib.c: In function ‘XS_Sybase__CTlib_ct_results’:
+CTlib.c:6804: warning: ‘restype’ may be used uninitialized in this function
+Running Mkbootstrap for Sybase::CTlib ()
+chmod 644 CTlib.bs
+rm -f ../blib/arch/auto/Sybase/CTlib/CTlib.so
+gcc  -L/opt/sw/sybase/ase15/OCS-15_0/lib -shared -O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector --param=ssp-buffer-size=4 -m64 -mtune=generic CTlib.o  -o ../blib/arch/auto/Sybase/CTlib/CTlib.so    \
+           -L/opt/sw/sybase/ase15/OCS-15_0/lib -lsybct_r64 -lsybcs_r64 -lsybtcl_r64 -lsybcomn_r64 -lsybintl_r64 -lsybblk_r64 -lm        \
+
+chmod 755 ../blib/arch/auto/Sybase/CTlib/CTlib.so
+cp CTlib.bs ../blib/arch/auto/Sybase/CTlib/CTlib.bs
+chmod 644 ../blib/arch/auto/Sybase/CTlib/CTlib.bs
+Manifying ../blib/man3/Sybase::CTlib.3pm
+make[1]: Leaving directory `/root/perl/sybperl-2.19/CTlib'
+make[1]: Entering directory `/root/perl/sybperl-2.19/DBlib'
+cp DBlib.pm ../blib/lib/Sybase/DBlib.pm
+AutoSplitting ../blib/lib/Sybase/DBlib.pm (../blib/lib/auto/Sybase/DBlib)
+/usr/bin/perl /usr/share/perl5/ExtUtils/xsubpp -prototypes -typemap /usr/share/perl5/ExtUtils/typemap  DBlib.xs > DBlib.xsc && mv DBlib.xsc DBlib.c
+gcc -c  -I/opt/sw/sybase/ase15/OCS-15_0/include -D_REENTRANT -D_GNU_SOURCE -fno-strict-aliasing -pipe -fstack-protector -I/usr/local/include -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector --param=ssp-buffer-size=4 -m64 -mtune=generic   -DVERSION=\"2.19\" -DXS_VERSION=\"2.19\" -fPIC "-I/usr/lib64/perl5/CORE"  -DDBLIBVS=1000 -DSYBPLVER='"2.19"' -DDO_TIE -DSYB_LP64 DBlib.c
+DBlib.xs: In function ‘attr_store’:
+DBlib.xs:370: warning: value computed is not used
+DBlib.xs: In function ‘newdbh’:
+DBlib.xs:473: warning: too few arguments for format
+DBlib.xs: In function ‘err_handler’:
+DBlib.xs:767: warning: unused variable ‘sv’
+DBlib.xs: In function ‘msg_handler’:
+DBlib.xs:833: warning: unused variable ‘sv’
+DBlib.xs:885: warning: format ‘%ld’ expects type ‘long int’, but argument 3 has type ‘CS_INT’
+DBlib.c: In function ‘XS_Sybase__DBlib_dblogin’:
+DBlib.c:3257: warning: unused variable ‘ix’
+DBlib.xs: In function ‘XS_Sybase__DBlib_dbpoll’:
+DBlib.xs:3456: warning: unused variable ‘sv’
+DBlib.xs: In function ‘XS_Sybase__DBlib_dbnextrow’:
+DBlib.xs:3995: warning: value computed is not used
+DBlib.xs: In function ‘XS_Sybase__DBlib_dbmoretext’:
+DBlib.xs:4439: warning: pointer targets in passing argument 3 of ‘dbmoretext’ differ in signedness
+/opt/sw/sybase/ase15/OCS-15_0/include/sybdb.h:3291: note: expected ‘CS_BYTE *’ but argument is of type ‘char *’
+DBlib.xs: In function ‘XS_Sybase__DBlib_dberrhandle’:
+DBlib.xs:4463: warning: suggest explicit braces to avoid ambiguous ‘else’
+DBlib.xs: In function ‘XS_Sybase__DBlib_dbmsghandle’:
+DBlib.xs:4500: warning: suggest explicit braces to avoid ambiguous ‘else’
+DBlib.xs: In function ‘XS_Sybase__DBlib_dbrpcparam’:
+DBlib.xs:5728: warning: unused variable ‘sv’
+DBlib.xs:5728: warning: unused variable ‘svp’
+DBlib.xs:5727: warning: unused variable ‘hv’
+DBlib.xs: In function ‘XS_Sybase__DBlib_dbrpcsend’:
+DBlib.xs:5799: warning: unused variable ‘sv’
+DBlib.xs:5799: warning: unused variable ‘svp’
+DBlib.xs:5798: warning: unused variable ‘hv’
+DBlib.xs: In function ‘XS_Sybase__DBlib_dbregparam’:
+DBlib.xs:5869: warning: unused variable ‘sv’
+DBlib.xs:5869: warning: unused variable ‘svp’
+DBlib.xs:5868: warning: unused variable ‘hv’
+DBlib.c: At top level:
+DBlib.xs:1111: warning: ‘not_here’ defined but not used
+Running Mkbootstrap for Sybase::DBlib ()
+chmod 644 DBlib.bs
+rm -f ../blib/arch/auto/Sybase/DBlib/DBlib.so
+gcc  -L/opt/sw/sybase/ase15/OCS-15_0/lib -shared -O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector --param=ssp-buffer-size=4 -m64 -mtune=generic DBlib.o  -o ../blib/arch/auto/Sybase/DBlib/DBlib.so    \
+           -L/opt/sw/sybase/ase15/OCS-15_0/lib -lsybdb64 -lm    \
+
+chmod 755 ../blib/arch/auto/Sybase/DBlib/DBlib.so
+cp DBlib.bs ../blib/arch/auto/Sybase/DBlib/DBlib.bs
+chmod 644 ../blib/arch/auto/Sybase/DBlib/DBlib.bs
+Manifying ../blib/man3/Sybase::DBlib.3pm
+make[1]: Leaving directory `/root/perl/sybperl-2.19/DBlib'
+make[1]: Entering directory `/root/perl/sybperl-2.19/Sybperl'
+cp Sybperl.pm ../blib/lib/Sybase/Sybperl.pm
+AutoSplitting ../blib/lib/Sybase/Sybperl.pm (../blib/lib/auto/Sybase/Sybperl)
+Manifying ../blib/man3/Sybase::Sybperl.3pm
+make[1]: Leaving directory `/root/perl/sybperl-2.19/Sybperl'
+Manifying blib/man3/sybperl.3
+[root@eagu46 sybperl-2.19]# make install
+make[1]: Entering directory `/root/perl/sybperl-2.19/BCP'
+make[1]: Leaving directory `/root/perl/sybperl-2.19/BCP'
+make[1]: Entering directory `/root/perl/sybperl-2.19/BLK'
+make[1]: Leaving directory `/root/perl/sybperl-2.19/BLK'
+make[1]: Entering directory `/root/perl/sybperl-2.19/CTlib'
+make[1]: Leaving directory `/root/perl/sybperl-2.19/CTlib'
+make[1]: Entering directory `/root/perl/sybperl-2.19/DBlib'
+make[1]: Leaving directory `/root/perl/sybperl-2.19/DBlib'
+make[1]: Entering directory `/root/perl/sybperl-2.19/Sybperl'
+make[1]: Leaving directory `/root/perl/sybperl-2.19/Sybperl'
+Files found in blib/arch: installing files in blib/lib into architecture dependent library tree
+Installing /usr/local/lib64/perl5/auto/Sybase/CTlib/CTlib.so
+Installing /usr/local/lib64/perl5/auto/Sybase/CTlib/CTlib.bs
+Installing /usr/local/lib64/perl5/auto/Sybase/DBlib/DBlib.bs
+Installing /usr/local/lib64/perl5/auto/Sybase/DBlib/DBlib.so
+Installing /usr/local/lib64/perl5/sybperl.pl
+Installing /usr/local/lib64/perl5/sql.pl
+Installing /usr/local/lib64/perl5/sybutil.pl
+Installing /usr/local/lib64/perl5/ctutil.pl
+Installing /usr/local/lib64/perl5/Sybase/DBlib.pm
+Installing /usr/local/lib64/perl5/Sybase/BCP.pm
+Installing /usr/local/lib64/perl5/Sybase/BLK.pm
+Installing /usr/local/lib64/perl5/Sybase/Sybperl.pm
+Installing /usr/local/lib64/perl5/Sybase/CTlib.pm
+Installing /usr/local/lib64/perl5/auto/Sybase/Sybperl/dbmnycmp.al
+Installing /usr/local/lib64/perl5/auto/Sybase/Sybperl/dbcoltype.al
+Installing /usr/local/lib64/perl5/auto/Sybase/Sybperl/dbcancel.al
+Installing /usr/local/lib64/perl5/auto/Sybase/Sybperl/dbmny4sub.al
+Installing /usr/local/lib64/perl5/auto/Sybase/Sybperl/dbmnyzero.al
+Installing /usr/local/lib64/perl5/auto/Sybase/Sybperl/DBCOUNT.al
+Installing /usr/local/lib64/perl5/auto/Sybase/Sybperl/dbmnydivide.al
+Installing /usr/local/lib64/perl5/auto/Sybase/Sybperl/bcp_sendrow.al
+Installing /usr/local/lib64/perl5/auto/Sybase/Sybperl/dbrpcparam.al
+Installing /usr/local/lib64/perl5/auto/Sybase/Sybperl/bcp_done.al
+Installing /usr/local/lib64/perl5/auto/Sybase/Sybperl/DBCURCMD.al
+Installing /usr/local/lib64/perl5/auto/Sybase/Sybperl/dbrpcinit.al
+Installing /usr/local/lib64/perl5/auto/Sybase/Sybperl/dbmnyinc.al
+Installing /usr/local/lib64/perl5/auto/Sybase/Sybperl/dbretdata.al
+Installing /usr/local/lib64/perl5/auto/Sybase/Sybperl/dbmnyminus.al
+Installing /usr/local/lib64/perl5/auto/Sybase/Sybperl/dbisopt.al
+Installing /usr/local/lib64/perl5/auto/Sybase/Sybperl/dbclropt.al
+Installing /usr/local/lib64/perl5/auto/Sybase/Sybperl/DBMORECMDS.al
+Installing /usr/local/lib64/perl5/auto/Sybase/Sybperl/autosplit.ix
+Installing /usr/local/lib64/perl5/auto/Sybase/Sybperl/bcp_writefmt.al
+Installing /usr/local/lib64/perl5/auto/Sybase/Sybperl/bcp_batch.al
+Installing /usr/local/lib64/perl5/auto/Sybase/Sybperl/dbmoretext.al
+Installing /usr/local/lib64/perl5/auto/Sybase/Sybperl/dbmny4zero.al
+Installing /usr/local/lib64/perl5/auto/Sybase/Sybperl/dbmny4cmp.al
+Installing /usr/local/lib64/perl5/auto/Sybase/Sybperl/dbcollen.al
+Installing /usr/local/lib64/perl5/auto/Sybase/Sybperl/dbmnyscale.al
+Installing /usr/local/lib64/perl5/auto/Sybase/Sybperl/bcp_collen.al
+Installing /usr/local/lib64/perl5/auto/Sybase/Sybperl/bcp_readfmt.al
+Installing /usr/local/lib64/perl5/auto/Sybase/Sybperl/bcp_init.al
+Installing /usr/local/lib64/perl5/auto/Sybase/Sybperl/dbreadtext.al
+Installing /usr/local/lib64/perl5/auto/Sybase/Sybperl/dbmnyndigit.al
+Installing /usr/local/lib64/perl5/auto/Sybase/Sybperl/dbreglist.al
+Installing /usr/local/lib64/perl5/auto/Sybase/Sybperl/dbnumcols.al
+Installing /usr/local/lib64/perl5/auto/Sybase/Sybperl/dbmny4mul.al
+Installing /usr/local/lib64/perl5/auto/Sybase/Sybperl/dbsetopt.al
+Installing /usr/local/lib64/perl5/auto/Sybase/Sybperl/dbmnyadd.al
+Installing /usr/local/lib64/perl5/auto/Sybase/Sybperl/dbfreebuf.al
+Installing /usr/local/lib64/perl5/auto/Sybase/Sybperl/dbprtype.al
+Installing /usr/local/lib64/perl5/auto/Sybase/Sybperl/dbmnydec.al
+Installing /usr/local/lib64/perl5/auto/Sybase/Sybperl/dbreginit.al
+Installing /usr/local/lib64/perl5/auto/Sybase/Sybperl/DBDEAD.al
+Installing /usr/local/lib64/perl5/auto/Sybase/Sybperl/bcp_columns.al
+Installing /usr/local/lib64/perl5/auto/Sybase/Sybperl/dbcolname.al
+Installing /usr/local/lib64/perl5/auto/Sybase/Sybperl/dbmny4add.al
+Installing /usr/local/lib64/perl5/auto/Sybase/Sybperl/dbretstatus.al
+Installing /usr/local/lib64/perl5/auto/Sybase/Sybperl/bcp_colfmt.al
+Installing /usr/local/lib64/perl5/auto/Sybase/Sybperl/dbmnyinit.al
+Installing /usr/local/lib64/perl5/auto/Sybase/Sybperl/DBCMDROW.al
+Installing /usr/local/lib64/perl5/auto/Sybase/Sybperl/dbregparam.al
+Installing /usr/local/lib64/perl5/auto/Sybase/Sybperl/dbwritetext.al
+Installing /usr/local/lib64/perl5/auto/Sybase/Sybperl/dbsafestr.al
+Installing /usr/local/lib64/perl5/auto/Sybase/Sybperl/dbhasretstat.al
+Installing /usr/local/lib64/perl5/auto/Sybase/Sybperl/dbcanquery.al
+Installing /usr/local/lib64/perl5/auto/Sybase/Sybperl/sql.al
+Installing /usr/local/lib64/perl5/auto/Sybase/Sybperl/dbmnysub.al
+Installing /usr/local/lib64/perl5/auto/Sybase/Sybperl/bcp_exec.al
+Installing /usr/local/lib64/perl5/auto/Sybase/Sybperl/bcp_meminit.al
+Installing /usr/local/lib64/perl5/auto/Sybase/Sybperl/DBROWS.al
+Installing /usr/local/lib64/perl5/auto/Sybase/Sybperl/dbmnymul.al
+Installing /usr/local/lib64/perl5/auto/Sybase/Sybperl/dbmny4minus.al
+Installing /usr/local/lib64/perl5/auto/Sybase/Sybperl/dbmnydown.al
+Installing /usr/local/lib64/perl5/auto/Sybase/Sybperl/dbrpcsend.al
+Installing /usr/local/lib64/perl5/auto/Sybase/Sybperl/dbpreptext.al
+Installing /usr/local/lib64/perl5/auto/Sybase/Sybperl/dbmny4divide.al
+Installing /usr/local/lib64/perl5/auto/Sybase/Sybperl/bcp_control.al
+Installing /usr/local/lib64/perl5/auto/Sybase/Sybperl/dbregexec.al
+Installing /usr/local/lib64/perl5/auto/Sybase/CTlib/autosplit.ix
+Installing /usr/local/lib64/perl5/auto/Sybase/DBlib/autosplit.ix
+Installing /usr/local/share/man/man3/Sybase::DBlib.3pm
+Installing /usr/local/share/man/man3/Sybase::BCP.3pm
+Installing /usr/local/share/man/man3/Sybase::Sybperl.3pm
+Installing /usr/local/share/man/man3/Sybase::BLK.3pm
+Installing /usr/local/share/man/man3/Sybase::CTlib.3pm
+Installing /usr/local/share/man/man3/sybperl.3
+Appending installation info to /usr/lib64/perl5/perllocal.pod
+[root@eagu46 sybperl-2.19]# clar
+-bash: clar: command not found
+[root@eagu46 sybperl-2.19]# ll
+total 188
+drwxr-xr-x. 2 ec2-user ec2-user  4096 Apr 22 14:28 BCP
+drwxr-xr-x. 8 root     root      4096 Apr 22 14:28 blib
+drwxr-xr-x. 2 ec2-user ec2-user  4096 Apr 22 14:28 BLK
+-rw-r--r--. 1 ec2-user ec2-user 17305 Mar 28  2010 CHANGES
+-rw-r--r--. 1 ec2-user ec2-user  2827 Dec 26  2003 CONFIG
+drwxr-xr-x. 2 ec2-user ec2-user  4096 Apr 22 14:34 CTlib
+drwxr-xr-x. 2 ec2-user ec2-user  4096 Apr 22 14:34 DBlib
+drwxr-xr-x. 2 ec2-user ec2-user  4096 Mar 30  2010 eg
+-rw-r--r--. 1 ec2-user ec2-user 20023 Nov 14  2000 FAQ
+drwxr-xr-x. 2 ec2-user ec2-user  4096 Mar 30  2010 lib
+-rw-r--r--. 1 root     root     28357 Apr 22 14:28 Makefile
+-rw-r--r--. 1 ec2-user ec2-user  3753 Mar 28  2010 Makefile.PL
+-rw-r--r--. 1 ec2-user ec2-user  1139 May 18  2004 MANIFEST
+-rw-rw-r--. 1 ec2-user ec2-user   284 Mar 30  2010 META.yml
+-rw-r--r--. 1 ec2-user ec2-user    79 Apr  5  2010 patchlevel
+-rw-r--r--. 1 root     root         0 Apr 22 14:28 pm_to_blib
+drwxr-xr-x. 2 ec2-user ec2-user  4096 Mar 30  2010 pod
+-rw-------. 1 root     root       247 Apr 22 14:28 PWD
+-rw-r--r--. 1 ec2-user ec2-user    88 Apr 13  2004 PWD.factory
+-rw-r--r--. 1 ec2-user ec2-user 18990 Dec 25  2003 README
+-rw-r--r--. 1 ec2-user ec2-user  1984 Nov 14  2000 README.linux
+-rw-r--r--. 1 ec2-user ec2-user  2172 May 14  1999 README.thread
+-rw-r--r--. 1 ec2-user ec2-user  2865 Jul  5  2001 README.win32
+-rw-r--r--. 1 ec2-user ec2-user   248 Jul  3  2001 SPR
+-rw-r--r--. 1 ec2-user ec2-user   270 May 14  1999 sqlda.h.min
+drwxr-xr-x. 2 ec2-user ec2-user  4096 Apr 22 14:34 Sybperl
+drwxr-xr-x. 2 ec2-user ec2-user  4096 Mar 30  2010 t
+-rw-r--r--. 1 ec2-user ec2-user  2661 May 14  1999 UPGRADE
+drwxr-xr-x. 2 ec2-user ec2-user  4096 Mar 30  2010 util
+-rw-r--r--. 1 ec2-user ec2-user   659 May 14  1999 Version
+[root@eagu46 sybperl-2.19]# clear
+[root@eagu46 sybperl-2.19]# lcd ..
+-bash: lcd: command not found
+[root@eagu46 sybperl-2.19]# cd ..
+[root@eagu46 perl]# ll
+total 428
+-rw-------.  1 root     root     199856 Apr 22 14:22 DBD-Sybase-1.15.tar.gz
+-rw-------.  1 root     root       8006 Apr 22 14:22 Sybase-Simple-0.56.tar.gz
+drwxr-xr-x. 13 ec2-user ec2-user   4096 Apr 22 14:28 sybperl-2.19
+-rw-------.  1 root     root     222404 Apr 22 14:22 sybperl-2.19.tar.gz
+[root@eagu46 perl]# tar -zxvf DBD-Sybase-1.15.tar.gz
+DBD-Sybase-1.15/
+DBD-Sybase-1.15/README.freetds
+DBD-Sybase-1.15/dbivport.h
+DBD-Sybase-1.15/Makefile.PL
+DBD-Sybase-1.15/PWD.factory
+DBD-Sybase-1.15/CHANGES
+DBD-Sybase-1.15/Sybase.pm
+DBD-Sybase-1.15/dbdimp.c
+DBD-Sybase-1.15/eg/
+DBD-Sybase-1.15/eg/check-space.pl
+DBD-Sybase-1.15/eg/Show.cgi
+DBD-Sybase-1.15/eg/README
+DBD-Sybase-1.15/eg/dbschema.pl
+DBD-Sybase-1.15/CONFIG
+DBD-Sybase-1.15/Sybase.h
+DBD-Sybase-1.15/META.yml
+DBD-Sybase-1.15/README.vms
+DBD-Sybase-1.15/README
+DBD-Sybase-1.15/Sybase.xs
+DBD-Sybase-1.15/t/
+DBD-Sybase-1.15/t/xblob.t
+DBD-Sybase-1.15/t/utf8.t
+DBD-Sybase-1.15/t/thread.t
+DBD-Sybase-1.15/t/nsql.t
+DBD-Sybase-1.15/t/screen.jpg
+DBD-Sybase-1.15/t/multi_sth.t
+DBD-Sybase-1.15/t/base.t
+DBD-Sybase-1.15/t/_test.pm
+DBD-Sybase-1.15/t/place.t
+DBD-Sybase-1.15/t/main.t
+DBD-Sybase-1.15/t/autocommit.t
+DBD-Sybase-1.15/t/xblk.t
+DBD-Sybase-1.15/t/login.t
+DBD-Sybase-1.15/t/exec.t
+DBD-Sybase-1.15/t/fail.t
+DBD-Sybase-1.15/BUGS
+DBD-Sybase-1.15/MANIFEST
+DBD-Sybase-1.15/dbdimp.h
+DBD-Sybase-1.15/dbd-sybase.pod
+[root@eagu46 perl]# clear
+[root@eagu46 perl]# ll
+total 432
+drwxr-xr-x.  4 ec2-user ec2-user   4096 Apr  4  2013 DBD-Sybase-1.15
+-rw-------.  1 root     root     199856 Apr 22 14:22 DBD-Sybase-1.15.tar.gz
+-rw-------.  1 root     root       8006 Apr 22 14:22 Sybase-Simple-0.56.tar.gz
+drwxr-xr-x. 13 ec2-user ec2-user   4096 Apr 22 14:28 sybperl-2.19
+-rw-------.  1 root     root     222404 Apr 22 14:22 sybperl-2.19.tar.gz
+[root@eagu46 perl]# cd DBD-Sybase-1.15
+[root@eagu46 DBD-Sybase-1.15]# ll
+total 376
+-rw-r--r--. 1 ec2-user ec2-user    688 Sep  6  2011 BUGS
+-rw-r--r--. 1 ec2-user ec2-user  22306 Apr  3  2013 CHANGES
+-rw-r--r--. 1 ec2-user ec2-user   1602 Mar 31  2003 CONFIG
+-rw-r--r--. 1 ec2-user ec2-user 163893 Apr  3  2013 dbdimp.c
+-rw-r--r--. 1 ec2-user ec2-user   4721 Apr  3  2013 dbdimp.h
+-rw-r--r--. 1 ec2-user ec2-user  23060 Mar 31  2003 dbd-sybase.pod
+-rw-r--r--. 1 ec2-user ec2-user   2016 Dec 16  2004 dbivport.h
+drwxr-xr-x. 2 ec2-user ec2-user   4096 Apr  4  2013 eg
+-rw-r--r--. 1 ec2-user ec2-user  13990 Oct 26  2012 Makefile.PL
+-rw-r--r--. 1 ec2-user ec2-user    450 Nov  6  2010 MANIFEST
+-rw-rw-r--. 1 ec2-user ec2-user    296 Apr  4  2013 META.yml
+-rw-r--r--. 1 ec2-user ec2-user     88 Jan  5  2004 PWD.factory
+-rw-r--r--. 1 ec2-user ec2-user   6619 Apr 25  2011 README
+-rw-r--r--. 1 ec2-user ec2-user   2085 Apr  3  2003 README.freetds
+-rw-r--r--. 1 ec2-user ec2-user   1405 May 19  1999 README.vms
+-rw-r--r--. 1 ec2-user ec2-user   4678 Feb 29  2012 Sybase.h
+-rw-r--r--. 1 ec2-user ec2-user  75856 Apr  4  2013 Sybase.pm
+-rw-r--r--. 1 ec2-user ec2-user   4848 Apr 25  2011 Sybase.xs
+drwxr-xr-x. 2 ec2-user ec2-user   4096 Apr  4  2013 t
+[root@eagu46 DBD-Sybase-1.15]# perl Makefile.PL
+Sybase OpenClient 15.7 found.
+
+By default DBD::Sybase 1.05 and later use the 'CHAINED' mode (where available)
+when 'AutoCommit' is turned off. Versions 1.04 and older instead managed
+the transactions explicitly with a 'BEGIN TRAN' before the first DML
+statement. Using the 'CHAINED' mode is preferable as it is the way that
+Sybase implements AutoCommit handling for both its ODBC and JDBC drivers.
+
+Use 'CHAINED' mode by default (Y/N) [Y]:
+
+Running in threaded mode - looking for _r libraries...
+
+***NOTE***
+There is an incompatibility between perl (5.8.x or later) built in threaded
+mode and Sybase's threaded libraries, which means that signals delivered to
+the perl process result in a segment violation.
+
+I suggest building DBD::Sybase with the normal libraries in this case to get
+reasonable behavior for signal handling.
+
+Use the threaded (lib..._r) libraries [N]:
+
+OK - I'll use the normal libs
+
+Running in 64bit mode - looking for '64' libraries...
+Found -lsybct64 for -lsybct
+Found -lsybcs64 for -lsybcs
+Found -lsybtcl64 for -lsybtcl
+Found -lsybcomn64 for -lsybcomn
+Found -lsybintl64 for -lsybintl
+Found -lsybblk64 for -lsybblk
+BLK api available - found: sybblk64
+The DBD::Sybase module need access to a Sybase server to run the tests.
+To clear an entry please enter 'undef'
+Sybase server to use (default: SYBASE): syb_eagu46
+User ID to log in to Sybase (default: sa): sa
+Password (default: undef): N0m@reshovel1ngsn0ww
+
+Sybase database to use on syb_eagu46 (default: undef): master
+
+* Writing login information, including password, to file PWD.
+
+Checking if your kit is complete...
+Looks good
+Using DBI 1.609 (for perl 5.010001 on x86_64-linux-thread-multi) installed in /usr/lib64/perl5/auto/DBI/
+Writing Makefile for DBD::Sybase
+[root@eagu46 DBD-Sybase-1.15]# make;make install
+cp dbd-sybase.pod blib/lib/DBD/dbd-sybase.pod
+cp Sybase.pm blib/lib/DBD/Sybase.pm
+/usr/bin/perl -p -e "s/~DRIVER~/Sybase/g" /usr/lib64/perl5/auto/DBI/Driver.xst > Sybase.xsi
+/usr/bin/perl /usr/share/perl5/ExtUtils/xsubpp  -typemap /usr/share/perl5/ExtUtils/typemap  Sybase.xs > Sybase.xsc && mv Sybase.xsc Sybase.c
+gcc -c  -I/opt/sw/sybase/ase15/OCS-15_0/include -DSYB_LP64 -I/usr/lib64/perl5/auto/DBI -D_REENTRANT -D_GNU_SOURCE -fno-strict-aliasing -pipe -fstack-protector -I/usr/local/include -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector --param=ssp-buffer-size=4 -m64 -mtune=generic   -DVERSION=\"1.15\" -DXS_VERSION=\"1.15\" -fPIC "-I/usr/lib64/perl5/CORE"   Sybase.c
+Sybase.c: In function ‘XS_DBD__Sybase__db__isdead’:
+Sybase.c:175: warning: unused variable ‘ix’
+Sybase.c: In function ‘XS_DBD__Sybase__db__date_fmt’:
+Sybase.c:197: warning: unused variable ‘ix’
+Sybase.xs: In function ‘XS_DBD__Sybase__db_ping’:
+Sybase.xs:83: warning: implicit declaration of function ‘syb_ping’
+Sybase.xs: In function ‘XS_DBD__Sybase__st_cancel’:
+Sybase.xs:95: warning: implicit declaration of function ‘syb_st_cancel’
+Sybase.c:241: warning: unused variable ‘ix’
+Sybase.c: In function ‘XS_DBD__Sybase__st_ct_get_data’:
+Sybase.c:263: warning: unused variable ‘ix’
+Sybase.c: In function ‘XS_DBD__Sybase__st_ct_data_info’:
+Sybase.c:297: warning: unused variable ‘ix’
+Sybase.c: In function ‘XS_DBD__Sybase__st_ct_send_data’:
+Sybase.c:336: warning: unused variable ‘ix’
+Sybase.c: In function ‘XS_DBD__Sybase__st_ct_prepare_send’:
+Sybase.c:360: warning: unused variable ‘ix’
+Sybase.c: In function ‘XS_DBD__Sybase__st_ct_finish_send’:
+Sybase.c:382: warning: unused variable ‘ix’
+Sybase.xs: In function ‘XS_DBD__Sybase__st_syb_describe’:
+Sybase.xs:192: warning: value computed is not used
+Sybase.xs:193: warning: value computed is not used
+Sybase.xs:194: warning: value computed is not used
+Sybase.xs:195: warning: value computed is not used
+Sybase.xs:196: warning: value computed is not used
+Sybase.xs:197: warning: value computed is not used
+Sybase.xs:198: warning: value computed is not used
+Sybase.xs:206: warning: value computed is not used
+Sybase.c: In function ‘XS_DBD__Sybase__st_ct_data_info’:
+Sybase.xs:123: warning: ‘sybaction’ may be used uninitialized in this function
+Sybase.xs:123: note: ‘sybaction’ was declared here
+gcc -c  -I/opt/sw/sybase/ase15/OCS-15_0/include -DSYB_LP64 -I/usr/lib64/perl5/auto/DBI -D_REENTRANT -D_GNU_SOURCE -fno-strict-aliasing -pipe -fstack-protector -I/usr/local/include -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector --param=ssp-buffer-size=4 -m64 -mtune=generic   -DVERSION=\"1.15\" -DXS_VERSION=\"1.15\" -fPIC "-I/usr/lib64/perl5/CORE"   dbdimp.c
+dbdimp.c: In function ‘cslibmsg_cb’:
+dbdimp.c:228: warning: format ‘%ld’ expects type ‘long int’, but argument 3 has type ‘CS_MSGNUM’
+dbdimp.c:228: warning: format ‘%ld’ expects type ‘long int’, but argument 4 has type ‘CS_MSGNUM’
+dbdimp.c:230: warning: format ‘%ld’ expects type ‘long int’, but argument 3 has type ‘CS_MSGNUM’
+dbdimp.c:230: warning: format ‘%ld’ expects type ‘long int’, but argument 4 has type ‘CS_MSGNUM’
+dbdimp.c: In function ‘clientmsg_cb’:
+dbdimp.c:294: warning: value computed is not used
+dbdimp.c:316: warning: format ‘%ld’ expects type ‘long int’, but argument 3 has type ‘CS_MSGNUM’
+dbdimp.c:316: warning: format ‘%ld’ expects type ‘long int’, but argument 4 has type ‘CS_MSGNUM’
+dbdimp.c:319: warning: format ‘%ld’ expects type ‘long int’, but argument 3 has type ‘CS_MSGNUM’
+dbdimp.c:319: warning: format ‘%ld’ expects type ‘long int’, but argument 4 has type ‘CS_MSGNUM’
+dbdimp.c:372: warning: format ‘%ld’ expects type ‘long int’, but argument 3 has type ‘CS_MSGNUM’
+dbdimp.c:372: warning: format ‘%ld’ expects type ‘long int’, but argument 4 has type ‘CS_MSGNUM’
+dbdimp.c:374: warning: format ‘%ld’ expects type ‘long int’, but argument 3 has type ‘CS_MSGNUM’
+dbdimp.c:374: warning: format ‘%ld’ expects type ‘long int’, but argument 4 has type ‘CS_MSGNUM’
+dbdimp.c: In function ‘servermsg_cb’:
+dbdimp.c:404: warning: format ‘%ld’ expects type ‘long int’, but argument 3 has type ‘CS_MSGNUM’
+dbdimp.c:404: warning: format ‘%ld’ expects type ‘long int’, but argument 4 has type ‘CS_INT’
+dbdimp.c:406: warning: format ‘%ld’ expects type ‘long int’, but argument 3 has type ‘CS_INT’
+dbdimp.c:406: warning: format ‘%ld’ expects type ‘long int’, but argument 4 has type ‘CS_INT’
+dbdimp.c:502: warning: value computed is not used
+dbdimp.c:540: warning: format ‘%ld’ expects type ‘long int’, but argument 3 has type ‘CS_MSGNUM’
+dbdimp.c:540: warning: format ‘%ld’ expects type ‘long int’, but argument 4 has type ‘CS_INT’
+dbdimp.c:543: warning: format ‘%ld’ expects type ‘long int’, but argument 3 has type ‘CS_INT’
+dbdimp.c:543: warning: format ‘%ld’ expects type ‘long int’, but argument 4 has type ‘CS_INT’
+dbdimp.c:580: warning: format ‘%ld’ expects type ‘long int’, but argument 3 has type ‘CS_MSGNUM’
+dbdimp.c:580: warning: format ‘%ld’ expects type ‘long int’, but argument 4 has type ‘CS_INT’
+dbdimp.c:582: warning: format ‘%ld’ expects type ‘long int’, but argument 3 has type ‘CS_INT’
+dbdimp.c:582: warning: format ‘%ld’ expects type ‘long int’, but argument 4 has type ‘CS_INT’
+dbdimp.c: In function ‘syb_init’:
+dbdimp.c:830: warning: suggest parentheses around assignment used as truth value
+dbdimp.c: In function ‘get_server_version’:
+dbdimp.c:1657: warning: unused variable ‘db’
+dbdimp.c: In function ‘syb_blk_done’:
+dbdimp.c:1902: warning: format ‘%d’ expects type ‘int’, but argument 3 has type ‘struct CS_BLKDESC *’
+dbdimp.c: In function ‘syb_db_opentran’:
+dbdimp.c:2045: warning: format ‘%x’ expects type ‘unsigned int’, but argument 3 has type ‘struct imp_dbh_t *’
+dbdimp.c: In function ‘syb_db_disconnect’:
+dbdimp.c:2084: warning: suggest parentheses around assignment used as truth value
+dbdimp.c: In function ‘syb_alloc_cmd’:
+dbdimp.c:2609: warning: format ‘%x’ expects type ‘unsigned int’, but argument 3 has type ‘struct CS_COMMAND *’
+dbdimp.c:2609: warning: format ‘%x’ expects type ‘unsigned int’, but argument 4 has type ‘struct CS_CONNECTION *’
+dbdimp.c: In function ‘dbd_preparse’:
+dbdimp.c:2718: warning: value computed is not used
+dbdimp.c:2618: warning: unused variable ‘STATES’
+dbdimp.c: In function ‘_convert’:
+dbdimp.c:3487: warning: suggest parentheses around ‘&&’ within ‘||’
+dbdimp.c: In function ‘syb_blk_execute’:
+dbdimp.c:3778: warning: format ‘%s’ expects type ‘char *’, but argument 4 has type ‘CS_VOID *’
+dbdimp.c: In function ‘cmd_execute’:
+dbdimp.c:3812: warning: format ‘%x’ expects type ‘unsigned int’, but argument 3 has type ‘struct CS_COMMAND *’
+dbdimp.c:3812: warning: format ‘%x’ expects type ‘unsigned int’, but argument 5 has type ‘struct imp_sth_t *’
+dbdimp.c: In function ‘clear_cache’:
+dbdimp.c:4018: warning: value computed is not used
+dbdimp.c:4019: warning: value computed is not used
+dbdimp.c:4020: warning: value computed is not used
+dbdimp.c:4021: warning: value computed is not used
+dbdimp.c:4022: warning: value computed is not used
+dbdimp.c:4023: warning: value computed is not used
+dbdimp.c: In function ‘syb_st_fetch’:
+dbdimp.c:4123: warning: pointer targets in initialization differ in signedness
+dbdimp.c: In function ‘syb_st_destroy’:
+dbdimp.c:4436: warning: format ‘%x’ expects type ‘unsigned int’, but argument 3 has type ‘struct imp_sth_t *’
+dbdimp.c:4471: warning: format ‘%x’ expects type ‘unsigned int’, but argument 3 has type ‘struct CS_COMMAND *’
+dbdimp.c: In function ‘syb_ct_send_data’:
+dbdimp.c:4624: warning: unused variable ‘imp_dbh’
+dbdimp.c: In function ‘_dbd_rebind_ph’:
+dbdimp.c:5291: warning: format ‘%d’ expects type ‘int’, but argument 5 has type ‘IV’
+dbdimp.c:5297: warning: format ‘%d’ expects type ‘int’, but argument 6 has type ‘STRLEN’
+dbdimp.c: In function ‘syb_bind_ph’:
+dbdimp.c:5385: warning: operation on ‘lna’ may be undefined
+dbdimp.c: In function ‘fetch_data’:
+dbdimp.c:5524: warning: format ‘%ld’ expects type ‘long int’, but argument 3 has type ‘CS_INT’
+dbdimp.c: In function ‘blkCleanUp’:
+dbdimp.c:5826: warning: format ‘%d’ expects type ‘int’, but argument 3 has type ‘struct CS_BLKDESC *’
+dbdimp.c: At top level:
+dbdimp.c:183: warning: ‘cslibmsg_cb’ defined but not used
+dbdimp.c:3972: warning: ‘fix_fbav’ defined but not used
+dbdimp.c: In function ‘dbd_preparse’:
+dbdimp.c:2629: warning: ‘pos’ may be used uninitialized in this function
+Running Mkbootstrap for DBD::Sybase ()
+chmod 644 Sybase.bs
+rm -f blib/arch/auto/DBD/Sybase/Sybase.so
+gcc  -L/opt/sw/sybase/ase15/OCS-15_0/lib -shared -O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector --param=ssp-buffer-size=4 -m64 -mtune=generic Sybase.o dbdimp.o  -o blib/arch/auto/DBD/Sybase/Sybase.so      \
+           -L/opt/sw/sybase/ase15/OCS-15_0/lib -lsybct64 -lsybcs64 -lsybtcl64 -lsybcomn64 -lsybintl64 -lsybblk64 -ldl -lm       \
+
+chmod 755 blib/arch/auto/DBD/Sybase/Sybase.so
+cp Sybase.bs blib/arch/auto/DBD/Sybase/Sybase.bs
+chmod 644 blib/arch/auto/DBD/Sybase/Sybase.bs
+Manifying blib/man3/DBD::Sybase.3
+Files found in blib/arch: installing files in blib/lib into architecture dependent library tree
+Installing /usr/local/lib64/perl5/auto/DBD/Sybase/Sybase.so
+Installing /usr/local/lib64/perl5/auto/DBD/Sybase/Sybase.bs
+Installing /usr/local/lib64/perl5/DBD/dbd-sybase.pod
+Installing /usr/local/lib64/perl5/DBD/Sybase.pm
+Installing /usr/local/share/man/man3/DBD::Sybase.3
+Appending installation info to /usr/lib64/perl5/perllocal.pod
+[root@eagu46 DBD-Sybase-1.15]# cd ..
+[root@eagu46 perl]# ll
+total 432
+drwxr-xr-x.  5 ec2-user ec2-user   4096 Apr 22 14:36 DBD-Sybase-1.15
+-rw-------.  1 root     root     199856 Apr 22 14:22 DBD-Sybase-1.15.tar.gz
+-rw-------.  1 root     root       8006 Apr 22 14:22 Sybase-Simple-0.56.tar.gz
+drwxr-xr-x. 13 ec2-user ec2-user   4096 Apr 22 14:28 sybperl-2.19
+-rw-------.  1 root     root     222404 Apr 22 14:22 sybperl-2.19.tar.gz
+[root@eagu46 perl]# tar -zxvf Sybase-Simple-0.56.tar.gz
+Sybase-Simple-0.56/
+Sybase-Simple-0.56/Simple.pm
+Sybase-Simple-0.56/t/
+Sybase-Simple-0.56/t/main.t
+Sybase-Simple-0.56/README
+Sybase-Simple-0.56/PWD
+Sybase-Simple-0.56/Makefile.PL
+Sybase-Simple-0.56/Changes
+Sybase-Simple-0.56/MANIFEST
+[root@eagu46 perl]# ls
+DBD-Sybase-1.15  DBD-Sybase-1.15.tar.gz  Sybase-Simple-0.56  Sybase-Simple-0.56.tar.gz  sybperl-2.19  sybperl-2.19.tar.gz
+[root@eagu46 perl]# ll
+total 436
+drwxr-xr-x.  5 ec2-user ec2-user   4096 Apr 22 14:36 DBD-Sybase-1.15
+-rw-------.  1 root     root     199856 Apr 22 14:22 DBD-Sybase-1.15.tar.gz
+drwxr-xr-x.  3 ec2-user ec2-user   4096 Dec 23  2003 Sybase-Simple-0.56
+-rw-------.  1 root     root       8006 Apr 22 14:22 Sybase-Simple-0.56.tar.gz
+drwxr-xr-x. 13 ec2-user ec2-user   4096 Apr 22 14:28 sybperl-2.19
+-rw-------.  1 root     root     222404 Apr 22 14:22 sybperl-2.19.tar.gz
+[root@eagu46 perl]# cd Sybase-Simple-0.56
+[root@eagu46 Sybase-Simple-0.56]# ll
+total 44
+-rw-r--r--. 1 ec2-user ec2-user   513 Dec 23  2003 Changes
+-rw-r--r--. 1 ec2-user ec2-user  1891 Dec 12  2001 Makefile.PL
+-rw-r--r--. 1 ec2-user ec2-user    59 Dec 12  2001 MANIFEST
+-rw-r--r--. 1 ec2-user ec2-user   212 Dec 23  2003 PWD
+-rw-r--r--. 1 ec2-user ec2-user  1133 May 14  2000 README
+-rw-r--r--. 1 ec2-user ec2-user 20325 Dec 23  2003 Simple.pm
+drwxr-xr-x. 2 ec2-user ec2-user  4096 Dec 23  2003 t
+[root@eagu46 Sybase-Simple-0.56]# cat README
+$Id: README,v 1.3 2000/05/14 23:37:04 mpeppler Exp $
+
+This is an add-on module for Sybase::CTlib (which is part of the
+sybperl distribution) and which makes writing perl scripts using
+Sybase a little easier, by defining higher level calls such as
+Scalar(), HashRow(), ExecSql(), etc.
+
+When using this module it is usually not necessary to really understand
+the Sybase API, as it makes sure that ct_results() is called the correct
+number of times, and that all the data rows are fetched, for example.
+
+As Sybase::Simple is sub-classed from Sybase::CTlib all the regular
+API calls are still available for advanced operations.
+
+To install:
+
+perl Makefile.PL
+make
+make test
+
+NOTE: When running the test script Sybase::Simple needs access to a
+Sybase server. You can specify the server, username and password in the
+environment by setting $DSQUERY, $SYBASE_USER and $SYBASE_PWD, or you
+can edit the PWD file and set the UID, PWD and SRV variables.
+
+If all went well, run make install to place this module in the regular
+perl library directory.
+
+
+Comments, questions and bug fixes are welcome!
+
+Michael Peppler (mpeppler@peppler.org)
+
+[root@eagu46 Sybase-Simple-0.56]# perl Makefile.PL
+The Sybase::Simple module need access to a Sybase server to run the tests.
+To clear an entry please enter 'undef'
+Sybase server to use (default: troll): syb_eagu46
+User ID to log in to Sybase (default: sa): sa
+Password (default: undef): N0m@reshovel1ngsn0ww
+Checking if your kit is complete...
+Looks good
+Writing Makefile for Sybase::Simple
+[root@eagu46 Sybase-Simple-0.56]# make
+cp Simple.pm blib/lib/Sybase/Simple.pm
+AutoSplitting blib/lib/Sybase/Simple.pm (blib/lib/auto/Sybase/Simple)
+Manifying blib/man3/Sybase::Simple.3pm
+[root@eagu46 Sybase-Simple-0.56]# make test
+PERL_DL_NONLAZY=1 /usr/bin/perl "-MExtUtils::Command::MM" "-e" "test_harness(0, 'blib/lib', 'blib/arch')" t/*.t
+t/main.t .. ok
+All tests successful.
+Files=1, Tests=11,  0 wallclock secs ( 0.02 usr  0.00 sys +  0.02 cusr  0.02 csys =  0.06 CPU)
+Result: PASS
+[root@eagu46 Sybase-Simple-0.56]#
