@@ -68,3 +68,32 @@ crw-rw---- 1 grid   asmadmin 162,  1 Jan 29 02:47 raw1
 Root Cause
 
 Red Hat Enterprise Linux 6 does not have raw devices services.
+
+
+### 
+[root@eagu62 ~]# cat /etc/udev/rules.d/60-raw.rules
+# Enter raw device bindings here.
+#
+# An example would be:
+#   ACTION=="add", KERNEL=="sda", RUN+="/bin/raw /dev/raw/raw1 %N"
+# to bind /dev/raw/raw1 to /dev/sda, or
+#   ACTION=="add", ENV{MAJOR}=="8", ENV{MINOR}=="1", RUN+="/bin/raw /dev/raw/raw2 %M %m"
+# to bind /dev/raw/raw2 to the device with major 8, minor 1.
+ACTION!="add|change", GOTO="raw_end"
+# Create raw character device mapping:
+ENV{DM_VG_NAME}=="rawdev_vg", ENV{DM_LV_NAME}=="iq_eagu62_system_main.iq", RUN+="/bin/raw /dev/raw/raw1 %N"
+ENV{DM_VG_NAME}=="rawdev_vg", ENV{DM_LV_NAME}=="iq_eagu62_main_01.iq", RUN+="/bin/raw /dev/raw/raw2 %N"
+ENV{DM_VG_NAME}=="rawdev_vg", ENV{DM_LV_NAME}=="iq_eagu62_main_02.iq", RUN+="/bin/raw /dev/raw/raw3 %N"
+ENV{DM_VG_NAME}=="rawdev_vg", ENV{DM_LV_NAME}=="iq_eagu62_main_03.iq", RUN+="/bin/raw /dev/raw/raw4 %N"
+ENV{DM_VG_NAME}=="rawdev_vg", ENV{DM_LV_NAME}=="iq_eagu62_main_04.iq", RUN+="/bin/raw /dev/raw/raw5 %N"
+ENV{DM_VG_NAME}=="rawdev_vg", ENV{DM_LV_NAME}=="iq_eagu62_main_05.iq", RUN+="/bin/raw /dev/raw/raw6 %N"
+ENV{DM_VG_NAME}=="rawdev_vg", ENV{DM_LV_NAME}=="iq_eagu62_main_06.iq", RUN+="/bin/raw /dev/raw/raw7 %N"
+ENV{DM_VG_NAME}=="rawdev_vg", ENV{DM_LV_NAME}=="iq_eagu62_main_07.iq", RUN+="/bin/raw /dev/raw/raw8 %N"
+ENV{DM_VG_NAME}=="rawdev_vg", ENV{DM_LV_NAME}=="iq_eagu62_main_08.iq", RUN+="/bin/raw /dev/raw/raw9 %N"
+ENV{DM_VG_NAME}=="rawdev_vg", ENV{DM_LV_NAME}=="iq_eagu62_temp_01.iqtmp", RUN+="/bin/raw /dev/raw/raw10 %N"
+ENV{DM_VG_NAME}=="rawdev_vg", ENV{DM_LV_NAME}=="iq_eagu62_temp_02.iqtmp", RUN+="/bin/raw /dev/raw/raw11 %N"
+ENV{DM_VG_NAME}=="rawdev_vg", ENV{DM_LV_NAME}=="iq_eagu62_temp_03.iqtmp", RUN+="/bin/raw /dev/raw/raw12 %N"
+ENV{DM_VG_NAME}=="rawdev_vg", ENV{DM_LV_NAME}=="iq_eagu62_temp_04.iqtmp", RUN+="/bin/raw /dev/raw/raw13 %N"
+# To set permissions:
+KERNEL=="raw*", OWNER:="sybase", GROUP:="sybsa", MODE:="0770"
+LABEL="raw_end"
