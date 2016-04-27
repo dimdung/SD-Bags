@@ -1,0 +1,26 @@
+https://ryanmangansitblog.com/2013/03/27/deploying-remote-desktop-gateway-rds-2012/
+https://social.technet.microsoft.com/Forums/windowsserver/en-US/5e9f264d-486c-4e7b-8004-30f63ec154ff/rds-2012-certificate-setup?forum=winserverTS
+http://docs.aws.amazon.com/quickstart/latest/rd-gateway/setup.html
+http://docs.aws.amazon.com/quickstart/latest/rd-gateway/checklist.html
+
+
+## AWS Workspace
+
+http://docs.aws.amazon.com/workspaces/latest/adminguide/workspaces-ag.pdf
+
+
+PCoIP Gateway 
+--------------
+https://aws.amazon.com/marketplace/pp/B00O9E9JZ0
+
+http://www.teradici.com/web-help/Connecting_ZC_AWS_HTML5/TER1408002_Connecting_ZC_AWS.htm#03_DeployPCM.htm 
+
+http://www.teradici.com/product-finder/aws/zero-clients
+
+
+
+### Needed Workspace 
+
+1. Directory Services (AD)
+2. Workspace 
+3. PCoIP Connection Manager 
