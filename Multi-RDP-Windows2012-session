@@ -4,7 +4,39 @@ and
 
 https://support.managed.com/kb/a1816/how-to-enable-disable-multiple-rdp-sessions-in-windows-2012.aspx
 
+----- START HERE -----
+How to Enable/Disable Multiple RDP Sessions in Windows 2012By default, Windows 2012 servers allow a single Remote Desktop session. If only one session is available and you take over another person's live session, you may choose to enable multiple RDP sessions. This article describes the process for enabling and disabling multiple sessions.
 
+Enable Multiple RDP Sessions
+Log into the server using Remote Desktop.
+Open the start screen (press the Windows key) and type gpedit.msc and open it
+Go to Computer Configuration > Administrative Templates > Windows Components > Remote Desktop Services > Remote Desktop Session Host > Connections.
+Set Restrict Remote Desktop Services user to a single Remote Desktop Services session to Disabled.
+Double click Limit number of connections and set the RD Maximum Connections allowed to 999999.
+
+Disable Multiple RDP Sessions
+
+Log into the server using Remote Desktop.
+Open the start menu and type 'gpedit.msc' and open it
+Go to Computer Configuration > Administrative Templates > Windows Components > Remote Desktop Services > Remote Desktop Session Host > Connections.
+Set Restrict Remote Desktop Services user to a single Remote Desktop Services session to Enabled.
+-------------------------END Here --------------------------------
+How to Enable/Disable Multiple RDP Sessions in Windows 2012By default, Windows 2012 servers allow a single Remote Desktop session. If only one session is available and you take over another person's live session, you may choose to enable multiple RDP sessions. This article describes the process for enabling and disabling multiple sessions.
+
+Enable Multiple RDP Sessions
+Log into the server using Remote Desktop.
+Open the start screen (press the Windows key) and type gpedit.msc and open it
+Go to Computer Configuration > Administrative Templates > Windows Components > Remote Desktop Services > Remote Desktop Session Host > Connections.
+Set Restrict Remote Desktop Services user to a single Remote Desktop Services session to Disabled.
+Double click Limit number of connections and set the RD Maximum Connections allowed to 999999.
+
+Disable Multiple RDP Sessions
+
+Log into the server using Remote Desktop.
+Open the start menu and type 'gpedit.msc' and open it
+Go to Computer Configuration > Administrative Templates > Windows Components > Remote Desktop Services > Remote Desktop Session Host > Connections.
+Set Restrict Remote Desktop Services user to a single Remote Desktop Services session to Enabled.
+-------------------------END Here --------------------------------
 Remote-Desktop-License-Expiration-Workaround
 ============================================
 1.	If you can't login to the machine with Remote Desktop Connection, do the following to login from command line.
