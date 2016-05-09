@@ -1,0 +1,5 @@
+Allow File Transfer via RDP Connection
+Login to the Windows 2012 server, which needs to allow file transfer from source Windows machines. Navigate to settings as shown below.
+Start ->  (Right Click) Run  -> gpedit.msc  ->Computer Configuration \Administrative Templates\Windows Components\Remote Desktop Services\Remote Desktop Session Host\Device and Resource Redirection.
+1)	Change "Do not allow Clipboard Redirection" from Enabled to Disabled
+2)	Change "Do not allow Drive Redirection" from Disabled to Not Configured
