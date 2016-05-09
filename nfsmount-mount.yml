@@ -1,0 +1,39 @@
+need to assign the following SG to the ec2 instance:
+
+sg-80ebe4f8	SG-BSP-SoftNas-1.0-T-NFS-Accessor
+
+
+
+Also need "nfs-utils" installed and "portmap" (in the case of RHEL5) for RHEL6 "nfs-utils" and "rpcbind"
+
+yum install portmap
+yum install nfs-utils
+
+chkconfig portmap on
+chkconfig nfs on
+chkconfig nfslock on
+service portmap start
+service nfs start
+service nfslock start
+
+Update /etc/fstab
+
+mount -a -t nfs
+
+OR mount -a -t nfs4
+
+
+
+There was also an issue how the nfs share was exported, fixed now.
+It's easier just to update "/etc/exports" on SoftNAS from ssh and then run "exportfs -a" than to create a share from the Web UI
+
+To view current exports, "exportfs -v"
+
+
+
+
+I fixed the one machine, please let me know if you have problems with any of the others
+
+
+Thanks,
+Samal
