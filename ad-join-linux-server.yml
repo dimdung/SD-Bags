@@ -1,0 +1,39 @@
+# Step 1 - Log in to the instance 
+ssh -i "teusday-demo.pem" ec2-user@xxx.xxx.xxx.xxxx
+
+# Step 2 - Make any updates, install SSSD
+sudo yum -y update
+sudo yum -y install sssd realmd krb5-workstation 
+
+# Step 3 - Join the instance sto the directory (linux server)
+sudo realm join -U administrator@tuesday.mydirectory.com tuesday.mydirectory.com --verbose 
+
+# Step 4 - Edit the config file 
+sudo vi /etc/ssh/sshd_config 
+PasswordAuthentication yes 
+
+# Step 5 - Restart the instance - from the AWS Console. Log back in .
+
+# Step 6 - Add the domain administrator group from the example.com domain 
+sudo visudo /etc/sudoers 
+%Domain\ Admins@tuesday.mydirectory.com ALL=(ALL:ALL) ALL
+
+# Step - 7 approve a login 
+sudo realm permit administrator@tuesday.mydirectory.com 
+sudo realm permit dimdung@tuesday.mydirectory.com 
+
+# Step - 8 List Who can login to 
+sudo realm list 
+
+
+# Step - 9 login using a linux user 
+ssh dimdung@tuesday.mydirectory.com@xxx.xxx.xxx.xxx 
+
+
+## Creating Simple AD using CLI
+aws ds create-directory --name sunday.mydirectory.com --password Test@123! -size Small --region us-east-1 --vpc-setting VpcId=vpc-7b9c681,SubnetIds=subnet-b5cc579f, subnet-72713b04
+
+
+
+
+
