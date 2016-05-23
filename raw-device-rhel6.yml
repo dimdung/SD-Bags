@@ -115,3 +115,113 @@ ln -s /dev/raw/raw11 /opt/sw/sybase_iq/dbfiles/iq_eagu62_temp_02.iqtmp
 ln -s /dev/raw/raw12 /opt/sw/sybase_iq/dbfiles/iq_eagu62_temp_03.iqtmp
 ln -s /dev/raw/raw13 /opt/sw/sybase_iq/dbfiles/iq_eagu62_temp_04.iqtmp
 [root@eagu62 raw]# cat /etc/rc.local
+
+----------------------------------------------
+Try these commands -
+
+
+raw /dev/raw/raw1 /dev/rawdev_vg/iq_eagu62_main_01.iq
+ln -s raw1 /dev/raw/cdm-iq_eagu62_main_01.iq
+
+raw /dev/raw/raw2 /dev/rawdev_vg/iq_eagu62_main_02.iq
+ln -s raw2 /dev/raw/cdm-iq_eagu62_main_02.iq
+
+raw /dev/raw/raw3 /dev/rawdev_vg/iq_eagu62_main_03.iq
+ln -s raw3 /dev/raw/cdm-iq_eagu62_main_03.iq
+
+raw /dev/raw/raw4 /dev/rawdev_vg/iq_eagu62_main_04.iq
+ln -s raw4 /dev/raw/cdm-iq_eagu62_main_04.iq
+
+raw /dev/raw/raw5 /dev/rawdev_vg/iq_eagu62_main_05.iq
+ln -s raw5 /dev/raw/cdm-iq_eagu62_main_05.iq
+
+raw /dev/raw/raw6 /dev/rawdev_vg/iq_eagu62_main_06.iq
+ln -s raw6 /dev/raw/cdm-iq_eagu62_main_06.iq
+
+raw /dev/raw/raw7 /dev/rawdev_vg/iq_eagu62_main_07.iq
+ln -s raw7 /dev/raw/cdm-iq_eagu62_main_07.iq
+
+raw /dev/raw/raw8 /dev/rawdev_vg/iq_eagu62_main_08.iq
+ln -s raw8 /dev/raw/cdm-iq_eagu62_main_08.iq
+
+raw /dev/raw/raw9 /dev/rawdev_vg/iq_eagu62_temp_01.iqtmp
+ln -s raw9 /dev/raw/cdm-iq_eagu62_temp_01.iqtmp
+
+raw /dev/raw/raw10 /dev/rawdev_vg/iq_eagu62_temp_02.iqtmp
+ln -s raw10 /dev/raw/cdm-iq_eagu62_temp_02.iqtmp
+
+raw /dev/raw/raw11 /dev/rawdev_vg/iq_eagu62_temp_03.iqtmp
+ln -s raw11 /dev/raw/cdm-iq_eagu62_temp_03.iqtmp
+
+raw /dev/raw/raw12 /dev/rawdev_vg/iq_eagu62_temp_04.iqtmp
+ln -s raw12 /dev/raw/cdm-iq_eagu62_temp_04.iqtmp
+
+raw /dev/raw/raw13 /dev/rawdev_vg/iq_eagu62_system_main.iq
+ln -s raw13 /dev/raw/cdm-iq_eagu62_system_main.iq
+
+chown sybase:sybsa /dev/raw/raw[0-9]*
+chmod 0660 /dev/raw/raw[0-9]*
+
+
+
+Then you'll see -
+
+[root@eagu62 ~]# cd /dev/raw
+[root@eagu62 raw]# ls -l
+total 0
+lrwxrwxrwx 1 root   root        4 Jan 14 12:50 cdm-iq_eagu62_main_01.iq -> raw1
+lrwxrwxrwx 1 root   root        4 Jan 14 12:50 cdm-iq_eagu62_main_02.iq -> raw2
+lrwxrwxrwx 1 root   root        4 Jan 14 12:50 cdm-iq_eagu62_main_03.iq -> raw3
+lrwxrwxrwx 1 root   root        4 Jan 14 12:50 cdm-iq_eagu62_main_04.iq -> raw4
+lrwxrwxrwx 1 root   root        4 Jan 14 12:50 cdm-iq_eagu62_main_05.iq -> raw5
+lrwxrwxrwx 1 root   root        4 Jan 14 12:50 cdm-iq_eagu62_main_06.iq -> raw6
+lrwxrwxrwx 1 root   root        4 Jan 14 12:50 cdm-iq_eagu62_main_07.iq -> raw7
+lrwxrwxrwx 1 root   root        4 Jan 14 12:50 cdm-iq_eagu62_main_08.iq -> raw8
+lrwxrwxrwx 1 root   root        5 Jan 14 12:50 cdm-iq_eagu62_system_main.iq -> raw13
+lrwxrwxrwx 1 root   root        4 Jan 14 12:50 cdm-iq_eagu62_temp_01.iqtmp -> raw9
+lrwxrwxrwx 1 root   root        5 Jan 14 12:50 cdm-iq_eagu62_temp_02.iqtmp -> raw10
+lrwxrwxrwx 1 root   root        5 Jan 14 12:50 cdm-iq_eagu62_temp_03.iqtmp -> raw11
+lrwxrwxrwx 1 root   root        5 Jan 14 12:50 cdm-iq_eagu62_temp_04.iqtmp -> raw12
+crw-rw---- 1 sybase sybsa 162,  1 Jan 14 12:50 raw1
+crw-rw---- 1 sybase sybsa 162, 10 Jan 14 12:50 raw10
+crw-rw---- 1 sybase sybsa 162, 11 Jan 14 12:50 raw11
+crw-rw---- 1 sybase sybsa 162, 12 Jan 14 12:50 raw12
+crw-rw---- 1 sybase sybsa 162, 13 Jan 14 12:50 raw13
+crw-rw---- 1 sybase sybsa 162,  2 Jan 14 12:50 raw2
+crw-rw---- 1 sybase sybsa 162,  3 Jan 14 12:50 raw3
+crw-rw---- 1 sybase sybsa 162,  4 Jan 14 12:50 raw4
+crw-rw---- 1 sybase sybsa 162,  5 Jan 14 12:50 raw5
+crw-rw---- 1 sybase sybsa 162,  6 Jan 14 12:50 raw6
+crw-rw---- 1 sybase sybsa 162,  7 Jan 14 12:50 raw7
+crw-rw---- 1 sybase sybsa 162,  8 Jan 14 12:50 raw8
+crw-rw---- 1 sybase sybsa 162,  9 Jan 14 12:50 raw9
+crw-rw---- 1 root   disk  162,  0 Jan 13 15:00 rawctl
+[root@eagu62 raw]# ls -lL
+total 0
+crw-rw---- 1 sybase sybsa 162,  1 Jan 14 12:50 cdm-iq_eagu62_main_01.iq
+crw-rw---- 1 sybase sybsa 162,  2 Jan 14 12:50 cdm-iq_eagu62_main_02.iq
+crw-rw---- 1 sybase sybsa 162,  3 Jan 14 12:50 cdm-iq_eagu62_main_03.iq
+crw-rw---- 1 sybase sybsa 162,  4 Jan 14 12:50 cdm-iq_eagu62_main_04.iq
+crw-rw---- 1 sybase sybsa 162,  5 Jan 14 12:50 cdm-iq_eagu62_main_05.iq
+crw-rw---- 1 sybase sybsa 162,  6 Jan 14 12:50 cdm-iq_eagu62_main_06.iq
+crw-rw---- 1 sybase sybsa 162,  7 Jan 14 12:50 cdm-iq_eagu62_main_07.iq
+crw-rw---- 1 sybase sybsa 162,  8 Jan 14 12:50 cdm-iq_eagu62_main_08.iq
+crw-rw---- 1 sybase sybsa 162, 13 Jan 14 12:50 cdm-iq_eagu62_system_main.iq
+crw-rw---- 1 sybase sybsa 162,  9 Jan 14 12:50 cdm-iq_eagu62_temp_01.iqtmp
+crw-rw---- 1 sybase sybsa 162, 10 Jan 14 12:50 cdm-iq_eagu62_temp_02.iqtmp
+crw-rw---- 1 sybase sybsa 162, 11 Jan 14 12:50 cdm-iq_eagu62_temp_03.iqtmp
+crw-rw---- 1 sybase sybsa 162, 12 Jan 14 12:50 cdm-iq_eagu62_temp_04.iqtmp
+crw-rw---- 1 sybase sybsa 162,  1 Jan 14 12:50 raw1
+crw-rw---- 1 sybase sybsa 162, 10 Jan 14 12:50 raw10
+crw-rw---- 1 sybase sybsa 162, 11 Jan 14 12:50 raw11
+crw-rw---- 1 sybase sybsa 162, 12 Jan 14 12:50 raw12
+crw-rw---- 1 sybase sybsa 162, 13 Jan 14 12:50 raw13
+crw-rw---- 1 sybase sybsa 162,  2 Jan 14 12:50 raw2
+crw-rw---- 1 sybase sybsa 162,  3 Jan 14 12:50 raw3
+crw-rw---- 1 sybase sybsa 162,  4 Jan 14 12:50 raw4
+crw-rw---- 1 sybase sybsa 162,  5 Jan 14 12:50 raw5
+crw-rw---- 1 sybase sybsa 162,  6 Jan 14 12:50 raw6
+crw-rw---- 1 sybase sybsa 162,  7 Jan 14 12:50 raw7
+crw-rw---- 1 sybase sybsa 162,  8 Jan 14 12:50 raw8
+crw-rw---- 1 sybase sybsa 162,  9 Jan 14 12:50 raw9
+crw-rw---- 1 root   disk  162,  0 Jan 13 15:00 rawctl
