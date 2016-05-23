@@ -72,6 +72,7 @@ Red Hat Enterprise Linux 6 does not have raw devices services.
 
 ### 
 [root@eagu62 ~]# cat /etc/udev/rules.d/60-raw.rules
+-----START------
 # Enter raw device bindings here.
 #
 # An example would be:
@@ -97,3 +98,20 @@ ENV{DM_VG_NAME}=="rawdev_vg", ENV{DM_LV_NAME}=="iq_eagu62_temp_04.iqtmp", RUN+="
 # To set permissions:
 KERNEL=="raw*", OWNER:="sybase", GROUP:="sybsa", MODE:="0770"
 LABEL="raw_end"
+-----END------
+[root@eagu62 raw]# cat /etc/rc.local
+### for Raw devices
+ln -s /dev/raw/raw1 /opt/sw/sybase_iq/dbfiles/iq_eagu62_system_main.iq
+ln -s /dev/raw/raw2 /opt/sw/sybase_iq/dbfiles/iq_eagu62_main_01.iq
+ln -s /dev/raw/raw3 /opt/sw/sybase_iq/dbfiles/iq_eagu62_main_02.iq
+ln -s /dev/raw/raw4 /opt/sw/sybase_iq/dbfiles/iq_eagu62_main_03.iq
+ln -s /dev/raw/raw5 /opt/sw/sybase_iq/dbfiles/iq_eagu62_main_04.iq
+ln -s /dev/raw/raw6 /opt/sw/sybase_iq/dbfiles/iq_eagu62_main_05.iq
+ln -s /dev/raw/raw7 /opt/sw/sybase_iq/dbfiles/iq_eagu62_main_06.iq
+ln -s /dev/raw/raw8 /opt/sw/sybase_iq/dbfiles/iq_eagu62_main_07.iq
+ln -s /dev/raw/raw9 /opt/sw/sybase_iq/dbfiles/iq_eagu62_main_08.iq
+ln -s /dev/raw/raw10 /opt/sw/sybase_iq/dbfiles/iq_eagu62_temp_01.iqtmp
+ln -s /dev/raw/raw11 /opt/sw/sybase_iq/dbfiles/iq_eagu62_temp_02.iqtmp
+ln -s /dev/raw/raw12 /opt/sw/sybase_iq/dbfiles/iq_eagu62_temp_03.iqtmp
+ln -s /dev/raw/raw13 /opt/sw/sybase_iq/dbfiles/iq_eagu62_temp_04.iqtmp
+[root@eagu62 raw]# cat /etc/rc.local
