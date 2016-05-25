@@ -225,3 +225,21 @@ crw-rw---- 1 sybase sybsa 162,  7 Jan 14 12:50 raw7
 crw-rw---- 1 sybase sybsa 162,  8 Jan 14 12:50 raw8
 crw-rw---- 1 sybase sybsa 162,  9 Jan 14 12:50 raw9
 crw-rw---- 1 root   disk  162,  0 Jan 13 15:00 rawctl
+
+------
+[sybase@eagu63 ~]$ cat aa
+ln -s /dev/raw/raw1 /opt/sw/sybase_iq/dbfiles/iq_eagu63_system_main.iq
+ln -s /dev/raw/raw2 /opt/sw/sybase_iq/dbfiles/iq_eagu63_main_01.iq
+ln -s /dev/raw/raw3 /opt/sw/sybase_iq/dbfiles/iq_eagu63_main_02.iq
+ln -s /dev/raw/raw4 /opt/sw/sybase_iq/dbfiles/iq_eagu63_main_03.iq
+ln -s /dev/raw/raw5 /opt/sw/sybase_iq/dbfiles/iq_eagu63_main_04.iq
+ln -s /dev/raw/raw6 /opt/sw/sybase_iq/dbfiles/iq_eagu63_main_05.iq
+ln -s /dev/raw/raw7 /opt/sw/sybase_iq/dbfiles/iq_eagu63_main_06.iq
+ln -s /dev/raw/raw8 /opt/sw/sybase_iq/dbfiles/iq_eagu63_main_07.iq
+ln -s /dev/raw/raw9 /opt/sw/sybase_iq/dbfiles/iq_eagu63_main_08.iq
+ln -s /dev/raw/raw10 /opt/sw/sybase_iq/dbfiles/iq_eagu63_temp_01.iqtmp
+ln -s /dev/raw/raw11 /opt/sw/sybase_iq/dbfiles/iq_eagu63_temp_02.iqtmp
+ln -s /dev/raw/raw12 /opt/sw/sybase_iq/dbfiles/iq_eagu63_temp_03.iqtmp
+ln -s /dev/raw/raw13 /opt/sw/sybase_iq/dbfiles/iq_eagu63_temp_04.iqtmp
+
+[sybase@eagu63 ~]$
