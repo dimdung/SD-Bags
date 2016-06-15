@@ -46,6 +46,8 @@ Remote-Desktop-License-Expiration-Workaround
 mstsc /admin
 
 2.	Run regedit as Administrator
+# https://help.austlink.net/hc/en-us/articles/202717166-Windows-Server-2012-Remote-Desktop-Licensing-without-a-Domain 
+# Right click GracePerio > Permission > All Application Packages > Advanced > Network Services > Change to Admin
 
 3.	Take ownership of –
 
