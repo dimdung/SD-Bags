@@ -1,0 +1,61 @@
+https://github.com/thomgit/docker-swarm/blob/master/Vagrantfile
+---------------------
+
+# Docker Swarm Mode Walkthrough 
+curl -fsSL https://test.docker.com/ | sh 
+
+# Verify the Docker Version
+root@docker-swarn-00:~# docker version
+Client:
+ Version:      1.12.0-rc3
+ API version:  1.24
+ Go version:   go1.6.2
+ Git commit:   91e29e8
+ Built:        Sat Jul  2 00:28:53 2016
+ OS/Arch:      linux/amd64
+
+Server:
+ Version:      1.12.0-rc3
+ API version:  1.24
+ Go version:   go1.6.2
+ Git commit:   91e29e8
+ Built:        Sat Jul  2 00:28:53 2016
+ OS/Arch:      linux/amd64
+root@docker-swarn-00:~#
+
+
+## Creat the docker swarm 
+root@docker-swarn-00:~# docker swarm init --listen-addr 172.31.4.9:2377
+Swarm initialized: current node (a5o2a0ymum1643vjetkkxvzh3) is now a manager.
+root@docker-swarn-00:~#
+
+# List the docker node
+root@docker-swarn-00:~# docker node ls
+ID                           HOSTNAME         MEMBERSHIP  STATUS  AVAILABILITY  MANAGER STATUS
+e8t98e440wygj009u5b10oe2o *  docker-swarn-00  Accepted    Ready   Active        Leader
+root@docker-swarn-00:~#
+
+
+# Adding Docker swarm worker on Manager 
+
+root@docker-swarn-01:~# docker swarm join 172.31.4.9:2377
+This node joined a Swarm as a worker.
+root@docker-swarn-01:~#
+
+root@docker-swarn-02:~# docker swarm join 172.31.4.9:2377
+This node joined a Swarm as a worker.
+root@docker-swarn-02:~#
+
+root@docker-swarn-03:~# docker swarm join 172.31.4.9:2377
+This node joined a Swarm as a worker.
+root@docker-swarn-03:~#
+
+## List the node 
+root@docker-swarn-00:~# docker node ls
+ID                           HOSTNAME         MEMBERSHIP  STATUS  AVAILABILITY  MANAGER STATUS
+0ush88zz83rkqd3qn8uieebn0    docker-swarn-01  Accepted    Ready   Active
+1z04ngudfihaosczywq48rc7k    ip-172-31-4-11   Accepted    Down    Active
+2omzymtilj93212ra1lafcb2b    docker-swarn-03  Accepted    Ready   Active
+75ez3dk28vuqybz0op93vjgwc    ip-172-31-4-11   Accepted    Ready   Active
+e8t98e440wygj009u5b10oe2o *  docker-swarn-00  Accepted    Ready   Active        Leader
+root@docker-swarn-00:~#
