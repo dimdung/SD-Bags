@@ -1,6 +1,3 @@
-https://github.com/thomgit/docker-swarm/blob/master/Vagrantfile
----------------------
-
 # Docker Swarm Mode Walkthrough 
 curl -fsSL https://test.docker.com/ | sh 
 
@@ -58,4 +55,84 @@ ID                           HOSTNAME         MEMBERSHIP  STATUS  AVAILABILITY  
 2omzymtilj93212ra1lafcb2b    docker-swarn-03  Accepted    Ready   Active
 75ez3dk28vuqybz0op93vjgwc    ip-172-31-4-11   Accepted    Ready   Active
 e8t98e440wygj009u5b10oe2o *  docker-swarn-00  Accepted    Ready   Active        Leader
+root@docker-swarn-00:~#
+
+# Create container and run
+$ docker run -d nginx 
+
+# services: 
+root@docker-swarn-00:~# docker service create --name ping00 alpine ping docker-swarm-00
+12dz5yuzgh9semrpwxu6l8ub1
+root@docker-swarn-00:~# docker service ls
+ID            NAME    REPLICAS  IMAGE   COMMAND
+12dz5yuzgh9s  ping00  0/1       alpine  ping docker-swarm-00
+root@docker-swarn-00:~#
+
+## Check what tasks is runnning 
+root@docker-swarn-00:~# docker service tasks ping00
+ID                         NAME      SERVICE  IMAGE   LAST STATE                   DESIRED STATE  NODE
+dpq7eu04xkvpzlvspeukfex82  ping00.1  ping00   alpine  Accepted Less than a second  Accepted       docker-swarn-00
+root@docker-swarn-00:~#
+
+## 
+
+root@docker-swarn-00:~# docker service create --name website --publish 80:80 sixeyed/dcoker-swarm-walkthrough
+4xqxlcx6wo8p9qyx9hmtzhc8p
+root@docker-swarn-00:~# docker service inspect website --pretty
+ID:             4xqxlcx6wo8p9qyx9hmtzhc8p
+Name:           website
+Mode:           Replicated
+ Replicas:      1
+Placement:
+ Strategy:      Spread
+UpdateConfig:
+ Parallelism:   0
+ContainerSpec:
+ Image:         sixeyed/dcoker-swarm-walkthrough
+Resources:
+Reservations:
+Limits:
+Ports:
+ Name =
+ Protocol = tcp
+ TargetPort = 80
+ PublishedPort = 80
+root@docker-swarn-00:~# docker service tasks website
+ID                         NAME       SERVICE  IMAGE                             LAST STATE          DESIRED STATE  NODE
+3084md2rs08xfxm2she55q4nq  website.1  website  sixeyed/dcoker-swarm-walkthrough  Accepted 1 seconds  Accepted       docker-swarn-03
+root@docker-swarn-00:~#
+
+## Create/clone website to 10 container 
+root@docker-swarn-00:~# docker service update --replicas 10 website
+website
+root@docker-swarn-00:~# docker service tasks websites
+Error: No such service: websites
+root@docker-swarn-00:~# docker service tasks website
+ID                         NAME        SERVICE  IMAGE                             LAST STATE           DESIRED STATE  NODE
+erbiim9lk4ut56r318k92cs0g  website.1   website  sixeyed/dcoker-swarm-walkthrough  Preparing 5 seconds  Running        ip-172-31-4-11
+ez1ps4ekn8kdymebt3mgmfud0  website.2   website  sixeyed/dcoker-swarm-walkthrough  Accepted 4 seconds   Accepted       docker-swarn-00
+dcivo1nibskq62ve72xgiwzhg  website.3   website  sixeyed/dcoker-swarm-walkthrough  Accepted 4 seconds   Accepted       docker-swarn-00
+4ov9x7ldglnzp5ws2a1vugz33  website.4   website  sixeyed/dcoker-swarm-walkthrough  Accepted 4 seconds   Accepted       docker-swarn-01
+5pvnzd0pwoveusolrc9rkkkhs  website.5   website  sixeyed/dcoker-swarm-walkthrough  Accepted 4 seconds   Accepted       docker-swarn-01
+1l0jp4411jef33u5o1z60az44  website.6   website  sixeyed/dcoker-swarm-walkthrough  Accepted 4 seconds   Accepted       docker-swarn-03
+149zcqfjhs8lag6ke9nvka9yf  website.7   website  sixeyed/dcoker-swarm-walkthrough  Accepted 4 seconds   Accepted       docker-swarn-01
+dqikybyqq0vcjqhhbzktmluum  website.8   website  sixeyed/dcoker-swarm-walkthrough  Accepted 4 seconds   Accepted       ip-172-31-4-11
+cdbpes5jh7bs069c14frqgb3m  website.9   website  sixeyed/dcoker-swarm-walkthrough  Accepted 4 seconds   Accepted       docker-swarn-03
+b81x33xco61hk74sey1taixko  website.10  website  sixeyed/dcoker-swarm-walkthrough  Accepted 4 seconds   Accepted       ip-172-31-4-11
+root@docker-swarn-00:~#
+
+
+## Once I terminate the one node that container should go to another nodes 
+root@docker-swarn-00:~# docker service tasks website
+ID                         NAME        SERVICE  IMAGE                             LAST STATE                   DESIRED STATE  NODE
+f3t38qwxf35xywe1qxwj6f6hq  website.1   website  sixeyed/dcoker-swarm-walkthrough  Accepted 1 seconds           Accepted       docker-swarn-03
+5bakxjr6hrnhxuq5pk53anmgg  website.2   website  sixeyed/dcoker-swarm-walkthrough  Accepted 1 seconds           Accepted       docker-swarn-00
+6hjfyuhbfsf7z2g6rvz5zauni  website.3   website  sixeyed/dcoker-swarm-walkthrough  Accepted 1 seconds           Accepted       docker-swarn-01
+925lhf6heb8fk98scve8u8s3b  website.4   website  sixeyed/dcoker-swarm-walkthrough  Accepted Less than a second  Accepted       docker-swarn-03
+42y05l2cw6ps0n42q0cmicimm  website.5   website  sixeyed/dcoker-swarm-walkthrough  Assigned Less than a second  Accepted       docker-swarn-01
+6a95uie168uldazdogteknw9j  website.6   website  sixeyed/dcoker-swarm-walkthrough  Preparing 6 seconds          Running        docker-swarn-01
+2jtof8kwzzq9zwrzeb3n613ic  website.7   website  sixeyed/dcoker-swarm-walkthrough  Preparing 6 seconds          Running        docker-swarn-03
+dglspdhi4f3wtciomk1ppd9tu  website.8   website  sixeyed/dcoker-swarm-walkthrough  Accepted 1 seconds           Accepted       docker-swarn-00
+64e5lklhqllyvt80smpm07f4n  website.9   website  sixeyed/dcoker-swarm-walkthrough  Preparing 6 seconds          Running        docker-swarn-01
+9hgvqyyopofe5wl73msd75523  website.10  website  sixeyed/dcoker-swarm-walkthrough  Accepted 1 seconds           Accepted       docker-swarn-00
 root@docker-swarn-00:~#
