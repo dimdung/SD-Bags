@@ -1,0 +1,368 @@
+-bash-4.1$ history
+    1  cd bin/
+    2  ./splunk start --accept-license
+    3  exit
+    4  cd bin/./splunk status
+    5  pwd
+    6  bin/splunk/splunk status
+    7  pwd
+    8  ls
+    9  cd bin/
+   10  ./splunk status
+   11  exit
+   12  cd bin
+   13  pwd
+   14  ./splunk init shcluster-config -auth admin:changeme -mgmt_uri 10.76.1.32:8089 -replication_port 8123 -replication_factor 3 -conf_deploy_fetch_url 1.2.3.4:8089 -secret lmcogsalabtest -shcluster_label gsashcluster
+   15  ./splunk init shcluster-config -auth admin:changeme -mgmt_uri https://10.76.1.32:8089 -replication_port 8123 -replication_factor 3 -conf_deploy_fetch_url 1.2.3.4:8089 -secret lmcogsalabtest -shcluster_label gsashcluster
+   16  ./splunk init shcluster-config -auth admin:changeme -mgmt_uri https://10.76.1.32:8089 -replication_port 8123 -replication_factor 3 -conf_deploy_fetch_url https://1.2.3.4:8089 -secret lmcogsalabtest -shcluster_label gsashcluster
+   17  cd ../etc/system/local/
+   18  vi server.conf
+   19  exit
+   20  cd /opt/splunk/etc/system/local/
+   21  ls
+   22  nano outputs.conf
+   23  exit
+   24  /opt/splunk/bin/splunk restart
+   25  /opt/splunk/bin/splunk stop
+   26  exit
+   27  /opt/splunk/bin/splunk start
+   28  cat /opt/splunk/etc/system/local/server.conf
+   29  cd etc/system/local/
+   30  vi server.conf
+   31  pwd
+   32  cd ../..
+   33  pwd
+   34  cd ../bin/
+   35  ./splunk restart
+   36  tail -f ../var/log/splunk/splunkd.log
+   37  pwd
+   38  cd ../etc/system/local/
+   39  vi server.conf
+   40  pwd
+   41  cd ../../..
+   42  pwd
+   43  cd bin/
+   44  ./[replication_port://8123]
+   45  [shclustering]
+   46  conf_deploy_fetch_url = https://10.76.1.40:8089
+   47  disabled = 0
+   48  mgmt_uri = https://10.76.1.32:8089
+   49  pass4SymmKey = $1$rlsxA/Ct898mR4VSxGbr
+   50  shcluster_label = gsashcluster
+   51  pwd
+   52  ./splunk init shcluster-config -auth admin:changeme -mgmt_uri https://10.76.1.32:8089 -replication_port 8123 -replication_factor 3 -conf_deploy_fetch_url https://10.76.1.40:8089 -secret lmcogsalabtest -shcluster_label gsashcluster
+   53  ./splunk restart
+   54  cd /opt/splunk/bin/
+   55  ./splunk edit cluster-config -mode searchhead -master_uri https://10.76.1.11:8089 -secret lmcogsalabtest
+   56  ./splunk restart
+   57  cd etc/system/local/
+   58  vi
+   59  pwd
+   60  vi server.conf
+   61  cd ../../../bin/
+   62  ./splunk restart
+   63  cd etc/system/local/
+   64  vi server.conf
+   65  cd etc/system/local/
+   66  vi outputs.conf
+   67  cd etc/system/local/
+   68  vi outputs.conf
+   69  vi server.conf
+   70  cd bin/
+   71  ./splunk stop
+   72  cd /opt/splunk/etc/system/local/
+   73  ls
+   74  vi server.conf
+   75  vi outputs.conf
+   76  /opt/splunk/bin/splunk restart
+   77  /opt/splunk/bin/splunk bootstrap shcluster-captain -servers_list "https://10.176.2.20:8089, https://10.176.2.21:8089,https://10.176.2.81:8089" -auth admin:changeme
+   78  /opt/splunk/bin/splunk bootstrap shcluster-captain -servers_list "https://10.176.2.20:8089,https://10.176.2.21:8089,https://10.176.2.81:8089" -auth admin:changeme
+   79  /opt/splunk/bin/splunk status
+   80  pwd
+   81  cd ../../
+   82  ls
+   83  pwd
+   84  cd ../var/log/splunk/
+   85  ls -lt
+   86  vi splunkd.log
+   87  tail -f splunkd.log
+   88   /opt/splunk/bin/splunk remove shcluster-member
+   89  pwd
+   90  tail -f splunkd.log
+   91   /opt/splunk/bin/splunk stop
+   92  pwd
+   93  cd /opt/splunk/etc/system/local/
+   94  vi server.conf
+   95  /opt/splunk/bin/splunk start
+   96  pwd
+   97  /opt/splunk/bin/splunk init shcluster-config -auth admin:changeme -mgmt_uri https://10.176.2.81:8089 -replication_port 8123 -replication_factor 3 -conf_deploy_fetch_url https://10.176.2.56:8089 -secret lmcogsalabtest -shcluster_label gsashcluster
+   98  /opt/splunk/bin/splunk restart
+   99  /opt/splunk/bin/splunk bootstrap shcluster-captain -servers_list "https://10.176.2.20:8089,https://10.176.2.21:8089,https://10.176.2.81:8089" -auth admin:changeme
+  100  cat /opt/splunk/var/log/splunk/splunkd.log
+  101  tail -f /opt/splunk/var/log/splunk/splunkd.log
+  102  pwd
+  103  vi server.conf
+  104  /opt/splunk/bin/splunk restart
+  105  pwd
+  106  vi server.conf
+  107  /opt/splunk/bin/splunk restart
+  108  /opt/splunk/bin/splunk edit cluster-config -mode searchhead -master_uri https://10.176.2.13:8089 -secret lmcogsalabtest
+  109  /opt/splunk/bin/splunk restart
+  110   /opt/splunk/bin/splunk show shcluster-status -auth admin:changeme
+  111  history
+  112  /opt/splunk/bin/splunk bootstrap shcluster-captain -servers_list "https://10.176.2.20:8089,https://10.176.2.21:8089,https://10.176.2.81:8089" -auth admin:changeme
+  113  pwd
+  114  vi /opt/splunk/var/log/splunk/splunkd.log
+  115  vat /opt/splunk/var/log/splunk/splunkd.log
+  116  cat /opt/splunk/var/log/splunk/splunkd.log
+  117  pwd
+  118  vi server.conf
+  119  vi /opt/splunk/etc/instance.cfg
+  120  /opt/splunk/bin/splunk restart
+  121  vi server.conf
+  122  /opt/splunk/bin/splunk restart
+  123  history
+  124  /opt/splunk/bin/splunk bootstrap shcluster-captain -servers_list "https://10.176.2.20:8089,https://10.176.2.21:8089,https://10.176.2.81:8089" -auth admin:changeme
+  125  cat /opt/splunk/var/log/splunk/splunkd.log
+  126  /opt/splunk/bin/splunk bootstrap shcluster-captain -servers_list "https://10.176.2.20:8089,https://10.176.2.21:8089,https://10.176.2.81:8089" -auth admin:changeme
+  127  cat /opt/splunk/var/log/splunk/splunkd.log
+  128  history
+  129   /opt/splunk/bin/splunk show shcluster-status -auth admin:changeme
+  130  cd /opt/splunk/etc/system/local/
+  131  vi t
+  132  cd /opt/splunk/etc/system/local/
+  133  ls
+  134  vi authentication.conf
+  135  ls -lt
+  136  cat authentication.conf
+  137  splunk show shcluster-status
+  138  /opt/splunk/bin/splunk show shcluster-status
+  139  pwd
+  140  ls -lt
+  141  pwd
+  142  cd  ../../searchLanguage.xml
+  143  cd  ../../
+  144  pwd
+  145  cd apps/
+  146  ls
+  147  cd key_all_authentication/
+  148  ls
+  149  cd metadata/
+  150  ls
+  151  cd ../..
+  152  pwd
+  153  cd search/
+  154  ls
+  155   cd ..
+  156  pwd
+  157  cd ..
+  158  find . -name authorize.conf
+  159  find . -name authorize.conf  -exec ls -l {} \;
+  160  vi  ./apps/key_all_authentication/default/authorize.conf
+  161  vi ./apps/key_all_authentication/default/authentication.conf
+  162  pwd
+  163  vi ./apps/key_all_authentication/default/authentication.conf
+  164  pwd
+  165  vi system/local/authentication.conf
+  166  vi .bash_profile
+  167   find . -name "*.conf" -exec grep -H "10-76" {} \;
+  168  vi ./etc/system/local/inputs.conf
+  169  date
+  170  pwd
+  171  cd etc
+  172  vi ./apps/key_all_authentication/default/authentication.conf
+  173   rm -rf /opt/splunk/etc/apps/key_all_authentication/
+  174  ls
+  175  vi /opt/splunk/etc/apps/key_all_authentication/default/authentication.conf
+  176   splunk rolling-restart shcluster-members
+  177   splunk rolling-restart shcluster-members -status 1
+  178  pwd
+  179  cd
+  180  rm ./etc/system/local/authentication.conf
+  181   splunk rolling-restart shcluster-members
+  182   splunk rolling-restart shcluster-members -status 1
+  183  ls
+  184  pwd
+  185  cat etc/apps/key_all_authentication/default/authentication.conf
+  186  pwd
+  187  vi ./etc/apps/key_all_authentication/default/authentication.conf
+  188  cat ./etc/apps/key_all_authentication/local/authentication.conf
+  189  history
+  190   splunk rolling-restart shcluster-members
+  191  splunk rolling-restart shcluster-members -status 1
+  192  history | grep rolling
+  193  splunk rolling-restart shcluster-members
+  194   splunk rolling-restart shcluster-members -status 1
+  195  cd etc/system/local/
+  196  vi props.conf
+  197  exit
+  198  cd etc/apps/
+  199  ls
+  200  rm -rf Splunk_TA_aws/
+  201  exit
+  202  cd etc/apps/
+  203  ls -lt
+  204  /opt/splunk/bin/splunk stop
+  205  exit
+  206  /opt/splunk/bin/splunk status
+  207  exit
+  208  splunk shcluster-members
+  209  history| grep member
+  210  ls
+  211  splunk shcluster-members
+  212  splunk help
+  213  splunk list shcluster-members
+  214  splunk show shcluster-statu
+  215  splunk show shcluster-status
+  216  ./splunk cmd python ../etc/apps/splunk_app_aws/bin/cli/targets_helper.py -get -username admin -password changeme
+  217  cd bin
+  218  ./splunk cmd python ../etc/apps/splunk_app_aws/bin/cli/targets_helper.py -get -username admin -password changeme
+  219  splunk stop
+  220  exit
+  221  splunk start
+  222  vi ./etc/system/local/props.conf
+  223  exit
+  224  splunk show shcluster-status -auth admin:changeme
+  225  exit
+  226  cd /opt/splunk/bin/
+  227  ./splunk stop
+  228  exit
+  229  cd /opt/splunk/bin/
+  230  ./splunk start
+  231  exit
+  232  cd /opt/splunk/bin/
+  233  ./splunk stop
+  234  exit
+  235  /opt/splunk/bin/splunk start
+  236  exit
+  237  /opt/splunk/bin/splunk stop
+  238  exit
+  239  /opt/splunk/bin/splunk start
+  240  exit
+  241  /opt/splunk/bin/splunk stop
+  242  exit
+  243  /opt/splunk/bin/splunk start
+  244  exit
+  245  df -h
+  246  cd /opt/splunk/var/run/splunk/dispatch
+  247  ls -rot
+  248  du .
+  249  cd rt_1463681922.520_89487FD0-D603-4315-9867-1B692E1FC9C0/
+  250  ls
+  251  vi status.csv
+  252  ls -l
+  253  pwd
+  254  cd ../../
+  255  df -h
+  256  du .
+  257  pwd
+  258  du .
+  259  pwd
+  260  cd ../../
+  261  pwd
+  262  cd ../
+  263  du -sh .
+  264  du -sh *
+  265  cd var
+  266  du -sh *
+  267  cd run
+  268  du -sh *
+  269  splunk show shcluster-status -auth admin:changeme
+  270  exit
+  271  pwd
+  272  find ./ -type f -name "alert_actions.conf"
+  273  find ./ -type f -name "authorize.conf"
+  274  diff ./etc/system/default/alert_actions.conf ./etc/apps/alert_webhook/default/alert_actions.conf
+  275  vi ./etc/apps/alert_webhook/default/alert_actions.conf
+  276  find ./ -type f -name "authorize.conf"
+  277  find ./ -type f -name "alert_actions.conf"
+  278  cat ./etc/system/default/alert_actions.conf
+  279  ls /etc/
+  280  ls -alhtr /opt/splunk/etc/system
+  281  ls -alhtr /opt/splunk/etc/system/local/
+  282  find ./ -type f -name "authorize.conf"
+  283  find ./ -type f -name "alert_actions.conf"
+  284  vi ./etc/system/default/alert_actions.conf
+  285  cd /opt/splunk
+  286  ls
+  287  cd etc/system/local/
+  288  ls
+  289  cd ..
+  290  ls
+  291  pwd
+  292  cd ..
+  293  find ./ -type f -name "alert_actions.conf
+  294  find ./ -type f -name "alert_actions.conf"
+  295  vi ./etc/system/default/alert_actions.conf
+  296  find ./ -type f -name "alert_actions.conf"
+  297  vi ./etc/apps/alert_webhook/default/alert_actions.conf
+  298  find ./ -type f -name "alert_actions.conf"
+  299  ls ./var/run/splunk/deploy
+  300  pwd
+  301  cd var/run/splunk/
+  302  ls
+  303  cd ..
+  304  ls
+  305  cd ..
+  306  ls
+  307  pwd
+  308  find ./ -type f -name "alert_actions.conf"
+  309  find ./ -type f -name "authorize.conf"
+  310  find ./ -type f -name "alert_actions.conf"
+  311  vi ./etc/apps/email_actions/default/alert_actions.conf
+  312  find ./ -type f -name "alert_actions.conf"
+  313  cat ./etc/system/default/alert_actions.conf
+  314  cat ./etc/system/default/alert_actions.conf | grep localhost
+  315  find ./ -type f -name "alert_actions.conf"
+  316  find ./ -type f -name "authorize.conf"
+  317  ls -alhtr ./etc/system/local/authorize.conf
+  318  cat ./etc/system/local/authorize.conf
+  319  find ./ -type f -name "alert_actions.conf"
+  320  cat ./etc/apps/email_actions/default/alert_actions.conf
+  321  cd ./etc/a
+  322  cd ./etc/apps/
+  323  ls
+  324  ls -alhtr |g rep default
+  325  ls -alhtr | grep default
+  326  cd helix_full_license_server/
+  327  ls
+  328  cd ..
+  329  cd alert_webhook/
+  330  ls
+  331  cd ..
+  332  cd helix_full_license_server/
+  333  ls
+  334  cd metadata/
+  335  ls
+  336  cat default.meta
+  337  cd ..
+  338  ls
+  339  cd default/
+  340  ls
+  341  cat app.conf
+  342  cd ..
+  343  ls
+  344  cd ..
+  345  ls
+  346  cd email_actions/
+  347  ls
+  348  pwd
+  349  cd default/
+  350  ls
+  351  cat alert_actions.conf
+  352  find ./ -type f -name "alert_actions.conf"
+  353  vi ./etc/system/local/alert_actions.conf
+  354  find ./ -type f -name "alert_actions.conf"
+  355  ls
+  356  cd var/run/
+  357  ls
+  358  ls -l
+  359  pwd
+  360  rm *.bundle
+  361  ls
+  362  ls -l
+  363  rm *.info
+  364  rm *.delta
+  365  ls
+  366  history
+-bash-4.1$
