@@ -1,0 +1,130 @@
+# Ansible RDS Multi-AZ Postgres
+#
+#  Assumes existing Security Group, VPC, and RDS Subnet Groups.
+#
+#  To install Ansible on OSX:
+#   sudo easy_install pip
+#   sudo pip install paramiko PyYAML jinja2 (might be prompted to install XCode & re-run)
+#   sudo pip install ansible
+#   sudo pip install boto
+#   sudo mkdir /etc/ansible
+#  Need a placeholder hosts file for RDS (replace w/ ssh-accessible ec2 instance later)
+#   sudo sh -c 'printf "[local]\nlocalhost\n" > /etc/ansible/hosts' 
+#   sudo -R chown [you] /etc/ansible/
+#
+#  Make sure env variables are set:
+#   export AWS_ACCESS_KEY='AKIxxxx' && export AWS_SECRET_KEY='xyz'
+# 
+#  Pre-reqs:
+#  In the desired Region, create a public single subnet VPC w/ sg above, maybe
+#    "Ansible Public subnet", w/ AZ us-east-1a, CIDR 10.0.0.0/24
+#  Note the VPC label (eg vpc-xxx)
+#  In the desired Region, create a Security Group, maybe: ansible-vpc-sg
+#    Set to vpc-xxx
+#    Allow in-bound 5432 tcp from 10.0.0.0/16; optionally: ssh, http/s from 0.0.0.0
+#    Create it, and note the new Security Group ID, e.g: sg-xxxxx
+#  Create a new subnet, in that VPC, maybe "Ansible Private subnet"
+#    with a *different* AZ, maybe: us-east-1c, CIDR 10.0.1.0/24
+#  Go to RDS, create a DB Subnet Group, eg: ansible-sg1
+#    in the VPC, add all the subnets (e.g, AZs -1a and -1c, CIDR 10.0.0/24 & 10.0.1.0/24)
+#
+# Finally: ansible-playbook ./rds_vpc_pg_multi-zone_launch.yml -f 10 
+#
+# IP=$(ansible-playbook ./rds_vpc_pg_multi-zone_launch.yml -f 10 | tee log.out | tail | grep 'EC2 public IP' | cut -d'|' -f2)
+#
+# ssh -i key ec2-user@$IP
+#
+# yum install postgresql9
+#
+# su - postgres -c "PGPASSWORD='password' psql --host=[RDS endpoint] --port=5432 --username=dbadmin --dbname myrdspg"
+# 
+# For any errors about HmacAuthV4Handler or handler ready to communicate,
+#  double check that AWS credentials allow create on RDS/VPC/Security Group
+#
+# Disclaimer: Though this works, you're an idiot to use this playbook in production. :-)
+# 
+---
+- hosts: localhost
+  gather_facts: no
+  vars:
+    region: us-east-1
+    size: 100
+    instance_type: db.m3.medium
+    db_engine: postgres    
+    # Optional: Postgres DB engine rev
+    engine_version: 9.3.3
+    # Optional: RDS Parameter Group
+    parameter_group: dbpg1
+    # Required: RDS Subnet Group for multi-zone
+    subnet: ansible-sg1
+    # Required: Database security group ID
+    security_groups: sg-xxxxx
+    iops: 1000
+    # Window in format of ddd:hh24:mi-ddd:hh24:mi, eg: Mon:01:00-Mon:01:15 (minimum 30 mins)
+    maint_window: "Sun:01:00-Sun:01:30"
+    # Window in format of hh24:mi-ddd:hh24:mi, eg: 01:15-01:45 (minimum 30 mins)
+    backup_window: "02:00-02:30"
+    # Days to save backup snapshots
+    backup_retention: 14
+    # Do not set zone for Multi-AZ launches
+    zone: 
+    #
+    rds_instance_name: test-rds-pg
+    db_name: myrdspg
+    username: dbadmin
+    password: password
+    #
+    # For VPC ec2 instance
+    vpc_subnet_id: subnet-xxxxx
+    group_id: sg-xxxxxx
+    keypair_name: myKeyPem
+    root_volume_size_gbs: 30 
+  tasks:
+    - name: Create multi-zone Postgres on RDS in a VPC
+      local_action:
+        module: rds
+        command: create
+        instance_name: "{{ rds_instance_name }}"
+        region: "{{ region }}"
+        size: "{{ size }}"
+        instance_type: "{{ instance_type }}"
+        db_engine: "{{ db_engine }}"
+        # Use default (latest) DB engine (e.g., 9.3.x)
+        # engine_version: "{{ engine_version }}"
+        subnet: "{{ subnet }}"
+        # Use default db parameter group
+        # parameter_group: "{{ parameter_group }}"
+        multi_zone: yes
+        port: 5432
+        db_name: "{{ db_name }}"
+        username: "{{ username }}"
+        password: "{{ password }}"
+        vpc_security_groups: "{{ security_groups }}"
+        iops: "{{ iops }}"
+        maint_window: "{{ maint_window }}"
+        backup_window: "{{ backup_window }}"
+        backup_retention: "{{ backup_retention }}"
+        zone: "{{ zone }}"
+    - name: Create VPC EC2 instance w/ public IP
+      tags: ec2
+      local_action:
+        module: ec2
+        region: "{{ region }}"
+        key_name: "{{ keypair_name }}"
+        group_id: "{{ group_id }}"
+        instance_type: t2.micro
+        # amzn-ami-minimal-hvm-2014.03.2.x86_64-ebs ami-a2867bca x86_64 MINIMAL EBS
+        image: ami-a2867bca
+        wait: yes
+        vpc_subnet_id: "{{ vpc_subnet_id }}"
+        assign_public_ip: yes
+        instance_tags:
+          Name: ansible-vm-1
+        volumes:
+          - device_name: /dev/xvda
+            device_type: gp2
+            volume_size: "{{ root_volume_size_gbs }}"
+            delete_on_termination: true
+      register: ec2
+    - debug: msg="Allocated VPC EC2 public IP|{{ ec2.instances[0].public_ip }}|"
+      with_items: ec2.instances
