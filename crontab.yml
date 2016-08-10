@@ -1,0 +1,13 @@
+[ec2-user@ip-10-149-4-86 bkup-rds]$ crontab -l
+0 7 * * * cd /home/ec2-user/bkup-rds/;/usr/bin/ansible-playbook -i rds-hosts brg-pfsmdb-restore.yml
+0 19 * * * cd /home/ec2-user/bkup-rds/;/usr/bin/ansible-playbook -i rds-hosts brg-pfsmdb-snapshot.yml
+30 19 * * * cd /home/ec2-user/bkup-rds/;/usr/bin/ansible-playbook -i rds-hosts brg-pfsmdb-delete.yml
+[ec2-user@ip-10-149-4-86 bkup-rds]$ ll
+total 16
+-rw-rw-r-- 1 ec2-user ec2-user  580 Aug 10 19:10 brg-pfsmdb-delete.yml
+-rw-rw-r-- 1 ec2-user ec2-user  997 Aug 10 18:49 brg-pfsmdb-restore.yml
+-rw-rw-r-- 1 ec2-user ec2-user 1193 Aug 10 19:06 brg-pfsmdb-snapshot.yml
+-rw-rw-r-- 1 ec2-user ec2-user   41 Aug 10 18:49 rds-hosts
+[ec2-user@ip-10-149-4-86 bkup-rds]$ pwd
+/home/ec2-user/rds-test/bkup-rds
+[ec2-user@ip-10-149-4-86 bkup-rds]$
