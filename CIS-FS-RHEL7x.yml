@@ -1,0 +1,53 @@
+[root@ip-172-31-48-78 ~]# lvs
+  LV       VG    Attr       LSize Pool Origin Data%  Meta%  Move Log Cpy%Sync Convert
+  auditvol sysvg -wi-ao---- 3.00g
+  homevol  sysvg -wi-ao---- 1.00g
+  logvol   sysvg -wi-ao---- 3.00g
+  optvol   sysvg -wi-ao---- 4.00g
+  rootvol  sysvg -wi-ao---- 6.00g
+  tmpvol   sysvg -wi-a----- 4.00g
+  varvol   sysvg -wi-ao---- 3.00g
+[root@ip-172-31-48-78 ~]# vgs
+  VG    #PV #LV #SN Attr   VSize  VFree
+  sysvg   1   7   0 wz--n- 25.52g 1.52g
+[root@ip-172-31-48-78 ~]# history
+    1  yum -y install system-storage-manager lvm2 xfsdump
+    2  mount  /dev/mapper/sysvg-rootvol /mnt
+    3  mount /dev/xvdf2 /mnt/boot
+    4  vi /mnt/etc/fstab
+    5  cat /mnt/etc/fstab
+    6  blkid
+    7  lsblk -l
+    8  chroot /mnt /bin/bash
+    9  umount /dev/xvdf2
+   10  umount /dev/mapper/sysvg-rootvol
+   11  reboot
+   12  cat /etc/default/grub
+   13  vi  /etc/default/grub
+   14  grub2-mkconfig
+   15  vi  /etc/default/grub
+   16  vi  /etc/default/grub
+   17  grub2-mkconfig
+   18  grub2-mkconfig -o /boot/grub2/grub.cfg
+   19  mkinitrd -f -v /boot/initramfs-$(uname -r).img $(uname -r)
+   20  vi etc/fstab
+   21  exit
+   22  cat /boot/grub/grub.conf
+   23  cat /etc/default/grub
+   24  cat /etc/fstab
+   25  mkinitrd -f -v /boot/initramfs-$(uname -r).img $(uname -r)
+   26  grub2-mkconfig
+   27  grub2-mkconfig -o /boot/grub2/grub.cfg
+   28  exit
+   29  exit
+   30  lsblk -l
+   31  grub2-mkconfig
+   32  grub2-install /dev/xvdg
+   33  exit
+   34  clear
+   35  df
+   36  df -hP
+   37  lvs
+   38  vgs
+   39  history
+[root@ip-172-31-48-78 ~]#
