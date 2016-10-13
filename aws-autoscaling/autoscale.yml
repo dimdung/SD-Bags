@@ -1,0 +1,86 @@
+# https://gist.github.com/mikepfeiffer
+## How to create and complete a lifecycle hook
+aws autoscaling put-lifecycle-hook \
+--lifecycle-hook-name scale-out-hook \
+--auto-scaling-group-name MyASG \
+--lifecycle-transition autoscaling:EC2_INSTANCE_LAUNCHING
+
+aws autoscaling complete-lifecycle-action \
+--lifecycle-action-result CONTINUE \
+--instance-id i-0680775fb68bc97a5 \
+--lifecycle-hook-name scale-out-hook \
+--auto-scaling-group-name MyASG
+
+aws autoscaling complete-lifecycle-action \
+--lifecycle-action-result ABANDON \
+--instance-id  i-033f4289b461aae75 \
+--lifecycle-hook-name scale-out-hook \
+--auto-scaling-group-name MyASG
+
+## Example to Create AWS ELB, Launch Config, and Auto Scaling Group
+aws elb create-load-balancer \
+--load-balancer-name MyELB \
+--listeners Protocol=TCP,LoadBalancerPort=80,InstanceProtocol=TCP,InstancePort=80 \
+--subnets subnet-46e6506c subnet-57b8010f \
+--scheme internet-facing \
+--security-groups sg-aec570d4
+
+aws autoscaling create-launch-configuration \
+--launch-configuration-name MyLC \
+--key-name virginia \
+--image-id ami-6869aa05 \
+--instance-type t2.micro \
+--iam-instance-profile EC2Role \
+--user-data file://myuserdata.txt
+
+aws autoscaling create-auto-scaling-group --auto-scaling-group-name MyASG \
+--launch-configuration-name MyLC \
+--min-size 1 \
+--max-size 2 \
+--load-balancer-names MyELB \
+--health-check-type ELB \
+--health-check-grace-period 120 \
+--vpc-zone-identifier subnet-46e6506c,subnet-57b8010f
+
+## Userdata script to setup a basic web page with instance id and tag instance
+#!/bin/bash
+yum install httpd -y
+/sbin/chkconfig --levels 235 httpd on
+service httpd start
+instanceId=$(curl http://169.254.169.254/latest/meta-data/instance-id)
+region=$(curl http://169.254.169.254/latest/dynamic/instance-identity/document | grep region | awk -F\" '{print $4}')
+echo "<h1>$instanceId</h1>" > /var/www/html/index.html
+aws ec2 create-tags --resources "$instanceId" --tags Key=Name,Value="PROD-$instanceId" --region "$region"
+
+# AWS Lambda Function to Start an EC2 Instance
+var AWS = require('aws-sdk');
+exports.handler = function(event, context) {
+	var ec2 = new AWS.EC2({region: 'us-east-1'});
+	ec2.startInstances({InstanceIds : ['i-0114833f8ffc9151c'] },function (err, data) {
+		if (err) console.log(err, err.stack);
+		else console.log(data);
+		context.done(err,data);
+	});
+};
+
+## EC2 user data script to bootstrap instance with CloudWatch sample scripts
+#!/bin/bash
+yum install perl-Switch perl-DateTime perl-Sys-Syslog perl-LWP-Protocol-https -y
+curl http://aws-cloudwatch.s3.amazonaws.com/downloads/CloudWatchMonitoringScripts-1.2.1.zip -O
+unzip CloudWatchMonitoringScripts-1.2.1.zip
+rm CloudWatchMonitoringScripts-1.2.1.zip
+
+## EC2 user data script to boostrap Windows instance with Python and AWS CLI
+<powershell>
+iex ((new-object net.webclient).DownloadString('https://chocolatey.org/install.ps1'))
+choco install python -y
+(new-object net.webclient).DownloadFile('https://s3.amazonaws.com/aws-cli/AWSCLI64.msi','c:\AWSCLI64.msi')
+msiexec.exe /i 'C:\AWSCLI64.msi' /qn
+</powershell>
+
+## EC2 UserData script to install CodeDeploy agent
+#!/bin/bash
+yum install -y aws-cli
+cd /home/ec2-user/
+aws s3 cp 's3://aws-codedeploy-us-east-1/latest/codedeploy-agent.noarch.rpm' . --region us-east-1
+yum -y install codedeploy-agent.noarch.rpm
