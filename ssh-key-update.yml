@@ -1,0 +1,25 @@
+#!/bin/bash
+ 
+echo -n "Enter user name: "
+read name
+echo -n "Enter user key: "
+read userKey
+ 
+echo -n "Create User " $name " using key " $userKey " ? Y/N - "
+read -n 1 confirm
+ 
+if [ "$confirm" == "y" ]; then
+    echo -n "Creating User " $name "..."
+    echo -n ""
+    useradd $name
+    mkdir -p /home/$name/.ssh
+    touch /home/$name/.ssh/authorized_keys
+    echo "ssh-rsa $userKey" >> /home/$name/.ssh/authorized_keys
+    chmod 400 /home/$name/.ssh/authorized_keys
+    chown $name:$name /home/$name/.ssh -R
+    echo -n "User Created!"
+    exit 1
+else
+    echo -n "Stopped User Creation..."
+    exit 1
+fi
