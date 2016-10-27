@@ -1,0 +1,168 @@
+## Configure RHEL for AD authentication
+
+yum -y install openldap openldap-clients nss-pam-ldapd pam_ldap nscd autofs rpcbind nfs-utils oddjob-mkhomedir 
+
+vi /etc/nsswitch.conf
+# /etc/nsswitch.conf
+#
+# Example configuration of GNU Name Service Switch functionality.
+# If you have the `glibc-doc-reference' and `info' packages installed, try:
+# `info libc "Name Service Switch"' for information about this file.
+
+passwd:         files ldap
+group:          files ldap
+shadow:         files ldap
+
+hosts:          files dns ldap
+networks:       files
+
+protocols:      db files
+services:       db files
+ethers:         db files
+rpc:            db files
+
+netgroup:       nis
+
+
+vi /etc/sysconfig/autofs
+#
+# Init syatem options
+#
+# If the kernel supports using the autofs miscellanous device
+# and you wish to use it you must set this configuration option
+# to "yes" otherwise it will not be used.
+#
+USE_MISC_DEVICE="yes"
+#
+# Use OPTIONS to add automount(8) command line options that
+# will be used when the daemon is started.
+#
+#OPTIONS=""
+#
+LDAP_URI="ldap://ad.helixtech.com:389/"
+SEARCH_BASE="dc=helixtech,dc=com"
+MAP_OBJECT_CLASS="nisMap"
+ENTRY_OBJECT_CLASS="nisObject"
+MAP_ATTRIBUTE="nisMapName"
+ENTRY_ATTRIBUTE="cn"  
+
+
+vi /etc/nlscd.conf (modify these sections, also change permissions on this file )
+# The uri pointing to the LDAP server to use for name lookups.
+# Multiple entries may be specified. The address that is used
+# here should be resolvable without using LDAP (obviously).
+#uri ldap://127.0.0.1/
+#uri ldaps://127.0.0.1/
+#uri ldapi://%2fvar%2frun%2fldapi_sock/
+# Note: %2f encodes the '/' used as directory separator
+uri ldap://ad.helixtech.com:389/
+
+# The LDAP version to use (defaults to 3
+# if supported by client library)
+#ldap_version 3
+
+# The distinguished name of the search base.
+base dc=helixtech,dc=com
+
+# The distinguished name to bind to the server with.
+# Optional: default is to bind anonymously.
+binddn CN=[a_bind_account],OU=Workforce,OU=UserAccts,OU=ouUsers,DC=helixtech,DC=com
+
+# The credentials to bind with.
+# Optional: default is no credentials.
+# Note that if you set a bindpw you should check the permissions of this file.
+bindpw a_bind_password]
+
+# Mappings for Active Directory
+pagesize 1000
+referrals off
+#idle_timelimit 800
+#filter passwd (&(objectClass=user)(!(objectClass=computer))(uidNumber=*)(unixHomeDirectory=*))
+filter passwd (objectClass=user)
+#map    passwd uidNumber        sAMAccountName
+map    passwd uid              sAMAccountName
+#map    passwd homeDirectory    unixHomeDirectory
+map    passwd gecos            displayName
+filter shadow (objectClass=user)
+map    shadow uid              sAMAccountName
+#map    shadow shadowLastChange pwdLastSet
+filter group  (objectClass=group)
+
+# Alternative mappings for Active Directory
+# (replace the SIDs in the objectSid mappings with the value for your domain)
+#pagesize 1000
+#referrals off
+#idle_timelimit 800
+#filter passwd (&(objectClass=user)(objectClass=person)(!(objectClass=computer)))
+#map    passwd uid           cn
+map    passwd uidNumber     objectSid:S-1-5-21-3623811015-3361044348-30300820
+map    passwd gidNumber     objectSid:S-1-5-21-3623811015-3361044348-30300820
+#map    passwd homeDirectory "/home/$cn"
+#map    passwd gecos         displayName
+#map    passwd loginShell    "/bin/bash"
+#filter group (|(objectClass=group)(objectClass=person))
+#map    group gidNumber      objectSid:S-1-5-21-3623811015-3361044348-30300820
+
+# This comment prevents repeated auto-migration of settings.
+ssl no
+tls_cacertdir /etc/openldap/cacerts
+
+
+vi /etc/pam.d/sshd 
+#%PAM-1.0
+auth       required     pam_sepermit.so
+auth       substack     password-auth
+auth       include      postlogin
+# Used with polkit to reauthorize users in remote sessions
+-auth      optional     pam_reauthorize.so prepare
+account    required     pam_nologin.so
+account    include      password-auth
+password   include      password-auth
+# pam_selinux.so close should be the first session rule
+session    required     pam_selinux.so close
+session    required     pam_loginuid.so
+# pam_selinux.so open should only be followed by sessions to be executed in the user context
+session    required     pam_selinux.so open env_params
+session    required     pam_namespace.so
+session    optional     pam_keyinit.so force revoke
+session    include      password-auth
+session    include      postlogin
+# Used with polkit to reauthorize users in remote sessions
+-session   optional     pam_reauthorize.so prepare
+
+
+vi /etc/ssh/sshd_config
+PasswordAuthentication yes
+
+
+sed -i 's/0022/0077/g' /etc/oddjobd.conf.d/oddjobd-mkhomedir.conf
+
+vi /etc/pam.d/password-auth
+session     optional      pam_oddjob_mkhomedir.so skel=/etc/skel
+
+
+vi /etc/pam.d/system-auth
+session     optional      pam_oddjob_mkhomedir.so skel=/etc/skel
+
+
+authconfig --enableldap --enableldapauth --ldapserver=ldap://ad.helixtech.com:389/ --ldapbasedn="dc=helixtech,dc=com" --enablecache --disablefingerprint --kickstart --enablemkhomedir --update
+
+systemctl enable ncsd
+
+systemctl enable autofs
+
+systemctl enable nslcd
+
+systemctl enable oddjobd
+
+setenforce 0
+
+reboot
+
+## Debugging:
+
+systemctl stop nclsd
+
+nslcd -d
+
+getent passwd u101840
