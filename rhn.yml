@@ -1,0 +1,44 @@
+Activation Keys for Premium and Satndard Subscriptions
+
+BCBSNC_MSA_ALIS_PREMIUM_KEYS
+
+BCBSNC_MSA_ALIS_STD_KEYS
+
+Eddie , will include these activation keys in script and will share with us shortly. 
+
+Thanks
+_____________________________________________
+
+Subject: RE: RHEL subscription and admin access
+
+
+1 Physical or 2 Virtual 
+
+sudo subscription-manager list
+
+sudo subscription-manager list --all --available
+
+sudo subscription-manager list --consumed (whats  being consumed for current instance)
+
+sudo subscription-manager unregister (current instance will be unregistered)
+
+sudo subscription-manager attach  --pool=
+
+
+pool id for  standard - 
+
+pool id  for premium - 
+
+
+licenses are good for 1 year and active until 11/17/2017.
+
+
+
+[root@ip-10-154-8-251 ~]# subscription-manager register
+Registering to: subscription.rhn.redhat.com:443/subscription
+Username: samal.dimdung
+Password:
+The system has been registered with ID: 3607bdca-028d-40b6-84a2-138006351a5c
+[root@ip-10-154-8-251 ~]# subscription-manager attach  --pool=8a85f98158cf4dd80158d098cbdc751d
+Successfully attached a subscription for: Red Hat Enterprise Linux Server, Premium (Physical or Virtual Nodes)
+[root@ip-10-154-8-251 ~]#
