@@ -148,6 +148,78 @@ export PATH=$PATH:/opt/terraform
 helixtechllc:WebEx dimdung$ 
 
 
+-----------------------------------------------------Linux---------------------------------------------------------
+1. Install some tools, that will be needed later
+# RHEL6.x
+[root@ip-172-31-21-76 ~]# rpm -ivh https://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
 
+# Needed Tools
+[root@samal-dimdung2 ~]# yum install wget zip unzip git ansible -y
+
+2. Download the Java from from oracle and scp to server
+
+[root@samal-dimdung2 opt]# ll /root/jdk-8u111-linux-x64.tar.gz
+-rw-rw-r--. 1 user user 181442359 Nov 15 00:19 /root/jdk-8u111-linux-x64.tar.gz
+[root@samal-dimdung2 opt]# pwd
+/opt
+[root@samal-dimdung2 opt]# tar -xzvf /root/jdk-8u111-linux-x64.tar.gz
+
+[root@samal-dimdung2 opt]# ls -ld jdk1.8.0_111
+drwxr-xr-x. 8 10 143 4096 Sep 22 19:27 jdk1.8.0_111
+[root@samal-dimdung2 opt]# mv jdk1.8.0_111 jdk8
+[root@samal-dimdung2 opt]# 
+[root@samal-dimdung2 opt]# ls -ld jdk8/
+drwxr-xr-x. 8 10 143 4096 Sep 22 19:27 jdk8/
+[root@samal-dimdung2 opt]# cd jdk8/
+[root@samal-dimdung2 jdk8]# alternatives --install /usr/bin/java java /opt/jdk8/bin/java 2
+[root@samal-dimdung2 jdk8]# alternatives --config java
+
+There is 1 program that provides 'java'.
+
+  Selection    Command
+-----------------------------------------------
+*+ 1           /opt/jdk8/bin/java
+
+Enter to keep the current selection[+], or type selection number:
+[root@samal-dimdung2 jdk8]#
+
+[root@samal-dimdung2 jdk8]# java -version
+java version "1.8.0_111"
+Java(TM) SE Runtime Environment (build 1.8.0_111-b14)
+Java HotSpot(TM) 64-Bit Server VM (build 25.111-b14, mixed mode)
+[root@samal-dimdung2 jdk8]#
+
+
+3. Install maven 
+[root@samal-dimdung2 ~]# wget http://apache.spinellicreations.com/maven/maven-3/3.3.9/binaries/apache-maven-3.3.9-bin.zip
+[root@samal-dimdung2 ~]# export JAVA_HOME=/opt/jdk8
+[root@samal-dimdung2 ~]# export PATH=$PATH:$JAVA_HOME/bin/
+[root@samal-dimdung2 ~]# export M2_HOME=/opt/apache-maven-3.3.9
+[root@samal-dimdung2 ~]# export M2=$M2_HOME/bin
+[root@samal-dimdung2 ~]# export PATH=$M2:$PATH
+[root@samal-dimdung2 ~]# cd /opt/
+[root@samal-dimdung2 opt]# ls
+amazon  apache-maven-3.3.9  jdk8
+[root@samal-dimdung2 opt]#
+
+[root@samal-dimdung2 ~]# vi .bash_profile
+export JAVA_HOME=/opt/jdk8
+export PATH=$PATH:$JAVA_HOME/bin/
+export M2_HOME=/opt/apache-maven-3.3.9
+export M2=$M2_HOME/bin
+export PATH=$M2:$PATH
+
+
+[root@samal-dimdung2 opt]# mvn -version
+Apache Maven 3.3.9 (bb52d8502b132ec0a5a3f4c09453c07478323dc5; 2015-11-10T11:41:47-05:00)
+Maven home: /opt/apache-maven-3.3.9
+Java version: 1.8.0_111, vendor: Oracle Corporation
+Java home: /opt/jdk8/jre
+Default locale: en_US, platform encoding: UTF-8
+OS name: "linux", version: "3.10.0-327.28.3.el7.x86_64", arch: "amd64", family: "unix"
+[root@samal-dimdung2 opt]#
+
+
+alternatives --install /usr/bin/java java /opt/jdk8/bin/java 2
 
 
