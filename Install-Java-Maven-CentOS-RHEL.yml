@@ -110,6 +110,42 @@ OS name: "linux", version: "2.6.32-504.23.4.el6.x86_64", arch: "amd64", family: 
 
 
 
+helixtechllc:WebEx dimdung$ at /etc/profile 
+at: garbled time
+helixtechllc:WebEx dimdung$ cat /etc/profile 
+# System-wide .profile for sh(1)
+
+if [ -x /usr/libexec/path_helper ]; then
+	eval `/usr/libexec/path_helper -s`
+fi
+
+if [ "${BASH-no}" != "no" ]; then
+	[ -r /etc/bashrc ] && . /etc/bashrc
+fi
+# Set all shortcut
+alias ll='ls -lG'
+export PATH=/usr/local/bin:$PATH
+
+# Set Java Env
+#export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_112.jdk
+export PATH=$PATH:$JAVA_HOME/bin/
+
+
+# Set Maven ENV
+export M2_HOME=/opt/apache-maven-3.3.9
+export M2=$M2_HOME/bin
+export PATH=$M2:$PATH
+
+# Set Packer 
+#export /opt/packer
+export PATH=$PATH:/opt/packer
+
+#cd /usr/bin
+#sudo ln -s /path/to/binary binary-name
+
+# Set ENV for Terraform
+export PATH=$PATH:/opt/terraform
+helixtechllc:WebEx dimdung$ 
 
 
 
