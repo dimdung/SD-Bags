@@ -222,4 +222,55 @@ OS name: "linux", version: "3.10.0-327.28.3.el7.x86_64", arch: "amd64", family: 
 
 alternatives --install /usr/bin/java java /opt/jdk8/bin/java 2
 
+# Preapring to install the Packer and Terraform in RHEL7.2
+[root@localhost opt]# pwd
+/opt
+[root@localhost opt]#
+[root@localhost opt]#wget https://releases.hashicorp.com/packer/0.12.2/packer_0.12.2_linux_amd64.zip
+
+[root@localhost opt]#wget https://releases.hashicorp.com/terraform/0.8.5/terraform_0.8.5_linux_amd64.zip
+[root@localhost opt]# ll /root/
+total 209436
+-rw-------. 1 root root      1164 Feb  5 05:54 anaconda-ks.cfg
+-rw-r--r--. 1 root root 181442359 Nov 19 02:53 jdk-8u111-linux-x64.gz
+-rw-r--r--. 1 root root  10782027 Jan 20 15:25 packer_0.12.2_linux_amd64.zip
+-rw-r--r--. 1 root root  22225948 Jan 26 11:06 terraform_0.8.5_linux_amd64.zip
+[root@localhost opt]#
+
+# Make 'packer' Directory inside the '/opt'
+[root@localhost opt]#mkdir packer
+[root@localhost opt]#cd packer
+[root@localhost opt]# unzip  /root/packer_0.12.2_linux_amd64.zip
+Archive:  /root/packer_0.12.2_linux_amd64.zip
+  inflating: packer
+[root@localhost opt]#
+
+# Make 'terraform' Directory inside the '/opt'
+[root@localhost opt]#mkdir terraform 
+[root@localhost opt]# unzip /root/terraform_0.8.5_linux_amd64.zip
+Archive:  /root/terraform_0.8.5_linux_amd64.zip
+  inflating: terraform
+[root@localhost opt]#
+
+# Update the following file content '/etc/profile'
+[root@localhost opt]# tail -18 /etc/profile
+## Java, Maven
+export JAVA_HOME=/opt/jdk8
+export PATH=$PATH:$JAVA_HOME/bin/
+
+# Set Maven
+export M2_HOME=/opt/apache-maven-3.3.9
+export M2=$M2_HOME/bin
+export PATH=$M2:$PATH
+
+# Set Packer
+#export /opt/packer
+export PATH=$PATH:/opt/packer
+
+#cd /usr/bin
+#sudo ln -s /path/to/binary binary-name
+
+# Set ENV for Terraform
+export PATH=$PATH:/opt/terraform
+[root@localhost opt]#
 
