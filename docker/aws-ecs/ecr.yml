@@ -1,6 +1,8 @@
 # Amazon EC2 Container Registry (ECR)
 1. Create a repository 
+- Login to your AWS Account and Navigate to EC2 Container Services >> Repositories >> Create Repositories >> Configure repository name <DevOps> >> Click Next Step >> Done
 2. Connect to a repository 
+- 
 3. Apply a tag to an image 
 4. Push to an ECR repository
 5. Pull into an ECS Container
