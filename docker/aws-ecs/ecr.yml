@@ -2,7 +2,13 @@
 1. Create a repository 
 - Login to your AWS Account and Navigate to EC2 Container Services >> Repositories >> Create Repositories >> Configure repository name <DevOps> >> Click Next Step >> Done
 2. Connect to a repository 
-- 
+[root@samal-dimdung3 ~]# aws ecr get-login --region us-east-1
+docker login -u AWS -p AQECAHhwm0YaISJeRtJm5n1G6uqeekXuoXXPe5UFce9Rq8/14wAAAyEwggMdBgkqhkiG9w0BBwagggMOMIIDCgIBADCCAwMGCSqGSIb3DQEHATAeBglghkgBZQMEAS4wEQQMcHlukyUJnHfLg/hwAgEQgIIC1MjtXEs4sxF4FJQUZraUXfErgNuUA1o6TvH/DaZ9uimQ53uV+waHMllN9MPzdwPbg4t4Y9sTBT5GaHxffMV+x5ZHwNaAXN1NbIjk9ERS8ApbtEUfP2D+Hjcyf5qYTNsJa4bkIgLQN5Elpa2v2tXOsJACABqynBtl40x5WofZXl2TRPW0v6xJ1jHQJznrSmhL08VdXm3fOvSjJjSKcaPF1rL9Zh0KHioPG1oLQnEFH4RMQ5n7uP7xH3sETp4WfSKZQLajqVEBR8iyw9PhzFqFHFdw7sixrRYwC3Mmxmfei6Tm0CmljKgc+dVrzbzcTkdtJ6VJfqGelvJnKoU5+8Ip+wAHdHFv29hUUJEef6DV1eYgwromzgKfa+fieBBTwE0DWmIb6w8/9VClDFKKnnrXFAPPmt+W4SoYc1hIr7e/QNw/2XhKe482bz68QXOWKiGPAX1R2Hu6ew7mfgFU92girN/Cfncq1i0pyskrE17A8F7r0KDKecUBB1DaW+Pf4xUDr5CWm2124pkS8BQOoMcSiCOzjdIQRfDg6gVwdUcmsX3jXmroV1I9euHy2Xb+6Lfm199XkHrnHo9iFdoI2G67SkQHSiv2IijBF3+FmVBxyfQVvQpZmuspd8F5QErfgZE1wAE0xRolsUmRHuJqRnak5j52a20jUhLwTcs2TiUcECvNkEplrvgWUiAaW4Qx5jQLebhPupnD3aN1bvHfVc6pP0Aa0cLKSzeTSBg3B+BbadFJbypBX92ewWQ0D/WscI6qIAqnur1omsUJwhkpC4lkMo8GERhdJjl6bVoHNeHQdsy9/8IK030Ly3j2/lwoIUZ5WukAaqw2yQamfAQ48HnTXWf0dkZ44s2gf3kTdKnfP4EW+bYVH2+q6tPUI+hHM4YwRd69xO1s/u/HES0hYVNuToT/r9YAdBzCTYZNEIcEq50E21ZqXz91EaMXZwDnXT2/lx0OSZo= -e none https://<AccountID>.dkr.ecr.us-east-1.amazonaws.com
+[root@samal-dimdung3 ~]#
+
+3. If you want to build docker from Dockerbuild 
+[root@samal-dimdung3 ~]# docker build -t devopstest .
+
 3. Apply a tag to an image 
 4. Push to an ECR repository
 5. Pull into an ECS Container
