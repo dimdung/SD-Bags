@@ -9,6 +9,27 @@ docker login -u AWS -p AQECAHhwm0YaISJeRtJm5n1G6uqeekXuoXXPe5UFce9Rq8/14wAAAyEwg
 3. If you want to build docker from Dockerbuild 
 [root@samal-dimdung3 ~]# docker build -t devopstest .
 
-3. Apply a tag to an image 
+4. Pull images from RHN 
+[root@samal-dimdung3 ~]# docker pull registry.access.redhat.com/rhel7/rhel
+Using default tag: latest
+Trying to pull repository registry.access.redhat.com/rhel7/rhel ...
+latest: Pulling from registry.access.redhat.com/rhel7/rhel
+
+154dc369ca0d: Pull complete
+e6b5b6e3c142: Pull complete
+Digest: sha256:eda7f2c5a9d051137a9c0369f675fff00f296ea9394763fb93f2a08c9202cade
+[root@samal-dimdung3 ~]# docker images
+REPOSITORY                              TAG                 IMAGE ID            CREATED             SIZE
+registry.access.redhat.com/rhel7/rhel   latest              41a4953dbf95        5 weeks ago         192.5 MB
+[root@samal-dimdung3 ~]#
+
+5. Apply a tag to an image 
+[root@samal-dimdung3 ~]# docker tag registry.access.redhat.com/rhel7/rhel:latest <AWS-AccountID>.dkr.ecr.us-east-1.amazonaws.com/devopstest:rhel7base
 4. Push to an ECR repository
+[root@samal-dimdung3 ~]# docker push <AWS-AccountID>.dkr.ecr.us-east-1.amazonaws.com/devopstest:rhel7base
+The push refers to a repository [<AWS-AccountID>.dkr.ecr.us-east-1.amazonaws.com/devopstest]
+9ca8c628d8e7: Pushed
+827264d42df6: Pushed
+rhel7base: digest: sha256:72364ad16b483d3a7da027d8c89616d872b1a777d98969974079699e5e86e83e size: 737
+[root@samal-dimdung3 ~]#
 5. Pull into an ECS Container
