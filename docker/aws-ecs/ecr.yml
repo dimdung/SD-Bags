@@ -25,11 +25,22 @@ registry.access.redhat.com/rhel7/rhel   latest              41a4953dbf95        
 
 5. Apply a tag to an image 
 [root@samal-dimdung3 ~]# docker tag registry.access.redhat.com/rhel7/rhel:latest <AWS-AccountID>.dkr.ecr.us-east-1.amazonaws.com/devopstest:rhel7base
-4. Push to an ECR repository
+6. Push to an ECR repository
 [root@samal-dimdung3 ~]# docker push <AWS-AccountID>.dkr.ecr.us-east-1.amazonaws.com/devopstest:rhel7base
 The push refers to a repository [<AWS-AccountID>.dkr.ecr.us-east-1.amazonaws.com/devopstest]
 9ca8c628d8e7: Pushed
 827264d42df6: Pushed
 rhel7base: digest: sha256:72364ad16b483d3a7da027d8c89616d872b1a777d98969974079699e5e86e83e size: 737
 [root@samal-dimdung3 ~]#
+
+7. Docker pull into local :
+[root@samal-dimdung3 ~]# docker pull <AWS-ACCOUNT-ID>.dkr.ecr.us-east-1.amazonaws.com/devopstest:rhel7base
+Trying to pull repository <AWS-ACCOUNT-ID>.dkr.ecr.us-east-1.amazonaws.com/devopstest ...
+rhel7base: Pulling from <AWS-ACCOUNT-ID>.dkr.ecr.us-east-1.amazonaws.com/devopstest
+
+3436c67883ad: Pull complete
+c85416a3d375: Pull complete
+Digest: sha256:72364ad16b483d3a7da027d8c89616d872b1a777d98969974079699e5e86e83e
+[root@samal-dimdung3 ~]#
+
 5. Pull into an ECS Container
