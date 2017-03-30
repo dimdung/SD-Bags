@@ -1,0 +1,6 @@
+# Amazon EC2 Container Registry (ECR)
+1. Create a repository 
+2. Connect to a repository 
+3. Apply a tag to an image 
+4. Push to an ECR repository
+5. Pull into an ECS Container
