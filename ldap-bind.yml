@@ -147,7 +147,7 @@ session     optional      pam_oddjob_mkhomedir.so skel=/etc/skel
 
 authconfig --enableldap --enableldapauth --ldapserver=ldap://ad.helixtech.com:389/ --ldapbasedn="dc=helixtech,dc=com" --enablecache --disablefingerprint --kickstart --enablemkhomedir --update
 
-systemctl enable ncsd
+root@ip-10-152-133-48 ~]# systemctl enable nscd
 
 systemctl enable autofs
 
