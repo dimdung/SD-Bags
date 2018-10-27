@@ -278,3 +278,5 @@ export PATH=$PATH:/opt/packer
 export PATH=$PATH:/opt/terraform
 [root@localhost opt]#
 
+### Jenkins installation guide: 
+https://wiki.jenkins.io/display/JENKINS/Installing+Jenkins+on+Red+Hat+distributions
