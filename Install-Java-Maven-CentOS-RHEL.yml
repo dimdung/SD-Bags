@@ -86,8 +86,11 @@ export JAVA_HOME="/usr/java/latest"
 
 # Or do as shown below JAVA and Maven
 $ vi .bash_profile
+# JAVA
 export JAVA_HOME=/usr/java/latest
-export JAVA_HOME;
+export PATH=$JAVA_HOME/bin:$PATH
+
+
 
 ## Download and Install the Maven on RHEL 6.x64
 https://maven.apache.org/download.cgi 
