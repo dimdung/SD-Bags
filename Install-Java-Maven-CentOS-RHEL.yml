@@ -280,3 +280,24 @@ export PATH=$PATH:/opt/terraform
 
 ### Jenkins installation guide: 
 https://wiki.jenkins.io/display/JENKINS/Installing+Jenkins+on+Red+Hat+distributions
+
+####  JAVA 
+Text Direction: Install Java
+Section 1, Lecture 9
+Configure Java_Home on Windows:
+Right click My Computer and select Properties.
+On the Advanced tab, select Environment Variables, and then edit JAVA_HOME to point to where the JDK software is located, for example, C:\Program Files\Java\jdk1.6.0_02
+Configure Java_Home on Linux:
+Login to your account and open the startup script file which is usually ~/.bash_profile  file (or can be .bashrc depending on your envrionment settings)
+$ vi ~/.bash_profile
+
+In the startup script, set JAVA_HOME  and PATH 
+
+C shell:
+
+setenv JAVA_HOME jdk-install-dir
+setenv PATH $JAVA_HOME/bin:$PATH
+export PATH=$JAVA_HOME/bin:$PATH
+jdk-install-dir  is the JDK installation director, which should be something similar to /usr/java/jdk1.5.0_07/bin/java
+
+Bourne shell:
