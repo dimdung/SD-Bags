@@ -280,6 +280,16 @@ export PATH=$PATH:/opt/terraform
 
 ### Jenkins installation guide: 
 https://wiki.jenkins.io/display/JENKINS/Installing+Jenkins+on+Red+Hat+distributions
+or 
+[root@ip-172-31-93-55 ~]# cat jkn 
+sudo wget -O /etc/yum.repos.d/jenkins.repo http://pkg.jenkins-ci.org/redhat-stable/jenkins.repo
+sudo rpm --import https://jenkins-ci.org/redhat/jenkins-ci.org.key
+sudo yum install jenkins -y
+sudo chkconfig jenkins on
+sudo service jenkins start
+[root@ip-172-31-93-55 ~]# 
+
+
 
 ####  JAVA 
 Text Direction: Install Java
