@@ -1,1 +1,4 @@
 openssl req        -newkey rsa:2048 -nodes -keyout cloudxplus.key        -x509 -days 365 -out cloudxplus.crt
+
+
+https://www.digitalocean.com/community/tutorials/openssl-essentials-working-with-ssl-certificates-private-keys-and-csrs
